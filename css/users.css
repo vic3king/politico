@@ -1,0 +1,209 @@
+body {
+  /* margin-top: -21px; */
+  background: linear-gradient(135deg, #484349, #D81E5B);
+  /* height: 40%; */
+}
+.profile {
+  border-bottom:7px solid #484349
+}
+.profile > .section-title {
+  color: white;
+  margin: 32px;
+  padding: 16px;
+}
+
+.profile__image {
+  background: #ffcede;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border: 2px solid #424242;
+  border-radius: 50%;
+  margin: 10px;
+}
+
+.profile__details {
+  width: 200px;
+  height: 200px;
+  margin: 20 auto;
+  font-weight: bolder;
+}
+
+.wholeform{
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.formgroup {
+  flex-basis: 15%;
+} 
+
+@keyframes shadow-pulse
+{
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 35px rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes shadow-pulse-big
+{
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 0 70px rgba(0, 0, 0, 0);
+  }
+}
+
+.example-1
+{
+  margin: 10px;
+  width: 200px;
+  height: 200px;
+  font: 13px/130px 'Barlow Semi Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: black;
+  text-align: center;
+  font-weight: bolder;
+  cursor: pointer;
+  background: #ffcede;
+  border-radius: 50%;
+  animation: shadow-pulse 1s infinite;
+}
+
+#open-positions{
+  display: none;
+  padding: 10px;
+  color: black;
+}
+.container2 {
+  display: flex;
+  margin-right: 100px;
+  justify-content: center;
+  height: 140px;
+  margin-bottom: 70px;
+}
+h6 {
+  font-size: 15px;
+  margin-top: 10px;
+}
+.container2 > div {
+  border-radius: 30px;
+  text-align: center;
+  color: #ffcede;
+  flex: 1;
+  margin-left:3%;
+}
+.container2 div .veiwrecord {
+  font-size: 15px;
+  background-color: rgba(45,45,45,0.98);
+  display: block;
+  width: 100%;
+  border: 2px solid rgba(45,45,45,0.98);
+  padding: 14px 40px;
+  color: white;
+  cursor: pointer;
+  border-radius: 30px;
+  margin-top: -30px;
+}
+
+.container2 div .veiwrecord:hover {
+  background-color: white;
+  color: rgba(45,45,45,0.98);
+}
+.div1 {
+  background-color:#424242;
+  color: whitesmoke;
+}
+
+.button-declare{
+  font-size: 15px;
+  background-color: black;
+  display:block;
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid black;
+  padding: 14px 40px;
+  color: white;
+  cursor: pointer;
+}
+
+.admin{
+  text-align: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bolder;
+  font-size: 60px;
+  margin-top: -17px;
+}
+
+.pagination {
+  display: inline-block;
+  margin-left: 38%;
+}
+
+.pagination a {
+  color: rgba(45,45,45,0.98);
+  font-weight: bold;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: rgba(45,45,45,0.98);
+  border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: rgba(45,45,45,0.98);
+  color: white;
+  border-radius: 5px;
+}
+
+.form-section {
+  display: none;
+}
+
+.box2{
+  padding: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+  background: #f7f7f7;
+  color: black;
+}
+
+input{
+  width: 100%;
+  height: 33px;
+border-color: #c1b8b8;
+border-style: solid;
+border-radius: 5px;
+font-size: 16px;
+margin-bottom: 10px;
+}
+textarea{
+  width: 100%;
+border-color: #c1b8b8;
+border-style: solid;
+border-radius: 5px;
+font-size: 16px;
+margin-bottom: 10px;
+border-width: 2px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .example-1 {
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    font: 13px/21px 'Barlow Semi Condensed', sans-serif;
+  }
+} 

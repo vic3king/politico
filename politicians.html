@@ -1,0 +1,106 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home-Politico</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="shortcut icon" href="../UI/img/candidate-for-elections.png">
+  <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="../UI/css/shared.css">
+  <link rel="stylesheet" href="../UI/css/users.css">
+</head>
+
+<body>
+  <div class="background"></div>
+  <header class="main-header">
+    <div>
+      <i class="fa fa-balance-scale fa-lg"></i>
+      <a href="index.html" class="main-header__brand">
+        Politico
+      </a>
+    </div>
+    <nav class="main-nav">
+      <ul class="main-nav__items">
+        <li class="main-nav__item">
+          <a href="login.html">Logout</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div>
+        <h1>User profile</h1>
+    </div>
+    <section class="profile">
+      <div class=" wholeform">
+        <div class="profile__image formgroup">
+        </div>
+        <div class="profile__details formgroup">
+          <p>fullname:<br> Akaniru Victory</p>
+          <p>party: hope</p>
+          <p>email: Akaniruvictory@yahoo.com</p>
+          <p>age: 00</p>
+          <p>phone: 09023xxxx</p>
+        </div>
+        <button class="example-1 formgroup" id="run-for-office">Run for office</button>
+      </div>
+    </section>
+    <section>
+      <div id="open-positions">
+        <h4 class="page-title">Open Positions</h4>
+        <div class="container2">
+          <div class="div1">
+            <h6>Local Government Chairman</h6>
+            <p class="admin">0</p>
+            <button class="veiwrecord">Declare interest</button>
+          </div>
+          <div class="div1">
+            <h6>Senate House</h6>
+            <p class="admin">0</p>
+            <button class="veiwrecord">Declare interest</button>
+          </div>
+          <div class="div1">
+            <h6>House of Reps</h6>
+            <p class="admin">0</p>
+            <button class="veiwrecord">Declare interest</button>
+          </div>
+        </div>
+        <br><br>
+        <div class="form-section">
+            <form>
+                <div class="box2">
+                  <h3>Candidate declaration form</h3>
+                  <form>
+                    <label for="party">Party: </label>
+                    <input type="text" placeholder="which party do you belong to?" name="title" id="title">
+                    <label for="type">age: </label>
+                    <input type="number" placeholder="" name="title">
+                    <label for="description">Introduce yourself: </label>
+                    <input type="text" placeholder="give a brief intro..." name="description">
+                    <label for="comment">Tell us why you are a fit for this role: </label>
+                    <textarea name="comment" rows="4"></textarea>
+                    <button class="button-declare">Declare</button>
+                </div>
+              </form>
+        </div>
+        <div class="pagination">
+          <a href="#">&laquo;</a>
+          <a href="#">1</a>
+          <a href="#">2</a>
+          <a href="#">3</a>
+          <a href="#">4</a>
+          <a href="#">5</a>
+          <a href="#">6</a>
+          <a href="#">&raquo;</a>
+        </div>
+    </section>
+    <!-- <section class="form-section">
+       
+    </section> -->
+  </main>
+  <script src="js/politico.js"></script>
+</body>
+
+</html>
