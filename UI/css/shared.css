@@ -14,7 +14,7 @@ body {
   width: 100%;
   padding: 8px 16px; 
   height: 80px;
-  position: fixed;
+  /* position: fixed; */
 }
 
 .main-header > div {
