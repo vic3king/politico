@@ -1,0 +1,77 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home-Politico</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="shortcut icon" href="../UI/img/candidate-for-elections_318-64497.jpg">
+  <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="../UI/css/shared.css">
+  <link rel="stylesheet" href="../UI/css/users.css">
+</head>
+
+<body>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCf2fhPBsGoCDbZRUCnZGqUQJJRhGFRej8&libraries=places"></script>
+    <script type="text/javascript" > 
+        google.maps.event.addDomListener(window, 'load', initialize);
+        function initialize() {
+            let autoComplete = new google.maps.places.Autocomplete(document.getElementById('search_term'));
+        }   
+            </script>
+  <div class="background"></div>
+  <header class="main-header">
+    <div>
+      <i class="fa fa-balance-scale fa-lg"></i>
+      <a href="index.html" class="main-header__brand">
+        Politico
+      </a>
+    </div>
+    <nav class="main-nav">
+      <ul class="main-nav__items">
+        <li class="main-nav__item">
+          <a href="login.html">Logout</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <div class="box" id="addparty">
+      <h2 class="page-title">Request Dashboard</h2>
+     <button id="btn1">Add Party </button>
+  <form id="record-form" class="box red-flag">
+      <div class="box2">
+            <h3 class="page-title">Create party:</h3>
+            <form>
+                <label for="title">Name: </label>
+                <input type="text" id="title" placeholder="what will this party be called?" name="title" id="title" required>
+              <label for="address">HQ Address</label>
+              <input type="text" id="search_term" placeholder="enter your address" name="address" >
+              <label for="image">Upload Logo</label>
+              <input type="file" name="image" id="image">
+              <button type="submit">Save Party</button>
+        </div>
+    </form>
+    </div>   
+    </div>
+    <div class="box" id="addoffice">
+       <button id="btn2">Add Office </button>
+    <form id="record-form" class="box red-flag1">
+        <div class="box2">
+              <h3 class="page-title">Create a Political Office:</h3>
+              <form>
+                <label for="title">Office Name: </label>
+                <input type="text" id="title" placeholder="Provide office name" name="title" id="title" required>
+                <label for="type">Office Type: </label>
+                <input type="text" id="type" placeholder="federal, legislative, state, or local government" name="title" id="type" required>
+                <label for="type">Office: </label>
+                <input type="text" id="type" placeholder="e.g Local government Chairman" name="title" id="type" required>
+                <button type="submit">Save Record</button>
+          </div>
+      </form>
+      </div>   
+      </div>
+    <script src="js/office.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home-Politico</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="shortcut icon" href="../UI/img/candidate-for-elections_318-64497.jpg">
+  <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="../UI/css/shared.css">
+  <link rel="stylesheet" href="../UI/css/users.css">
+</head>
+
+<body>
+  <div class="background"></div>
+  <header class="main-header">
+    <div>
+      <i class="fa fa-balance-scale fa-lg"></i>
+      <a href="index.html" class="main-header__brand">
+        Politico
+      </a>
+    </div>
+    <nav class="main-nav">
+      <ul class="main-nav__items">
+        <li class="main-nav__item">
+          <a href="office.html">Add office</a>
+        </li>
+        <li class="main-nav__item">
+          <a href="office.html">Add party</a>
+        </li>
+        <li class="main-nav__item">
+          <a href="login.html">Logout</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <div>
+    <h1>User profile:(Administrator)</h1>
+  </div>
+  <section class="profile">
+    <div class=" wholeform">
+      <div class="profile__image formgroup">
+      </div>
+      <div class="profile__details formgroup">
+        <p>fullname:<br> Akaniru Victory</p>
+        <p>email: Akaniruvictory@yahoo.com</p>
+        <p>age: 00</p>
+        <p>phone: 09023xxxx</p>
+      </div>
+  </section>
+  <section>
+    <div>
+      <h4 class="page-title">Office(s)</h4>
+      <div class="container2">
+        <div class="div1 vote">
+          <h6>Local Government Chairman</h6>
+          <p class="admin">2</p>
+          <button id="lgc" class="veiwrecord vote1">View</button>
+        </div>
+        <div class="div1 vote">
+          <h6>Senate House</h6>
+          <p class="admin">1</p>
+          <button id="senate-house" class="veiwrecord vote1">View</button>
+        </div>
+        <div class="div1 vote">
+          <h6>House of Reps</h6>
+          <p class="admin">2</p>
+          <button id="house-of-reps" class="veiwrecord vote1">View</button>
+        </div>
+      </div>
+      <div class="pagination">
+        <a href="#">&laquo;</a>
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">&raquo;</a>
+      </div>
+  </section><br><br>
+  <section>
+    <h4 class="page-title">Political Parties</h4>
+    <div> 
+    <button class="accordion"><b>Name:</b> Hope</button>
+    <div class="panel">
+      <a target="_blank" href="img/freedom.jpg">
+        <img class="img" src="img/freedom.jpg" alt="Forest"> </a>
+      <div class="stats">
+          <span>Created On: 19/01/2019</span><br>
+          <span>Modified On: 20//01/2019</span>
+      </div>
+      <button class="update-accord">Edit</button>
+      <form id="record-form" class="box red-flag">
+          <div class="box2">
+                <h3 class="page-title">Create party:</h3>
+                <form>
+                    <label for="title">Name: </label>
+                    <input type="text" id="title" placeholder="what will this party be called?" name="title" id="title" required>
+                  <label for="address">HQ Address</label>
+                  <input type="text" id="search_term" placeholder="enter your address" name="address" >
+                  <label for="image">Upload Logo</label>
+                  <input type="file" name="image" id="image">
+                  <button type="submit">Update Party</button>
+            </div>
+            </form>
+      <button class="delete-record">Delete</button> 
+    </div><br><br>
+    <div> 
+        <button class="accordion"><b>Name:</b> Kowa</button>
+        <div class="panel">
+          <a target="_blank" href="img/freedom.jpg">
+            <img class="img" src="img/freedom.jpg" alt="Forest"> </a>
+          <div class="stats">
+              <span>Created On: 19/01/2019</span><br>
+              <span>Modified On: 20//01/2019</span>
+          </div>
+          <button class="update-accord">Edit</button>
+          <form id="record-form" class="box red-flag">
+              <div class="box2">
+                    <h3 class="page-title">Create party:</h3>
+                    <form>
+                        <label for="title">Name: </label>
+                        <input type="text" id="title" placeholder="what will this party be called?" name="title" id="title" required>
+                      <label for="address">HQ Address</label>
+                      <input type="text" id="search_term" placeholder="enter your address" name="address" >
+                      <label for="image">Upload Logo</label>
+                      <input type="file" name="image" id="image">
+                      <button type="submit">Update Party</button>
+                </div>
+                </form>
+          <button class="delete-record">Delete</button> 
+        </div>
+  </section>
+
+  <div class="pagination">
+    <a href="#">&laquo;</a>
+    <a href="#">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">6</a>
+    <a href="#">&raquo;</a>
+  </div>
+  <script src="js/admin.js"></script>
+</body>
+</body>
+
+</html>
