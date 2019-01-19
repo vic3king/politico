@@ -113,10 +113,43 @@ h6 {
   margin-top: -30px;
 }
 
-.container2 div .veiwrecord:hover {
-  background-color: white;
-  color: rgba(45,45,45,0.98);
+.container2 .vote {
+  display: block;
+  width: 100%;
 }
+.container2 .vote .vote1 {
+  font-size: 15px;
+  background-color: rgba(45,45,45,0.98);
+  display: inline-block;
+  width: 40%;
+  border: 2px solid rgba(45,45,45,0.98);
+  padding: 14px 40px;
+  color: white;
+  cursor: pointer;
+  border-radius: 30px;
+}
+.container2 .vote .vote2 {
+  font-size: 15px;
+  background-color: rgba(45,45,45,0.98);
+  display: inline-block;
+  width: 40%;
+  border: 2px solid rgba(45,45,45,0.98);
+  padding: 14px 40px;
+  color: white;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+.container2 div .vote1:hover {
+  background-color: red;
+  color: white;
+}
+
+.container2 div .vote2:hover {
+  background-color: green;
+  color: white;
+}
+
 .div1 {
   background-color:#424242;
   color: whitesmoke;
@@ -199,6 +232,89 @@ margin-bottom: 10px;
 border-width: 2px;
 }
 
+.accordion {
+  background-color: #f7f7f7; 
+  color: black;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.delete-record{
+  font-size: 15px;
+  background-color: rgb(179, 2, 2);
+  display:block;
+  width: 60%;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid white;
+  padding: 14px 40px;
+  color: white;
+  cursor: pointer;
+}
+
+.delete-record:hover{
+  background-color: rgb(228, 13, 13);
+  color: white;
+ }
+
+.update-accord:hover{
+  background-color: rgb(62, 245, 62);
+  color: white;
+ }
+.accordion:hover{
+  border: 3px solid black;
+  border-radius: 3%;
+}
+
+.active,#btn1:hover, #btn2:hover {
+  border: 2px solid black;
+  color: black;
+  background-color: #f7f7f7; 
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: #f7f7f7;
+  overflow: hidden;
+}
+
+.candidate-testimonial {
+  float: right;
+}
+.accordion:after {
+  content: '\02795';
+  font-size: 13px;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; 
+}
+.page-title {
+  font-size: larger;
+}
+input[type = "radio"] {
+  height: 20px;
+  width: 30px;
+}
+.img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+  margin-bottom: 10px;
+}
+.img:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
 @media only screen and (max-width: 1000px) {
   .example-1 {
     margin: 10px;
