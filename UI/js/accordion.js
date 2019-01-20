@@ -18,14 +18,6 @@ for (let i = 0; i < accordion.length; i += 1) {
   });
 }
 
-// for (let i = 0; i < candidates.length; i += 1) {
-//   candidates[i].addEventListener('click', () => {
-//     console.log('testing')
-//   let disp = document.querySelector('.candidates')
-//   disp.style.display = 'block'
-//   });
-// }
-
 // reusable conditional statement
 const conditional = (e, btnId, elClass, state) => {
   // the div wont have an id of btn1, so js will check the next element which will be the button
