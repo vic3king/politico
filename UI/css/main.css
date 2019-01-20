@@ -18,6 +18,10 @@ body {
   padding: 10px;
   background-size: cover; 
 }
+.call-action {
+  text-decoration: none;
+  color: inherit;
+}
 
 .section-title {
   color: #2ddf5c;
