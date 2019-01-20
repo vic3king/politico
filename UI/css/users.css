@@ -317,6 +317,10 @@ input[type = "radio"] {
   box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
 
+.displayrecords {
+  margin-top: 80px;
+}
+
 /* admin */
 
 #btn1 {
