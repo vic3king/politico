@@ -58,6 +58,11 @@ input:focus{
   width: 280px;
   border-color: #D81E5B;
 }
+
+#login-form {
+  margin-top: 80px;
+  height: 678px;
+}
 select {
   background-color: white;
   display: block;
@@ -111,3 +116,105 @@ a:hover {
     margin-top: 0px;
   }
 } 
+
+/*media queries*/
+@media only screen and (max-width: 1388px) {
+  .wholeform{
+    display: block;
+  }
+} 
+@media only screen and (max-width: 1081px) {
+  .wholeform{
+    display: block !important;
+  }
+}
+@media only screen and (max-width: 787px) {
+  .wholeform{
+    display: block !important;
+  }
+} 
+
+@media only screen and (max-width: 768px) {
+  #login-form {
+    margin-top: 223px;
+    height: 732px;
+    margin-top: 44px;
+  }
+
+  .signbox input{
+    margin: 7px auto;
+    width: 393px;
+  }
+  select {
+    width: 393px;
+  }
+
+  input:focus{
+    width: 463px;
+    border-color: #D81E5B;
+  }
+} 
+
+@media only screen and (max-width: 500px) {
+  .box {
+    width: 100% !important;
+    margin-top: 224px !important;
+  }
+  h1.logo {
+    margin: 15px;
+}
+  .center {
+    margin-bottom: 100px;
+  } 
+  
+} 
+
+@media only screen and (max-width: 535px) {
+  #login-form {
+    margin-top: 156px;
+    height: 821;
+  }
+
+  select {
+    width: 220px;
+  }
+
+  .signbox input{
+    margin: 7px auto;
+    width: 239px;
+  }
+
+  input:focus{
+    width: 270px;
+    border-color: #D81E5B;
+  }
+} 
+
+@media only screen and (max-width: 320px) {
+  #login-form {
+    margin-top: 223px;
+  }
+
+  .signbox input{
+    margin: 7px auto;
+    width: 203px;
+  }
+
+  input:focus{
+    width: 205px;
+    border-color: #D81E5B;
+  }
+} 
+
+@media only screen and (max-width: 375px) {
+  #login-form {
+    margin-top: 200px;
+  }
+} 
+
+@media only screen and (max-width: 320px) {
+  #login-form {
+    margin-top: 200px;
+  }
+} 
+

@@ -383,3 +383,34 @@ input[type = "radio"] {
     font: 13px/21px 'Barlow Semi Condensed', sans-serif;
   }
 } 
+
+@media only screen and (max-width: 375px) {
+  .container2 .vote {
+    width: 66%;
+  }
+
+  div.container2 {
+    margin-left: 96px
+  }
+
+  .example-1 {
+    margin: 30px;
+  }
+
+  #lgc {
+    margin-top: -72px;
+  }
+
+  .container2 .vote .vote2 {
+   width: -1% !important;
+  }
+
+  button.veiwrecord.vote2 {
+  margin-top: -20px;
+  }
+
+  #senate-house {
+    margin-top: -20px;
+  }
+} 
+
