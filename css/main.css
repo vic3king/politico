@@ -110,3 +110,36 @@ body {
 .button:focus {
   outline: none;
 }
+
+
+@media only screen and (max-width: 575px) {
+  #citizen-overview {
+    margin-top: 80px;
+  }
+
+  .key-feature {
+    width: 98%
+  }
+} 
+
+@media only screen and (max-width: 656px) {
+  #citizen-overview {
+    margin-top: 80px;
+  }
+
+  .key-feature__image {
+    width: 90px;
+    height: 90px;
+  }
+
+  .main-footer {
+    margin-top: 11px;
+  }
+} 
+
+@media only screen and (max-width: 656px) {
+  .main-footer {
+    margin-top: 290px;
+  }
+} 
+

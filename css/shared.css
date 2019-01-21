@@ -102,3 +102,29 @@ body {
 .main-footer__link a:active {
   color: #ccc;
 }
+
+@media only screen and (max-width: 320px) {
+  .main-footer {
+    margin-top: 478px !important
+  }
+} 
+
+@media only screen and (max-width: 375px) {
+  .main-footer {
+    margin-top: 470px
+  }
+} 
+
+@media only screen and (max-width: 414px) {
+  .main-footer {
+    margin-top: 411px
+  }
+} 
+
+@media only screen and (max-width: 656px) {
+  
+
+  .main-footer {
+    margin-top: 286px;
+  }
+} 
