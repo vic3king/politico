@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Home-Politico</title>
+  <title>Admin-Politico</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="shortcut icon" href="img/candidate-for-elections_318-64497.jpg">
   <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat:400,700" rel="stylesheet">
@@ -13,6 +13,13 @@
 </head>
 
 <body>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCf2fhPBsGoCDbZRUCnZGqUQJJRhGFRej8&libraries=places"></script>
+    <script type="text/javascript" > 
+      google.maps.event.addDomListener(window, 'load', initialize);
+      function initialize() {
+          let autoComplete = new google.maps.places.Autocomplete(document.getElementById('search_term'));
+      }   
+          </script>
   <div class="background"></div>
   <header class="main-header">
     <div>
@@ -23,11 +30,14 @@
     </div>
     <nav class="main-nav">
       <ul class="main-nav__items">
+          <li class="main-nav__item">
+              <a href="index.html">Home</a>
+            </li>
         <li class="main-nav__item">
-          <a href="office.html">Add office</a>
+          <a href="office.html">Add Office</a>
         </li>
         <li class="main-nav__item">
-          <a href="office.html">Add party</a>
+          <a href="office.html">Add Party</a>
         </li>
         <li class="main-nav__item">
           <a href="login.html">Logout</a>
@@ -35,185 +45,180 @@
       </ul>
     </nav>
   </header>
-  <div>
-    <h1>User profile:(Administrator)</h1>
-  </div>
-  <section class="profile">
-    <div class=" wholeform">
-      <div class="profile__image formgroup">
-      </div>
-      <div class="profile__details formgroup">
-        <p>fullname:<br> Akaniru Victory</p>
-        <p>email: Akaniruvictory@yahoo.com</p>
-        <p>age: 00</p>
-        <p>phone: 09023xxxx</p>
-      </div>
-  </section>
-  <section>
-    <div>
-      <h4 class="page-title">Office(s)</h4>
-      <div class="container2">
-        <div class="div1 vote">
-          <h6>Local Government Chairman</h6>
-          <p class="admin">2</p>
-          <button id="lgc" class="veiwrecord vote1">View</button>
-        </div>
-        <div class="div1 vote">
-          <h6>Senate House</h6>
-          <p class="admin">1</p>
-          <button id="senate-house" class="veiwrecord vote1">View</button>
-        </div>
-        <div class="div1 vote">
-          <h6>House of Reps</h6>
-          <p class="admin">2</p>
-          <button id="house-of-reps" class="veiwrecord vote1">View</button>
-        </div>
-      </div>
-    </section>
-    <section class="candidates" style="display:none"><br><br>
-      <h4 class="page-title">Candidates</h4>
-      <button class="accordion">Candidate 1: Jane Doe <br>Party: Hope<br>Position: Local Government Chairman
-      </button>
-      <div class="panel">
-        <p class="candidate-testimonial">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat.</p>
-        <a target="_blank" href="img/freedom.jpg">
-          <img class="img" src="img/freedom.jpg" alt="Forest"> </a>
-        <button class="delete-record">VOTE</button>
-      </div><br><br>
-      <button class="accordion">Candidate 2: Jane Doe<br>
-        Party: Hope <br>
-        Position: Local Government Chairman</button>
-      <div class="panel">
-        <p class="candidate-testimonial">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat.</p>
-        <a target="_blank" href="img/freedom.jpg">
-          <img class="img" src="img/freedom.jpg" alt="Forest"> </a>
-        <button class="delete-record">VOTE</button>
-      </div>
-    </section>
-    <section class="candidates1" style="display:none"><br><br>
-      <h4 class="page-title">Candidates</h4>
-      <button class="accordion">Candidate 1: Atiku abubakar <br>Party: Hope<br>Position: House of Reps
-      </button>
-      <div class="panel">
-        <p class="candidate-testimonial">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat.</p>
-        <a target="_blank" href="img/freedom.jpg">
-          <img class="img" src="img/freedom.jpg" alt="Forest"> </a>
-          <button class="update-accord">Approve</button>
-          <button class="delete-record">Reject</button>
-      </div><br><br>
-      <button class="accordion">Candidate 2: Jane Doe<br>
-        Party: Hope <br>
-        Position: House of Reps</button>
-      <div class="panel">
-        <p class="candidate-testimonial">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat.</p>
-        <a target="_blank" href="img/freedom.jpg">
-          <img class="img" src="img/freedom.jpg" alt="Forest"> </a>
-          <button class="update-accord">Approve</button>
-          <button class="delete-record">Reject</button>
-      </div>
-    </section>
-    <section class="candidates2" style="display:none"><br><br>
-      <h4 class="page-title">Candidates</h4>
-      <button class="accordion">Candidate 1: Olateru olagbegi <br>Party: Hope<br>Position: Senate House
-      </button>
-      <div class="panel">
-        <p class="candidate-testimonial">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat.</p>
-        <a target="_blank" href="img/freedom.jpg">
-          <img class="img" src="img/freedom.jpg" alt="Forest"> </a>
-        <button class="update-accord">Approve</button>
-        <button class="delete-record">Reject</button>
-      </div><br><br>
-    </section>
-      <div class="pagination">
-        <a href="#">&laquo;</a>
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">&raquo;</a>
-      </div>
-  </section><br><br>
-  <section>
-    <h4 class="page-title">Political Parties</h4>
-    <div> 
-    <button class="accordion"><b>Party Name:</b> Hope<br><b>HQ Address:</b> no 5 city of power avenue</button>
-    <div class="panel">
-      <a target="_blank" href="img/freedom.jpg">
-        <img class="img" src="img/freedom.jpg" alt="Forest"> </a>
-      <div class="stats">
-          <span>Created On: 19/01/2019</span><br>
-          <span>Modified On: 20//01/2019</span>
-      </div>
-      <button class="update-accord">Edit</button>
-      <form id="record-form" class="box red-flag">
-          <div class="box2">
-                <h3 class="page-title">Create party:</h3>
-                <form>
-                    <label for="title">Name: </label>
-                    <input type="text" id="title" placeholder="what will this party be called?" name="title" id="title" required>
-                  <label for="address">HQ Address</label>
-                  <input type="text" id="search_term" placeholder="enter your address" name="address" >
-                  <label for="image">Upload Logo</label>
-                  <input type="file" name="image" id="image">
-                  <button type="submit">Update Party</button>
+  <main class="main-body">
+    <section class="profile">
+        <div class="profile__image">
+            <div class="profile__details">
+              <p><b>Fullname:</b> akaniru victory</p>
+              <p><b>Party:</b> hope</p>
+              <p><b>Email:</b> victory@yahoo.com</p>
+              <p><b>Age:</b> 00</p>
+              <p><b>Phone:</b> 09023xxxx</p>
+              <p><b>Status:</b> admin</p>
             </div>
-            </form>
-      <button class="delete-record">Delete</button> 
-    </div><br><br>
-    <div> 
-        <button class="accordion"><b>Party Name:</b> Kowa<br><b>HQ Address:</b> no 5 city of power avenue off pedro</button>
-        <div class="panel">
-          <a target="_blank" href="img/freedom.jpg">
-            <img class="img" src="img/freedom.jpg" alt="Forest"> </a>
-          <div class="stats">
-              <span>Created On: 19/01/2019</span><br>
-              <span>Modified On: 20//01/2019</span>
+    </section>
+    <section class="displa-sec">
+        <div>
+            <h4 class="page-title">Open Positions</h4>
           </div>
-          <button class="update-accord">Edit</button>
-          <form id="record-form" class="box red-flag">
-              <div class="box2">
-                    <h3 class="page-title">Create party:</h3>
-                    <form>
-                        <label for="title">Name: </label>
-                        <input type="text" id="title" placeholder="what will this party be called?" name="title" id="title" required>
-                      <label for="address">HQ Address</label>
-                      <input type="text" id="search_term" placeholder="enter your address" name="address" >
-                      <label for="image">Upload Logo</label>
-                      <input type="file" name="image" id="image">
-                      <button type="submit">Update Party</button>
-                </div>
-                </form>
-          <button class="delete-record">Delete</button> 
-        </div>
-  </section>
+          <div class="container2">
+            <div class="div1 vote">
+              <h6>Local Government Chairman</h6>
+              <p class="admin">0</p>
+              <button id="lgc" class="veiwrecord vote1">View</button>
+            </div>
+            <div class="div1 vote">
+              <h6>Senate House</h6>
+              <p class="admin">0</p>
+              <button id="senate-house" class="veiwrecord vote1">View</button>
+            </div>
+            <div class="div1 vote">
+              <h6>House of Reps</h6>
+              <p class="admin">0</p>
+              <button id="house-of-reps" class="veiwrecord vote1">View</button>
+            </div>
+          </div>
+          <section class="candidates" style="display:none">
+              <div><div class="flex accordion2">
+                  <div class="party__image"></div>
+                  <p style="text-align: left">
+                      Candidate 1: Jane Doe<br>
+                      Party: Hope <br>
+                      Position: Local Government Chairman
+                  </p>
+                  <button id="results">Approve</button>
+                </div></div>
+                  <div><div class="flex accordion2">
+                      <div class="party__image"></div>
+                      <p style="text-align: left">
+                        Candidate 2: Jane Doe<br>
+                        Party: Hope <br>
+                        Position: Local Government Chairman
+                      </p>
+                      <button id="results">Approve</button>
+                    </div></div><br><br><br><br><br><br><br><br>
+            </section>
+          <div>
+            </div>
+            <div class="container2">
+              <div class="div1 vote">
+                <h6>Local Government Chairman</h6>
+                <p class="admin">0</p>
+                <button id="lgc" class="veiwrecord vote1">View</button>
+              </div>
+              <div class="div1 vote">
+                <h6>Senate House</h6>
+                <p class="admin">0</p>
+                <button id="senate-house" class="veiwrecord vote1">View</button>
+              </div>
+              <div class="div1 vote">
+                <h6>House of Reps</h6>
+                <p class="admin">0</p>
+                <button id="house-of-reps" class="veiwrecord vote1">View</button>
+              </div>
+            </div>
+            <section class="candidates" style="display:none">
+              <div><button id="flex" class="accordion">Candidate 2: Jane Doe<br>
+                  Party: Hope <br>
+                  Position: Local Government Chairman</button></div>
+              <div><button id="flex" class="accordion">Candidate 2: Jane Doe<br>
+                  Party: Hope <br>
+                  Position: Local Government Chairman</button></div><br><br><br><br><br><br><br><br>
+            </section>
+      </div>
+        <div class="pagination pagination2">
+          <a href="#">&laquo;</a>
+          <a href="#">1</a>
+          <a href="#">2</a>
+          <a href="#">3</a>
+          <a href="#">4</a>
+          <a href="#">5</a>
+          <a href="#">6</a>
+          <a href="#">&raquo;</a>
+        </div><br><br><br><br>
+        <div style="margin-top: -144px">
+            <h4 class="page-title">Political Parties</h4>
+          </div>
+          <div class="container2">
+            <div id="del-test" class="div1 vote party">
+                <div class="party__image1"></div>
+                <div class="party__details">
+                    <div>Party: apga</div>
+                    <div>Email: apga@yahoo.com</div>
+                    <div>Members: 00</div>
+                    <div>Hq address: epic towers</div>
+                    <div>Created on: 11/11/11</div>
+                    <div>Modified on: 12/11/12</div>
+                    <button class="update-accord">Edit</button>
+                    <button id="myBtn" class="delete-record">Delete</button>
+                  </div>
+                  <div id="myModal" class="modal">
 
-  <div class="pagination">
-    <a href="#">&laquo;</a>
-    <a href="#">1</a>
-    <a href="#">2</a>
-    <a href="#">3</a>
-    <a href="#">4</a>
-    <a href="#">5</a>
-    <a href="#">6</a>
-    <a href="#">&raquo;</a>
-  </div>
+                      <!-- Modal content -->
+                      <section class="modal-content">
+                        <p>Are you sure you want to delete?</p>
+                        <button id="modalyes" class="modalbtn">Yes</button>
+                        <button id="modalno"
+                        class="modalbtn2">No</button>
+                      </section>
+                    </div>
+            </div>
+            <div class="div1 vote party">
+                <div class="party__image2"></div>
+                <div class="party__details">
+                  <div>Party: kowa</div>
+                    <div>Email: kowa@yahoo.com</div>
+                    <div>Members: 00</div>
+                    <div>Hq address: epic towers</div>
+                    <div>Created on: 11/11/11</div>
+                    <div>Modified on: 12/11/12</div>
+                    <button class="update-accord">Edit</button>
+                    <button class="delete-record">Delete</button>
+                  </div>
+            </div>
+            <div class="div1 vote party">
+                <div class="party__image3"></div>
+                <div class="party__details">
+                  <div>Party: CPP</div>
+                    <div>Email: cpp@yahoo.com</div>
+                    <div>Members: 00</div>
+                    <div>Hq address: epic towers</div>
+                    <div>Created on: 11/11/11</div>
+                    <div>Modified on: 12/11/12</div>
+                    <button class="update-accord">Edit</button>
+                    <button class="delete-record">Delete</button>
+                  </div>
+            </div>
+          </section><br><br>
+          <div id="office-form2">
+            <form >
+              <div>
+                    <h3 class="page-title">Update Party Details:</h3>
+                    <form>
+                      <label for="title">Name: </label>
+                <input type="text" id="title" placeholder="what will this party be called?" name="title" id="title" required>
+              <label for="address">HQ Address</label>
+              <input type="text" id="search_term" placeholder="enter your address" name="address" >
+              <label for="image">Upload Logo</label>
+              <input type="file" name="image" id="image">
+                      <p>
+                        <button type="submit" id="update-office">Update</button>
+                      </p>
+                </div>
+            </form>
+          </div>
+          <div class="pagination">
+            <a href="#">&laquo;</a>
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+            <a href="#">&raquo;</a>
+          </div>
+    </section>
+  </main>
   <script src="js/admin.js"></script>
 </body>
 </body>

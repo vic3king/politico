@@ -23,6 +23,9 @@
     </div>
     <nav class="main-nav">
       <ul class="main-nav__items">
+          <li class="main-nav__item">
+              <a href="index.html">Home</a>
+            </li>
         <li class="main-nav__item">
           <a href="login.html">Logout</a>
         </li>
@@ -30,26 +33,21 @@
     </nav>
   </header>
   <main class="main-body">
-    <div>
-        <h1>User profile</h1>
-    </div>
     <section class="profile">
-      <div class=" wholeform">
         <div class="profile__image formgroup">
+        <div class="profile__details">
+          <p><b>Fullname:</b> akaniru victory</p>
+          <p><b>Party:</b> hope</p>
+          <p><b>Email:</b> victory@yahoo.com</p>
+          <p><b>Age:</b> 00</p>
+          <p><b>Phone:</b> 09023xxxx</p>
+          <p><b>Status:</b> politician</p>
         </div>
-        <div class="profile__details formgroup">
-          <p>fullname:<br> Akaniru Victory</p>
-          <p>party: hope</p>
-          <p>email: Akaniruvictory@yahoo.com</p>
-          <p>age: 00</p>
-          <p>phone: 09023xxxx</p>
-        </div>
-        <button class="example-1 formgroup" id="run-for-office">Run for office</button>
-      </div>
     </section>
-    <section>
-      <div id="open-positions">
+    <section class="displa-sec">
+      <div>
         <h4 class="page-title">Open Positions</h4>
+      </div>
         <div class="container2">
           <div class="div1">
             <h6>Local Government Chairman</h6>
@@ -67,16 +65,18 @@
             <button class="veiwrecord">Declare interest</button>
           </div>
         </div>
-        <br><br>
         <div class="form-section">
-            <form>
-                <div class="box2">
+            <form id="polit-candidate">
+                <divclass="box2">
                   <h3>Candidate declaration form</h3>
                   <form>
-                    <label for="party">Party: </label>
-                    <input type="text" placeholder="which party do you belong to?" name="title" id="title">
-                    <label for="type">age: </label>
-                    <input type="number" placeholder="" name="title">
+                      <label for="type">Party: <br></label>
+                      <select>
+                          <option value="APC">APC</option>
+                          <option value="PDP">PDP</option>
+                        </select><br><br>
+                        <label for="dateofbirth">Date Of Birth</label><br>
+                        <input type="date" name="dateofbirth" id="dateofbirth"><br>
                     <label for="description">Introduce yourself: </label>
                     <input type="text" placeholder="give a brief intro..." name="description">
                     <label for="comment">Tell us why you are a fit for this role: </label>
@@ -85,7 +85,26 @@
                 </div>
               </form>
         </div>
-        <div class="pagination">
+        <div id="open-position">
+            <div class="container2">
+              <div class="div1">
+                <h6>Local Government Chairman</h6>
+                <p class="admin">0</p>
+                <button class="veiwrecord">Declare interest</button>
+              </div>
+              <div class="div1">
+                <h6>Senate House</h6>
+                <p class="admin">0</p>
+                <button class="veiwrecord">Declare interest</button>
+              </div>
+              <div class="div1">
+                <h6>House of Reps</h6>
+                <p class="admin">0</p>
+                <button class="veiwrecord">Declare interest</button>
+              </div>
+            </div>
+        <br><br>
+        <div class="pagination pagination2">
           <a href="#">&laquo;</a>
           <a href="#">1</a>
           <a href="#">2</a>

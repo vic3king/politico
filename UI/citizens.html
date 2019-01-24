@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Home-Politico</title>
+  <title>Citizens-Politico</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="shortcut icon" href="img/candidate-for-elections_318-64497.jpg">
   <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat:400,700" rel="stylesheet">
@@ -23,120 +23,101 @@
     </div>
     <nav class="main-nav">
       <ul class="main-nav__items">
+          <li class="main-nav__item">
+              <a href="index.html">Home</a>
+            </li>
+        <li class="main-nav__item">
+          <a href="history.html">History</a>
+        </li>
         <li class="main-nav__item">
           <a href="login.html">Logout</a>
         </li>
       </ul>
     </nav>
   </header>
-  <main>
-    <div>
-      <h1>User profile:(citizen)</h1>
-    </div>
+  <main class="main-body">
     <section class="profile">
-      <div class=" wholeform">
-        <div class="profile__image formgroup">
-        </div>
-        <div class="profile__details formgroup">
-          <p>fullname:<br> Akaniru Victory</p>
-          <p>occupation: student</p>
-          <p>email: Akaniruvictory@yahoo.com</p>
-          <p>age: 00</p>
-          <p>phone: 09023xxxx</p>
-        </div>
-        <a href="history.html"><button class="example-1">Votes</button></a>
+        <div class="profile__image">
+            <div class="profile__details">
+              <p><b>Fullname:</b> akaniru victory</p>
+              <p><b>Party:</b> hope</p>
+              <p><b>Email:</b> victory@yahoo.com</p>
+              <p><b>Age:</b> 00</p>
+              <p><b>Phone:</b> 09023xxxx</p>
+              <p><b>Status:</b> Citizen</p>
+            </div>
+            <button id="results">Election Results</button>
     </section>
-    <section>
-      <div>
-        <h4 class="page-title">Open Positions</h4>
-        <div class="container2">
-          <div class="div1 vote">
-            <h6>Local Government Chairman</h6>
-            <p class="admin">2</p>
-            <button id="lgc" class="veiwrecord vote1">VOTE</button>
-            <button class="veiwrecord vote2">Result</button>
+    <section class="displa-sec">
+        <div>
+            <h4 class="page-title">Open Positions</h4>
           </div>
-          <div class="div1 vote">
-            <h6>Senate House</h6>
-            <p class="admin">1</p>
-            <button id="senate-house" class="veiwrecord vote1">VOTE</button>
-            <button class="veiwrecord vote2">RESULT</button>
+          <div class="container2">
+            <div class="div1 vote">
+              <h6>Local Government Chairman</h6>
+              <p class="admin">0</p>
+              <button id="lgc" class="veiwrecord vote1">View</button>
+            </div>
+            <div class="div1 vote">
+              <h6>Senate House</h6>
+              <p class="admin">0</p>
+              <button id="senate-house" class="veiwrecord vote1">View</button>
+            </div>
+            <div class="div1 vote">
+              <h6>House of Reps</h6>
+              <p class="admin">0</p>
+              <button id="house-of-reps" class="veiwrecord vote1">View</button>
+            </div>
           </div>
-          <div class="div1 vote">
-            <h6>House of Reps</h6>
-            <p class="admin">2</p>
-            <button id="house-of-reps" class="veiwrecord vote1">VOTE</button>
-            <button class="veiwrecord vote2">RESULT</button>
-          </div>
+          <section class="candidates" style="display:none">
+            <div><div class="flex accordion2">
+                <div class="party__image"></div>
+                <p style="text-align: left">
+                    Candidate 1: Jane Doe<br>
+                    Party: Hope <br>
+                    Position: Local Government Chairman
+                </p>
+                <button id="results">Vote</button>
+              </div></div>
+                <div><div class="flex accordion2">
+                    <div class="party__image"></div>
+                    <p style="text-align: left">
+                        Candidate 1: Jane Doe<br>
+                        Party: Hope <br>
+                        Position: Local Government Chairman
+                    </p>
+                    <button id="results">Vote</button>
+                  </div></div><br><br><br><br><br><br><br><br>
+          </section>
+          <div>
+            </div>
+            <div class="container2">
+              <div class="div1 vote">
+                <h6>Local Government Chairman</h6>
+                <p class="admin">0</p>
+                <button id="lgc" class="veiwrecord vote1">View</button>
+              </div>
+              <div class="div1 vote">
+                <h6>Senate House</h6>
+                <p class="admin">0</p>
+                <button id="senate-house" class="veiwrecord vote1">View</button>
+              </div>
+              <div class="div1 vote">
+                <h6>House of Reps</h6>
+                <p class="admin">0</p>
+                <button id="house-of-reps" class="veiwrecord vote1">View</button>
+              </div>
+            </div>
+            <section class="candidates" style="display:none">
+              <div><button id="flex" class="accordion">Candidate 2: Jane Doe<br>
+                  Party: Hope <br>
+                  Position: Local Government Chairman</button></div>
+              <div><button id="flex" class="accordion">Candidate 2: Jane Doe<br>
+                  Party: Hope <br>
+                  Position: Local Government Chairman</button></div><br><br><br><br><br><br><br><br>
+            </section>
       </div>
-        </div>
-        <section class="candidates" style="display:none"><br><br>
-          <h4 class="page-title">Candidates</h4>
-          <button class="accordion">Candidate 1: Jane Doe <br>Party: Hope<br>Position: Local Government Chairman
-          </button>
-          <div class="panel">
-            <p class="candidate-testimonial">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea commodo consequat.</p>
-            <a target="_blank" href="img/freedom.jpg">
-              <img class="img" src="img/freedom.jpg" alt="Forest"> </a>
-            <button class="delete-record">VOTE</button>
-          </div><br><br>
-          <button class="accordion">Candidate 2: Jane Doe<br>
-            Party: Hope <br>
-            Position: Local Government Chairman</button>
-          <div class="panel">
-            <p class="candidate-testimonial">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea commodo consequat.</p>
-            <a target="_blank" href="img/freedom.jpg">
-              <img class="img" src="img/freedom.jpg" alt="Forest"> </a>
-            <button class="delete-record">VOTE</button>
-          </div>
-        </section>
-        <section class="candidates1" style="display:none"><br><br>
-          <h4 class="page-title">Candidates</h4>
-          <button class="accordion">Candidate 1: Atiku abubakar <br>Party: Hope<br>Position: House of Reps
-          </button>
-          <div class="panel">
-            <p class="candidate-testimonial">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea commodo consequat.</p>
-            <a target="_blank" href="img/freedom.jpg">
-              <img class="img" src="img/freedom.jpg" alt="Forest"> </a>
-            <button class="delete-record">VOTE</button>
-          </div><br><br>
-          <button class="accordion">Candidate 2: Jane Doe<br>
-            Party: Hope <br>
-            Position: House of Reps</button>
-          <div class="panel">
-            <p class="candidate-testimonial">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea commodo consequat.</p>
-            <a target="_blank" href="img/freedom.jpg">
-              <img class="img" src="img/freedom.jpg" alt="Forest"> </a>
-            <button class="delete-record">VOTE</button>
-          </div>
-        </section>
-        <section class="candidates2" style="display:none"><br><br>
-          <h4 class="page-title">Candidates</h4>
-          <button class="accordion">Candidate 1: Olateru olagbegi <br>Party: Hope<br>Position: Senate House
-          </button>
-          <div class="panel">
-            <p class="candidate-testimonial">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea commodo consequat.</p>
-            <a target="_blank" href="img/freedom.jpg">
-              <img class="img" src="img/freedom.jpg" alt="Forest"> </a>
-            <button class="delete-record">VOTE</button>
-          </div><br><br>
-        </section>
-        <div class="pagination">
+        <div class="pagination pagination2">
           <a href="#">&laquo;</a>
           <a href="#">1</a>
           <a href="#">2</a>
@@ -145,9 +126,11 @@
           <a href="#">5</a>
           <a href="#">6</a>
           <a href="#">&raquo;</a>
-        </div>
+        </div><br><br><br><br>
+    </section>
   </main>
-  <script src="js/accordion.js"></script>
+  <script src="js/citizen.js"></script>
+</body>
 </body>
 
 </html>
