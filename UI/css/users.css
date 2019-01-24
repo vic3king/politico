@@ -580,3 +580,38 @@ input[type = "radio"] {
   color: #f5f6fa;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 360px) {
+  .profile {
+    display: none;
+  }
+  .container2 .vote .vote1 {
+    font-size: 12px;
+  }
+
+  button#lgc {
+    margin-top: -69px;
+  }
+
+  button#house-of-reps {
+    margin-top: -52px
+  }
+
+  .pagination {
+    /* display: inline-block; */
+    margin-top: 29px !important;
+    margin-left: -16% !important;
+    width: 149%;
+}
+.container2 {
+  width: 76%;
+}
+.delete-record {
+  padding: 0;
+}
+
+section > div.pagination {
+  margin-top: 233px !important;
+  margin-left: 10px !important;
+}
+} 
