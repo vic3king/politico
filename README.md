@@ -1,7 +1,6 @@
 # politico
 
 [![Build Status](https://travis-ci.org/vic3king/politico.svg?branch=development)](https://travis-ci.org/vic3king/politico)
-[![Continuous Integration](https://camo.githubusercontent.com/23ee7a697b291798079e258bbc25434c4fac4f8b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f50726f7465637465645f62792d486f756e642d6138373364312e737667)](https://houndci.com)
 [![Maintainability](https://api.codeclimate.com/v1/badges/0144fa068693f2942326/maintainability)](https://codeclimate.com/github/vic3king/politico/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/0144fa068693f2942326/test_coverage)](https://codeclimate.com/github/vic3king/politico/test_coverage)
 [![Coverage Status](https://coveralls.io/repos/github/vic3king/politico/badge.svg?branch=development)](https://coveralls.io/github/vic3king/politico?branch=development)
