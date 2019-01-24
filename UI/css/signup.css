@@ -1,7 +1,7 @@
 body{
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #484349, #D81E5B);
+  background: #f5f6fa;
   min-height: 100vh;
   display: block;
 }
@@ -18,13 +18,12 @@ body{
   width: 50%;
   padding: 20px;
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%,-50%);
   background: rgba(45,45,45,0.98);
   text-align: center;
-  color: white;
-  /* margin-top: 78px; */
+  color: #f5f6fa;
 }
 .wholeform{
   display: flex !important;
@@ -41,75 +40,71 @@ body{
 } 
 input { font-size: 20px; }
 .signbox input{
-  border:0;
+  border: 0;
   background: none;
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid white;
+  border-bottom: 2px solid #f5f6fa;
   padding: 14px 10px;
   width: 200px;
   outline: none;
-  color: white;
-  border-radius: 24px;
+  color: #f5f6fa;
+  /* border-radius: 24px; */
   transition: 0.25s;
 }
 input:focus{
   width: 280px;
-  border-color: #D81E5B;
+  border-color: #005f6b;
 }
 
 #login-form {
   margin-top: 80px;
-  height: 678px;
 }
 select {
-  background-color: white;
+  background-color: transparent;
   display: block;
   width: 488px;
   margin: 20px auto;
   text-align: center;
   padding: 14px 40px;
-  color: black;
+  color: #f5f6fa;
   cursor: pointer;
   font-weight: bold;
   border-radius: 24px;
-
+  outline: none;
+  font-size: 20px;
 }
 input[type = "submit"]{
-  background-color: white;
+  background-color: transparent;
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid white;
+  border: 2px solid #005f6b;
   padding: 14px 40px;
-  color: black;
+  color: #f5f6fa;
   cursor: pointer;
   font-weight: bold;
 }
 input[type = "submit"]:hover, select:hover{
-  background-color: #D81E5B;
- color: white;
+  background-color: #005f6b;
+ color: #f5f6fa;
 }
 
 a{
   padding: 10px;
-  color:white;
+  color:#f5f6fa;
   font-size: 17px;
   text-decoration: none;
 }
 
 a:hover {
-  color: white;
-  border-bottom: 3px solid white;
+  color: #f5f6fa;
+  border-bottom: 3px solid #005f6b;
 }
 /*media queries*/
 
 @media only screen and (max-width: 1000px) {
-  .signbox {
-    width: 100% ;
-    margin-top: 100px;
-  }
 
   .center {
     margin-bottom: 100px;
@@ -151,7 +146,7 @@ a:hover {
 
   input:focus{
     width: 463px;
-    border-color: #D81E5B;
+    border-color: #005f6b;
   }
 } 
 
@@ -186,7 +181,7 @@ a:hover {
 
   input:focus{
     width: 270px;
-    border-color: #D81E5B;
+    border-color: #005f6b;
   }
 } 
 
@@ -202,7 +197,7 @@ a:hover {
 
   input:focus{
     width: 205px;
-    border-color: #D81E5B;
+    border-color: #005f6b;
   }
 } 
 
