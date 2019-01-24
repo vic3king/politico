@@ -3,18 +3,18 @@
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: Roboto-Condensed , sans-serif;
   margin: 0;
 }
 .fa {
-  color: white;
+  color: #f5f6fa;
 }
 .main-body {
   margin-top: 80px;
 }
 
 .main-header {
-  background: rgba(45,45,45,0.98);
+  background: #343838;
   width: 100%;
   padding: 8px 16px; 
   height: 80px;
@@ -33,7 +33,7 @@ body {
 }
 
 .main-header__brand {
-  color: white;
+  color: #f5f6fa;
   text-decoration: none;
   font-weight: bold;
   font-size: 22px;
@@ -60,15 +60,15 @@ body {
 }
 
 .main-nav__item a {
-  color: white;
+  color: #f5f6fa;
   text-decoration: none;
   font-weight: bold;
   padding: 3px 0;
 }
 
 .main-nav__item a:hover {
-  color: white;
-  border-bottom: 3px solid white;
+  color: #f5f6fa;
+  border-bottom: 3px solid #f5f6fa;
 }
 
 .main-nav__item a:active {
@@ -77,7 +77,7 @@ body {
 }
 
 .main-footer {
-  background: rgba(45,45,45,0.98);
+  background: #343838;
   padding: 32px;
 }
 
@@ -94,7 +94,7 @@ body {
 }
 
 .main-footer__link a {
-  color: white;
+  color: #f5f6fa;
   text-decoration: none;
 }
 
