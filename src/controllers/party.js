@@ -11,12 +11,18 @@ const PartyController = {
       });
     }
     const address = request.hqAddressUrl;
-    let { name, hqAddressUrl, logoUrl } = Party.createParty(request.body);
+    let {
+      id, name, hqAddressUrl, logoUrl, status, createdOn, createdBy,
+    } = Party.createParty(request.body);
     hqAddressUrl = address;
     const data = {
+      id,
       name,
       hqAddressUrl,
       logoUrl,
+      status,
+      createdOn,
+      createdBy,
     };
     return response.status(201).send({
       status: 201,

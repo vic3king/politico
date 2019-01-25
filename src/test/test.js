@@ -42,7 +42,6 @@ describe('/Post create political party', () => {
     hqAddressUrl: 'folawiyo bankole street',
     logoUrl: 'www.testurl.com',
   };
-
   const partyNoName = {
     hqAddressUrl: 'folawiyo bankole street',
     logoUrl: 'www.testurl.com',
@@ -71,7 +70,16 @@ describe('/Post create political party', () => {
     hqAddressUrl: 'folawiyo bankole street',
     logoUrl: '   ',
   };
-
+  const invalidLogoUrl = {
+    name: 'pdp',
+    hqAddressUrl: 'folawiyo bankole street',
+    logoUrl: 'hbjniomol,',
+  };
+  const invalidAddress = {
+    name: 'pdp',
+    hqAddressUrl: 'folawiyo vevever32es',
+    logoUrl: 'www.testurl.com',
+  };
   it('it should Create a new party with correct status code', (done) => {
     chai.request(server)
       .post('/api/v1/parties')
@@ -148,6 +156,26 @@ describe('/Post create political party', () => {
       .send(logoEmptyField)
       .end((err, res) => {
         res.should.have.status(400);
+        done();
+      });
+  });
+
+  it('it should throw a 400 when creating a party with invalid url', (done) => {
+    chai.request(server)
+      .post('/api/v1/parties')
+      .send(invalidLogoUrl)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+
+  it('it should throw a 400 when creating a party with wrong address', (done) => {
+    chai.request(server)
+      .post('/api/v1/parties')
+      .send(invalidAddress)
+      .end((err, res) => {
+        res.should.have.status(500);
         done();
       });
   });

@@ -1,8 +1,19 @@
 /* eslint-disable consistent-return */
 import dotenv from 'dotenv';
+import { isURL } from 'validator';
 
 dotenv.load();
 const Validate = {
+  validUrl(req, res, next) {
+    const url = req.body.logoUrl;
+    if (req.body.logoUrl && !isURL(url)) {
+      return res.status(400).send({
+        status: 400,
+        message: 'please enter a valid url',
+      });
+    }
+    return next();
+  },
   spaces(obj) {
     const strName = obj.name.split(' ').join('');
     const strHqAddressUrl = obj.hqAddressUrl.split(' ').join('');

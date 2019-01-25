@@ -5,7 +5,7 @@ import Controller from '../controllers/party';
 const router = express.Router();
 
 // Handle POST requests
-router.post('/api/v1/parties', Validate.validateParty, Validate.postParty, Controller.createParty);
+router.post('/api/v1/parties', Validate.validateParty, Validate.validUrl, Validate.postParty, Controller.createParty);
 
 router.all('*', (req, res) => {
   res.status(404).send({
