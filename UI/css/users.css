@@ -202,8 +202,14 @@ section.candidates div {
 
 .pagination2 {
   display: inline-block;
-  margin-left: 37% !important;
-  margin-top: -15px !important;
+  margin-left: 49% !important;
+  margin-top: 178px !important;
+}
+.pagination2 a{
+  color: #005f6b;
+  font-weight: bold;
+  padding: 8px 16px;
+  text-decoration: none;
 }
 .pagination3 {
   margin-top: 25px !important;
@@ -213,8 +219,8 @@ section.candidates div {
 }
 .pagination {
   display: inline-block;
-  margin-top: 174px;
-  margin-left: 48%;
+    margin-top: -11px;
+    margin-left: 30%;
 }
 
 .pagination a {
@@ -603,15 +609,22 @@ input[type = "radio"] {
     margin-left: -16% !important;
     width: 149%;
 }
+.pagination2 {
+  display: inline-block;
+  margin-left: -33px !important;
+  margin-top: 240px !important;
+}
 .container2 {
   width: 76%;
 }
 .delete-record {
-  padding: 0;
+  width: 0 %;
+  padding: 0px 4px !important ;
 }
 
-section > div.pagination {
-  margin-top: 233px !important;
-  margin-left: 10px !important;
+
+  section > div.pagination {
+   margin-top: 0px !important;
+   margin-left: -66px !important;
 }
 } 
