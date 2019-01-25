@@ -30,6 +30,14 @@ const PartyController = {
       data: [data],
     });
   },
+
+  getOneParty(req, res) {
+    const data = Party.findById(req.params.id);
+    return res.status(200).send({
+      status: 200,
+      data: [data],
+    });
+  },
 };
 
 export default PartyController;

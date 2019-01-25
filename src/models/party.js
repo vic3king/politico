@@ -24,6 +24,11 @@ class PoliticoParty {
     this.party.push(createParty);
     return createParty;
   }
+
+  findById(id) {
+    // eslint-disable-next-line radix
+    return this.party.find(party => party.id === parseInt(id));
+  }
 }
 
 export default new PoliticoParty();

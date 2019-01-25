@@ -1,8 +1,11 @@
 /* eslint-disable consistent-return */
 import dotenv from 'dotenv';
 import { isURL } from 'validator';
+import Party from '../models/party';
 
 dotenv.load();
+const validId = id => Number.isInteger(parseInt(id, 10));
+
 const Validate = {
   validUrl(req, res, next) {
     const url = req.body.logoUrl;
@@ -81,6 +84,24 @@ const Validate = {
       return response.status(400).send({
         status: 400,
         error: errorsMessages,
+      });
+    }
+    return next();
+  },
+
+  isNotValid(req, res, next) {
+    // eslint-disable-next-line radix
+    const party = Party.findById(parseInt(req.params.id));
+    if (!validId(req.params.id)) {
+      return res.status(406).json({
+        status: 406,
+        error: 'The id parameter must be a number',
+      });
+    }
+    if (!party) {
+      return res.status(404).send({
+        status: 404,
+        error: 'party not found, enter a valid id',
       });
     }
     return next();
