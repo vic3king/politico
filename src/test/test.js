@@ -205,7 +205,7 @@ describe('GET /parties/:id', () => {
       });
   });
 
-  it('should return 406 on nan id', (done) => {
+  it('should return 406 on nan ids', (done) => {
     chai.request(server)
       .get('/api/v1/parties/sv')
       .end((err, res) => {
@@ -217,16 +217,6 @@ describe('GET /parties/:id', () => {
   it('should return 404 when id is not found', (done) => {
     chai.request(server)
       .get('/api/v1/parties/10')
-      .end((err, res) => {
-        res.should.have.status(404);
-        done();
-      });
-  });
-
-
-  it('should return 400 path is wrong', (done) => {
-    chai.request(server)
-      .get('/api/v1/parties/:gh')
       .end((err, res) => {
         res.should.have.status(404);
         done();
