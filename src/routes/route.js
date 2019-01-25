@@ -9,6 +9,9 @@ router.post('/api/v1/parties', Validate.validateParty, Validate.validUrl, Valida
 
 router.get('/api/v1/parties/:id', Validate.isNotValid, Controller.getOneParty);
 
+router.get('/api/v1/parties', Controller.getAllParties);
+
+
 router.all('*', (req, res) => {
   res.status(404).send({
     status: 404,

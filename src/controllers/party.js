@@ -35,7 +35,17 @@ const PartyController = {
     const data = Party.findById(req.params.id);
     return res.status(200).send({
       status: 200,
+      message: 'party retrieved',
       data: [data],
+    });
+  },
+
+  getAllParties(req, res) {
+    const data = Party.findAllParties();
+    return res.status(200).send({
+      status: 200,
+      message: 'All parties retrieved',
+      data,
     });
   },
 };
