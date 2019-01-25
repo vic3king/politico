@@ -1,0 +1,50 @@
+{
+  "name": "politico",
+  "version": "1.0.0",
+  "description": "[![Build Status](https://travis-ci.org/vic3king/politico.svg?branch=development)](https://travis-ci.org/vic3king/politico) [![Continuous Integration](https://camo.githubusercontent.com/23ee7a697b291798079e258bbc25434c4fac4f8b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f50726f7465637465645f62792d486f756e642d6138373364312e737667)](https://houndci.com) [![Maintainability](https://api.codeclimate.com/v1/badges/0144fa068693f2942326/maintainability)](https://codeclimate.com/github/vic3king/politico/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/0144fa068693f2942326/test_coverage)](https://codeclimate.com/github/vic3king/politico/test_coverage) [![Coverage Status](https://coveralls.io/repos/github/vic3king/politico/badge.svg?branch=development)](https://coveralls.io/github/vic3king/politico?branch=development)",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node build/server.js",
+    "heroku-postbuild": "npm run build",
+    "build": "babel src --out-dir build",
+    "dev-start": "cross-env NODE_ENV=development babel-watch src/server.js",
+    "test": "cross-env NODE_ENV=test nyc mocha src/test --compilers js:babel-core/register --timeout 10000 --exit",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "engines": {
+    "node": "10.11.0",
+    "npm": "6.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vic3king/politico.git"
+  },
+  "author": "Akaniru Victory",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vic3king/politico/issues"
+  },
+  "homepage": "https://github.com/vic3king/politico#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-watch": "^2.0.8",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "coveralls": "^3.0.2",
+    "cross-env": "^5.2.0",
+    "dotenv": "^6.2.0",
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.15.0",
+    "express": "^4.16.4",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0",
+    "morgan": "^1.9.1",
+    "nyc": "^13.1.0",
+    "supertest": "^3.4.2",
+    "travis": "^0.1.1",
+    "validator": "^10.11.0"
+  }
+}
