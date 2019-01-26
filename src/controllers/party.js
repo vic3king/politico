@@ -69,6 +69,11 @@ const PartyController = {
       data: [updatedName],
     });
   },
+
+  deleteOneParty(req, res) {
+    const data = Party.deleteById(req.params.id);
+    return res.status(200).send(data);
+  },
 };
 
 export default PartyController;

@@ -41,6 +41,19 @@ class PoliticoParty {
     this.party[index].modfiedOn = new Date();
     return this.party[index];
   }
+
+  deleteById(id) {
+    const partyDel = this.findById(id);
+    const index = this.party.indexOf(partyDel);
+    this.party.splice(index, 1);
+    return {
+      status: 200,
+      data: [{
+        id,
+        message: 'party has been deleted',
+      }],
+    };
+  }
 }
 
 export default new PoliticoParty();

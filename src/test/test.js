@@ -294,7 +294,7 @@ describe('/patch Update party name', () => {
       });
   });
 
-  it('should not party when name is missing', (done) => {
+  it('should not create party when name is missing', (done) => {
     chai.request(server)
       .patch('/api/v1/parties/1/name')
       .send(party3NoName)
@@ -315,6 +315,63 @@ describe('/patch Update party name', () => {
         res.body.should.be.deep.equal({
           status: 400,
           error: 'Field should contain actual characters and not only spaces',
+        });
+        done();
+      });
+  });
+});
+
+
+describe('DELETE a party', () => {
+  const party4 = {
+    name: 'pdp',
+    hqAddressUrl: 'folawiyo bankole street',
+    logoUrl: 'www.testurl.com',
+  };
+  beforeEach((done) => {
+    chai.request(server)
+      .post('/api/v1/parties')
+      .send(party4)
+      .end(() => {
+        done();
+      });
+  });
+  it('should return a success status 200', (done) => {
+    chai.request(server)
+      .delete('/api/v1/parties/1')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.deep.equal({
+          status: 200,
+          data: [{
+            id: '1',
+            message: 'party has been deleted',
+          }],
+        });
+        done();
+      });
+  });
+
+  it('should return correct error message when id does not exist', (done) => {
+    chai.request(server)
+      .delete('/api/v1/parties/25')
+      .end((err, res) => {
+        res.body.should.deep.equal({
+          status: 404,
+          error: 'party not found, enter a valid id',
+        });
+        done();
+      });
+  });
+
+  it('should return correct error message when id is not valid', (done) => {
+    chai.request(server)
+      .delete('/api/v1/parties/ercf')
+      .send(party4)
+      .end((err, res) => {
+        res.body.should.be.deep.equal({
+          status: 406,
+          error: 'The id parameter must be a number',
         });
         done();
       });

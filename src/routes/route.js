@@ -13,6 +13,8 @@ router.get('/api/v1/parties', Controller.getAllParties);
 
 router.patch('/api/v1/parties/:id/name', Validate.isNotValid, Controller.updatedName);
 
+router.delete('/api/v1/parties/:id', Validate.isNotValid, Controller.deleteOneParty);
+
 router.all('*', (req, res) => {
   res.status(404).send({
     status: 404,
