@@ -31,6 +31,15 @@ const ControllerOffice = {
       data: [office],
     });
   },
+
+  getAllOffices(req, res) {
+    const data = Office.findAllOffices();
+    return res.status(200).send({
+      status: 200,
+      message: 'All offices retrieved',
+      data,
+    });
+  },
 };
 
 

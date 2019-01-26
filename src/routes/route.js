@@ -19,10 +19,12 @@ router.delete('/api/v1/parties/:id', Validate.isNotValid, controllerParty.delete
 
 router.post('/api/v1/offices', ValidateOffice.postOffice, ValidateOffice.isValidType, controllerOffice.createOffice);
 
+router.get('/api/v1/offices', controllerOffice.getAllOffices);
+
 router.all('*', (req, res) => {
   res.status(404).send({
     status: 404,
-    message: 'Wrong endpoint. Such endpoint does not exist',
+    message: 'endpoint does not exist',
   });
 });
 

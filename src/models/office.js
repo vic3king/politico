@@ -18,5 +18,9 @@ class PoliticoOffice {
     this.office.push(createOffice);
     return createOffice;
   }
+
+  findAllOffices() {
+    return this.office;
+  }
 }
 export default new PoliticoOffice();

@@ -537,3 +537,14 @@ describe('/Post create political office', () => {
       });
   });
 });
+
+describe('GET /offices', () => {
+  it('should get all existing offices', (done) => {
+    chai.request(server)
+      .get('/api/v1/offices')
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+});
