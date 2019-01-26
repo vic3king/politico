@@ -22,5 +22,10 @@ class PoliticoOffice {
   findAllOffices() {
     return this.office;
   }
+
+  findById(id) {
+    // eslint-disable-next-line radix
+    return this.office.find(office => office.id === parseInt(id));
+  }
 }
 export default new PoliticoOffice();

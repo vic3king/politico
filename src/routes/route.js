@@ -21,6 +21,9 @@ router.post('/api/v1/offices', ValidateOffice.postOffice, ValidateOffice.isValid
 
 router.get('/api/v1/offices', controllerOffice.getAllOffices);
 
+router.get('/api/v1/offices/:id', ValidateOffice.isNotValid, controllerOffice.getOneOffice);
+
+
 router.all('*', (req, res) => {
   res.status(404).send({
     status: 404,

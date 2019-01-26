@@ -40,6 +40,15 @@ const ControllerOffice = {
       data,
     });
   },
+
+  getOneOffice(req, res) {
+    const data = Office.findById(req.params.id);
+    return res.status(200).send({
+      status: 200,
+      message: 'office retrieved',
+      data: [data],
+    });
+  },
 };
 
 
