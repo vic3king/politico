@@ -33,6 +33,14 @@ class PoliticoParty {
   findAllParties() {
     return this.party;
   }
+
+  updateParty(id, userInfo) {
+    const partyUp = this.findById(id);
+    const index = this.party.indexOf(partyUp);
+    this.party[index].name = userInfo.name.trim();
+    this.party[index].modfiedOn = new Date();
+    return this.party[index];
+  }
 }
 
 export default new PoliticoParty();

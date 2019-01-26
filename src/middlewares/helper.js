@@ -33,6 +33,14 @@ const Validate = {
     return false;
   },
 
+  spaceUpdate(obj) {
+    const strName = obj.name.split(' ').join('');
+    if (strName.length < 1) {
+      return true;
+    }
+    return false;
+  },
+
   validateParty(request, response, next) {
     if (!request.body.hqAddressUrl || request.body.hqAddressUrl.split(' ').join('').length < 1) {
       return next();

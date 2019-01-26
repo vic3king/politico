@@ -48,6 +48,27 @@ const PartyController = {
       data,
     });
   },
+
+  updatedName(req, res) {
+    if (!req.body.name) {
+      res.status(400).send({
+        status: 400,
+        message: 'Party name is required',
+      });
+    }
+    if (Validate.spaceUpdate(req.body)) {
+      return res.status(400).send({
+        status: 400,
+        error: 'Field should contain actual characters and not only spaces',
+      });
+    }
+    const updatedName = Party.updateParty(req.params.id, req.body);
+    return res.status(200).send({
+      status: 200,
+      message: 'Party name succesfully updated',
+      data: [updatedName],
+    });
+  },
 };
 
 export default PartyController;

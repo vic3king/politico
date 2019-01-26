@@ -234,3 +234,89 @@ describe('GET /parties', () => {
       });
   });
 });
+
+
+describe('/patch Update party name', () => {
+  const party3 = {
+    name: 'pdp',
+    hqAddressUrl: 'folawiyo bankole street',
+    logoUrl: 'www.testurl.com',
+  };
+
+  const party3Spaces = {
+    name: '     ',
+  };
+  const party3NoName = {};
+
+  it('should return a success status 200', (done) => {
+    chai.request(server)
+      .patch('/api/v1/parties/1/name')
+      .send(party3)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it('should return an error 404 if record not found', (done) => {
+    chai.request(server)
+      .patch('/api/v1/parties/42/name')
+      .send(party3)
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
+
+  it('should return correct error message when id is not found', (done) => {
+    chai.request(server)
+      .patch('/api/v1/parties/41/name')
+      .send(party3)
+      .end((err, res) => {
+        res.body.should.be.deep.equal({
+          status: 404,
+          error: 'party not found, enter a valid id',
+        });
+        done();
+      });
+  });
+
+  it('should return correct error message when id is not valid', (done) => {
+    chai.request(server)
+      .patch('/api/v1/parties/ercf/name')
+      .send(party3)
+      .end((err, res) => {
+        res.body.should.be.deep.equal({
+          status: 406,
+          error: 'The id parameter must be a number',
+        });
+        done();
+      });
+  });
+
+  it('should not party when name is missing', (done) => {
+    chai.request(server)
+      .patch('/api/v1/parties/1/name')
+      .send(party3NoName)
+      .end((err, res) => {
+        res.body.should.be.deep.equal({
+          status: 400,
+          message: 'Party name is required',
+        });
+        done();
+      });
+  });
+
+  it('should not update party when name field has only whitespaces', (done) => {
+    chai.request(server)
+      .patch('/api/v1/parties/1/name')
+      .send(party3Spaces)
+      .end((err, res) => {
+        res.body.should.be.deep.equal({
+          status: 400,
+          error: 'Field should contain actual characters and not only spaces',
+        });
+        done();
+      });
+  });
+});

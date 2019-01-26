@@ -4,13 +4,14 @@ import Controller from '../controllers/party';
 
 const router = express.Router();
 
-// Handle POST requests
+
 router.post('/api/v1/parties', Validate.validateParty, Validate.validUrl, Validate.postParty, Controller.createParty);
 
 router.get('/api/v1/parties/:id', Validate.isNotValid, Controller.getOneParty);
 
 router.get('/api/v1/parties', Controller.getAllParties);
 
+router.patch('/api/v1/parties/:id/name', Validate.isNotValid, Controller.updatedName);
 
 router.all('*', (req, res) => {
   res.status(404).send({
