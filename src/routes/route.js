@@ -13,10 +13,11 @@ router.get('/api/v1/parties/:id', Validate.isNotValid, controllerParty.getOnePar
 
 router.get('/api/v1/parties', controllerParty.getAllParties);
 
-router.patch('/api/v1/parties/:id/name', Validate.isNotValid, controllerParty.updatedName);
+router.patch('/api/v1/parties/:id/name', Validate.isNotValid, Validate.upadteNoName, Validate.updateEmptyName, controllerParty.updatedName);
 
 router.delete('/api/v1/parties/:id', Validate.isNotValid, controllerParty.deleteOneParty);
 
+// eslint-disable-next-line max-len
 router.post('/api/v1/offices', ValidateOffice.postOffice, ValidateOffice.isValidType, controllerOffice.createOffice);
 
 router.get('/api/v1/offices', controllerOffice.getAllOffices);

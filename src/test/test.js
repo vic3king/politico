@@ -38,7 +38,12 @@ describe('UI routes', () => {
 
 describe('/Post create political party', () => {
   const party = {
-    name: 'pdp',
+    name: 'apga',
+    hqAddressUrl: 'folawiyo bankole street',
+    logoUrl: 'www.testurl.com',
+  };
+  const party2 = {
+    name: 'kowa',
     hqAddressUrl: 'folawiyo bankole street',
     logoUrl: 'www.testurl.com',
   };
@@ -94,11 +99,11 @@ describe('/Post create political party', () => {
   it('it should Create a new party with required fields', (done) => {
     chai.request(server)
       .post('/api/v1/parties')
-      .send(party)
+      .send(party2)
       .end((err, res) => {
-        res.body.data[0].should.have.include.key('name');
-        res.body.data[0].should.have.include.key('hqAddressUrl');
-        res.body.data[0].should.have.include.key('logoUrl');
+        res.body.data.should.have.include.key('name');
+        res.body.data.should.have.include.key('hqaddress');
+        res.body.data.should.have.include.key('logourl');
         done();
       });
   });
@@ -238,7 +243,7 @@ describe('GET /parties', () => {
 
 describe('/patch Update party name', () => {
   const party3 = {
-    name: 'pdp',
+    name: 'pdpupdate',
     hqAddressUrl: 'folawiyo bankole street',
     logoUrl: 'www.testurl.com',
   };
@@ -314,7 +319,7 @@ describe('/patch Update party name', () => {
       .end((err, res) => {
         res.body.should.be.deep.equal({
           status: 400,
-          error: 'Field should contain actual characters and not only spaces',
+          error: 'Name Field should contain actual characters and not only spaces',
         });
         done();
       });
@@ -343,10 +348,7 @@ describe('DELETE a party', () => {
         res.should.have.status(200);
         res.body.should.deep.equal({
           status: 200,
-          data: [{
-            id: '1',
-            message: 'party has been deleted',
-          }],
+          message: 'party has been deleted',
         });
         done();
       });

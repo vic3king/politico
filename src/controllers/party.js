@@ -1,9 +1,10 @@
 /* eslint-disable prefer-const */
 import Validate from '../middlewares/helper';
-import Party from '../models/party';
+// import Party from '../models/party';
+import db from '../db/index';
 
 const PartyController = {
-  createParty(request, response) {
+  async createParty(request, response) {
     if (Validate.spaces(request.body)) {
       return response.status(400).send({
         status: 400,
@@ -11,68 +12,130 @@ const PartyController = {
       });
     }
     const address = request.hqAddressUrl;
-    let {
-      id, name, hqAddressUrl, logoUrl, status, createdOn, createdBy,
-    } = Party.createParty(request.body);
+    let { name, hqAddressUrl, logoUrl } = request.body;
     hqAddressUrl = address;
-    const data = {
-      id,
-      name,
+
+    const text = `INSERT INTO
+          party(name, hqaddress, logourl, status, created_on, modefied_on)
+          VALUES($1, $2, $3, $4, $5, $6)
+          returning *`;
+    const values = [
+      name.trim(),
       hqAddressUrl,
       logoUrl,
-      status,
-      createdOn,
-      createdBy,
-    };
-    return response.status(201).send({
-      status: 201,
-      message: 'Political Party Created',
-      data: [data],
-    });
-  },
+      'new',
+      new Date(),
+      new Date(),
+    ];
 
-  getOneParty(req, res) {
-    const data = Party.findById(req.params.id);
-    return res.status(200).send({
-      status: 200,
-      message: 'party retrieved',
-      data: [data],
-    });
-  },
-
-  getAllParties(req, res) {
-    const data = Party.findAllParties();
-    return res.status(200).send({
-      status: 200,
-      message: 'All parties retrieved',
-      data,
-    });
-  },
-
-  updatedName(req, res) {
-    if (!req.body.name) {
-      res.status(400).send({
+    try {
+      const { rows } = await db.query(text, values);
+      return response.status(201).send({
+        status: 201,
+        message: 'Political Party Created',
+        data: rows[0],
+      });
+    } catch (error) {
+      return response.status(400).send({
         status: 400,
-        message: 'Party name is required',
+        message: error.message,
       });
     }
-    if (Validate.spaceUpdate(req.body)) {
+  },
+
+  async getOneParty(req, res) {
+    const text = 'SELECT * FROM party WHERE id = $1';
+    try {
+      const { rows } = await db.query(text, [req.params.id]);
+      if (!rows[0]) {
+        return res.status(404).send({
+          status: 404,
+          message: 'party not found',
+        });
+      }
+      return res.status(200).send({
+        status: 200,
+        data: rows[0],
+      });
+    } catch (error) {
       return res.status(400).send({
         status: 400,
-        error: 'Field should contain actual characters and not only spaces',
+        error: 'enter a valid id',
       });
     }
-    const updatedName = Party.updateParty(req.params.id, req.body);
-    return res.status(200).send({
-      status: 200,
-      message: 'Party name succesfully updated',
-      data: [updatedName],
-    });
   },
 
-  deleteOneParty(req, res) {
-    const data = Party.deleteById(req.params.id);
-    return res.status(200).send(data);
+  async getAllParties(req, res) {
+    const findAllQuery = 'SELECT * FROM party';
+    try {
+      const { rows, rowCount } = await db.query(findAllQuery);
+      return res.status(200).send({
+        status: 200,
+        message: 'All parties retrieved',
+        data: rows,
+        rowCount,
+      });
+    } catch (error) {
+      return res.status(500).send({
+        status: 500,
+        message: error.message,
+      });
+    }
+  },
+
+  async updatedName(req, res) {
+    const findOneQuery = 'SELECT * FROM party WHERE id=$1';
+    const updateOneQuery = `UPDATE party
+      SET name=$1,modefied_on=$2,status=$3
+      WHERE id=$4 returning id, name, status, modefied_on`;
+    try {
+      const { rows } = await db.query(findOneQuery, [req.params.id]);
+      if (!rows[0]) {
+        return res.status(404).send({
+          status: 404,
+          error: 'party not found, enter a valid id',
+        });
+      }
+      const values = [
+        req.body.name.trim(),
+        new Date(),
+        'updated',
+        req.params.id,
+      ];
+      const response = await db.query(updateOneQuery, values);
+      return res.status(200).send({
+        status: 200,
+        message: 'Party name updated succesfully',
+        data: response.rows[0],
+      });
+    } catch (err) {
+      return res.status(400).send({
+        status: 400,
+        error: err.message,
+      });
+    }
+  },
+
+  async deleteOneParty(req, res) {
+    const deleteQuery = 'DELETE FROM party WHERE id=$1 returning *';
+    try {
+      const { rows } = await db.query(deleteQuery, [req.params.id]);
+      if (!rows[0]) {
+        return res.status(404).send({
+          status: 404,
+          error: 'party not found, enter a valid id',
+        });
+      }
+      return res.status(200).send({
+        status: 200,
+        message: 'party has been deleted',
+      });
+    } catch (error) {
+      return res.status(400).send({
+        status: 400,
+        error: 'enter a valid id',
+      });
+    }
   },
 };
 
