@@ -116,7 +116,7 @@ const createAllTables = async () => {
   await createTables();
 };
 
-// createAllTables();
+createAllTables();
 module.exports = {
   createAllTables,
   createTables,
