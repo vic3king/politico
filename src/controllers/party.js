@@ -1,9 +1,10 @@
 /* eslint-disable prefer-const */
 import Validate from '../middlewares/helper';
 import Party from '../models/party';
+import db from '../db/index';
 
 const PartyController = {
-  createParty(request, response) {
+  async createParty(request, response) {
     if (Validate.spaces(request.body)) {
       return response.status(400).send({
         status: 400,
@@ -11,24 +12,35 @@ const PartyController = {
       });
     }
     const address = request.hqAddressUrl;
-    let {
-      id, name, hqAddressUrl, logoUrl, status, createdOn, createdBy,
-    } = Party.createParty(request.body);
+    let { name, hqAddressUrl, logoUrl } = request.body;
     hqAddressUrl = address;
-    const data = {
-      id,
-      name,
+
+    const text = `INSERT INTO
+          party(name, hqaddress, logourl, status, created_on, modefied_on)
+          VALUES($1, $2, $3, $4, $5, $6)
+          returning *`;
+    const values = [
+      name.trim(),
       hqAddressUrl,
       logoUrl,
-      status,
-      createdOn,
-      createdBy,
-    };
-    return response.status(201).send({
-      status: 201,
-      message: 'Political Party Created',
-      data: [data],
-    });
+      'new',
+      new Date(),
+      new Date(),
+    ];
+
+    try {
+      const { rows } = await db.query(text, values);
+      return response.status(201).send({
+        status: 201,
+        message: 'Political Party Created',
+        data: rows[0],
+      });
+    } catch (error) {
+      return response.status(400).send({
+        status: 400,
+        message: error.message,
+      });
+    }
   },
 
   getOneParty(req, res) {

@@ -38,7 +38,12 @@ describe('UI routes', () => {
 
 describe('/Post create political party', () => {
   const party = {
-    name: 'pdp',
+    name: 'apga',
+    hqAddressUrl: 'folawiyo bankole street',
+    logoUrl: 'www.testurl.com',
+  };
+  const party2 = {
+    name: 'kowa',
     hqAddressUrl: 'folawiyo bankole street',
     logoUrl: 'www.testurl.com',
   };
@@ -94,11 +99,11 @@ describe('/Post create political party', () => {
   it('it should Create a new party with required fields', (done) => {
     chai.request(server)
       .post('/api/v1/parties')
-      .send(party)
+      .send(party2)
       .end((err, res) => {
-        res.body.data[0].should.have.include.key('name');
-        res.body.data[0].should.have.include.key('hqAddressUrl');
-        res.body.data[0].should.have.include.key('logoUrl');
+        res.body.data.should.have.include.key('name');
+        res.body.data.should.have.include.key('hqaddress');
+        res.body.data.should.have.include.key('logourl');
         done();
       });
   });
