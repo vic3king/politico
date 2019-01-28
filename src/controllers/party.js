@@ -1,6 +1,5 @@
 /* eslint-disable prefer-const */
 import Validate from '../middlewares/helper';
-import Party from '../models/party';
 import db from '../db/index';
 
 const PartyController = {
@@ -116,9 +115,27 @@ const PartyController = {
     }
   },
 
-  deleteOneParty(req, res) {
-    const data = Party.deleteById(req.params.id);
-    return res.status(200).send(data);
+
+  async deleteOneParty(req, res) {
+    const deleteQuery = 'DELETE FROM party WHERE id=$1 returning *';
+    try {
+      const { rows } = await db.query(deleteQuery, [req.params.id]);
+      if (!rows[0]) {
+        return res.status(404).send({
+          status: 404,
+          error: 'party not found, enter a valid id',
+        });
+      }
+      return res.status(200).send({
+        status: 200,
+        message: 'party has been deleted',
+      });
+    } catch (error) {
+      return res.status(400).send({
+        status: 400,
+        error: 'enter a valid id',
+      });
+    }
   },
 };
 
