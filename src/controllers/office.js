@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-import Office from '../models/office';
 import db from '../db/index';
 
 const ControllerOffice = {
@@ -34,13 +32,22 @@ const ControllerOffice = {
     }
   },
 
-  getAllOffices(req, res) {
-    const data = Office.findAllOffices();
-    return res.status(200).send({
-      status: 200,
-      message: 'All offices retrieved',
-      data,
-    });
+  async getAllOffices(req, res) {
+    const findAllQuery = 'SELECT * FROM office';
+    try {
+      const { rows, rowCount } = await db.query(findAllQuery);
+      return res.status(200).send({
+        status: 200,
+        message: 'All offices retrieved',
+        data: rows,
+        rowCount,
+      });
+    } catch (error) {
+      return res.status(500).send({
+        status: 500,
+        message: error.message,
+      });
+    }
   },
 
   async getOneOffice(req, res) {
