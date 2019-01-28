@@ -8,8 +8,9 @@
     "heroku-postbuild": "npm run build && npm run migrate",
     "build": "babel src --out-dir build",
     "dev-start": "cross-env NODE_ENV=development babel-watch src/server.js",
-    "test": "cross-env NODE_ENV=test nyc mocha src/test --compilers js:babel-core/register --timeout 30000 --exit",
-    "migrate": "cross-env NODE_ENV=production node src/db/db.js",
+    "test": "npm run migrate && npm run test-dev",
+    "test-dev": "cross-env NODE_ENV=test nyc mocha src/test --compilers js:babel-core/register --timeout 30000 --exit",
+    "migrate": "cross-env NODE_ENV=production node src/db/db.js createAllTables",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "createdb": "psql -f ./migration.sql -U postgres"
   },

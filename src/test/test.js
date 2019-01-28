@@ -185,3 +185,45 @@ describe('/Post create political party', () => {
       });
   });
 });
+
+describe('GET /parties/:id', () => {
+  const party2 = {
+    name: 'pdp',
+    hqAddressUrl: 'folawiyo bankole street',
+    logoUrl: 'www.testurl.com',
+  };
+  before((done) => {
+    chai.request(server)
+      .post('/api/v1/parties')
+      .send(party2)
+      .end(() => {
+        done();
+      });
+  });
+  it('should get the matching party', (done) => {
+    chai.request(server)
+      .get('/api/v1/parties/1')
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it('should return 406 on nan ids', (done) => {
+    chai.request(server)
+      .get('/api/v1/parties/sv')
+      .end((err, res) => {
+        res.should.have.status(406);
+        done();
+      });
+  });
+
+  it('should return 404 when id is not found', (done) => {
+    chai.request(server)
+      .get('/api/v1/parties/10')
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
+});

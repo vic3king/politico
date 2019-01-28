@@ -43,13 +43,26 @@ const PartyController = {
     }
   },
 
-  getOneParty(req, res) {
-    const data = Party.findById(req.params.id);
-    return res.status(200).send({
-      status: 200,
-      message: 'party retrieved',
-      data: [data],
-    });
+  async getOneParty(req, res) {
+    const text = 'SELECT * FROM party WHERE id = $1';
+    try {
+      const { rows } = await db.query(text, [req.params.id]);
+      if (!rows[0]) {
+        return res.status(404).send({
+          status: 404,
+          message: 'party not found',
+        });
+      }
+      return res.status(200).send({
+        status: 200,
+        data: rows[0],
+      });
+    } catch (error) {
+      return res.status(400).send({
+        status: 400,
+        error: 'enter a valid id',
+      });
+    }
   },
 
   getAllParties(req, res) {
