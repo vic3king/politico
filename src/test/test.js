@@ -376,3 +376,170 @@ describe('DELETE a party', () => {
       });
   });
 });
+
+describe('/Post create political office', () => {
+  const office = {
+    type: 'federal',
+    officeName: 'deputy speaker',
+    age: '50',
+  };
+
+  const office1 = {
+    type: 'federal',
+    officeName: 'speaker',
+    age: '50',
+  };
+
+  const noOfficeType = {
+    officeName: 'presidency',
+    age: '50',
+  };
+  const noOfficeName = {
+    type: 'federal',
+    age: '50',
+  };
+  const noOfficeAge = {
+    type: 'federal',
+    officeName: 'presidency',
+  };
+
+  const emptyType = {
+    type: '   ',
+    officeName: 'vice president',
+    age: '50',
+  };
+  const emptyofficeName = {
+    type: 'legislative',
+    officeName: '    ',
+    age: '50',
+  };
+  const emptyAge = {
+    type: 'state',
+    officeName: 'governor',
+    age: '     ',
+  };
+  const invalidType = {
+    type: 'ioejbermob',
+    officeName: 'cbn gov',
+    age: '50',
+  };
+  const invalidAge = {
+    type: 'state',
+    officeName: 'president',
+    age: '10',
+  };
+  const invalidAgeType = {
+    type: 'local government',
+    officeName: 'councellor',
+    age: 'xx',
+  };
+  it('it should Create a new office with correct status code', (done) => {
+    chai.request(server)
+      .post('/api/v1/offices')
+      .send(office)
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.body.status.should.be.equal(201);
+        done();
+      });
+  });
+
+  it('it should Create a new office with required fields', (done) => {
+    chai.request(server)
+      .post('/api/v1/offices')
+      .send(office1)
+      .end((err, res) => {
+        res.body.data.should.have.include.key('type');
+        res.body.data.should.have.include.key('officename');
+        res.body.data.should.have.include.key('age');
+        done();
+      });
+  });
+
+  it('it should not Create a new office without type', (done) => {
+    chai.request(server)
+      .post('/api/v1/offices')
+      .send(noOfficeType)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('it should not Create a new office without age', (done) => {
+    chai.request(server)
+      .post('/api/v1/offices')
+      .send(noOfficeAge)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('it should not Create a new office without office name', (done) => {
+    chai.request(server)
+      .post('/api/v1/offices')
+      .send(noOfficeName)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+
+  it('it should throw a 400 when there are spaces in the party office name field', (done) => {
+    chai.request(server)
+      .post('/api/v1/offices')
+      .send(emptyofficeName)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('it should throw a 406 when there are spaces in the office type field', (done) => {
+    chai.request(server)
+      .post('/api/v1/offices')
+      .send(emptyType)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+
+  it('it should throw a 406 when there are spaces in the office age field', (done) => {
+    chai.request(server)
+      .post('/api/v1/offices')
+      .send(emptyAge)
+      .end((err, res) => {
+        res.should.have.status(406);
+        done();
+      });
+  });
+
+  it('it should throw a 406 when creating a party with invalid type', (done) => {
+    chai.request(server)
+      .post('/api/v1/offices')
+      .send(invalidType)
+      .end((err, res) => {
+        res.should.have.status(406);
+        done();
+      });
+  });
+
+  it('it should throw a 400 when creating a party with wrong age value < 30', (done) => {
+    chai.request(server)
+      .post('/api/v1/offices')
+      .send(invalidAge)
+      .end((err, res) => {
+        res.should.have.status(406);
+        done();
+      });
+  });
+
+  it('it should throw a 406 when the age value isNan', (done) => {
+    chai.request(server)
+      .post('/api/v1/offices')
+      .send(invalidAgeType)
+      .end((err, res) => {
+        res.should.have.status(406);
+        done();
+      });
+  });
+});
