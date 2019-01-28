@@ -77,11 +77,13 @@ const createTables = async () => {
         firstname VARCHAR(50) NOT NULL,
         lastname VARCHAR(50) NOT NULL,
         othernames VARCHAR(50) NOT NULL,
+        password VARCHAR(128) NOT NULL,
         email VARCHAR(50) NOT NULL UNIQUE,
-        phoneNumber VARCHAR(50) NOT NULL UNIQUE,
-        username VARCHAR(50) NOT NULL,
-        registered TIMESTAMP,
+        phonenumber VARCHAR(128) NOT NULL UNIQUE,
+        username VARCHAR(50) NOT NULL UNIQUE,
         type usertype NOT NULL,
+        registered TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        modefied_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         isAdmin boolean NOT NULL DEFAULT false
       )
       `;

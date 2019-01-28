@@ -3,6 +3,8 @@ import Validate from '../middlewares/helper';
 import controllerParty from '../controllers/party';
 import controllerOffice from '../controllers/office';
 import ValidateOffice from '../middlewares/helperoffice';
+import User from '../controllers/users';
+import Helper from '../middlewares/helperuser';
 
 const router = express.Router();
 
@@ -23,6 +25,7 @@ router.get('/api/v1/offices', controllerOffice.getAllOffices);
 
 router.get('/api/v1/offices/:id', ValidateOffice.isNotValid, controllerOffice.getOneOffice);
 
+router.post('/api/v1/auth/signup', Helper.postUser, Helper.postUserValidate, Helper.isValidInput, Helper.isValidType, Helper.validValues, User.createUser);
 
 router.all('*', (req, res) => {
   res.status(404).send({

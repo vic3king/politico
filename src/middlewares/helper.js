@@ -123,7 +123,6 @@ const Validate = {
     return next();
   },
 
-
   isNotValid(req, res, next) {
     if (!validId(req.params.id)) {
       return res.status(406).json({
