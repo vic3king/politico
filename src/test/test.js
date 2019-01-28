@@ -543,3 +543,45 @@ describe('/Post create political office', () => {
       });
   });
 });
+
+describe('GET /offices/:id', () => {
+  const office2 = {
+    type: 'federal',
+    officeName: 'presidency',
+    age: '50',
+  };
+  before((done) => {
+    chai.request(server)
+      .post('/api/v1/offices')
+      .send(office2)
+      .end(() => {
+        done();
+      });
+  });
+  it('should get the matching office', (done) => {
+    chai.request(server)
+      .get('/api/v1/offices/3')
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it('should return 406 on nan ids', (done) => {
+    chai.request(server)
+      .get('/api/v1/offices/sv')
+      .end((err, res) => {
+        res.should.have.status(406);
+        done();
+      });
+  });
+
+  it('should return 404 when id is not found', (done) => {
+    chai.request(server)
+      .get('/api/v1/offices/10')
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
+});

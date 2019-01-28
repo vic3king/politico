@@ -43,13 +43,26 @@ const ControllerOffice = {
     });
   },
 
-  getOneOffice(req, res) {
-    const data = Office.findById(req.params.id);
-    return res.status(200).send({
-      status: 200,
-      message: 'office retrieved',
-      data: [data],
-    });
+  async getOneOffice(req, res) {
+    const text = 'SELECT * FROM office WHERE id = $1';
+    try {
+      const { rows } = await db.query(text, [req.params.id]);
+      if (!rows[0]) {
+        return res.status(404).send({
+          status: 404,
+          message: 'office not found',
+        });
+      }
+      return res.status(200).send({
+        status: 200,
+        data: rows[0],
+      });
+    } catch (error) {
+      return res.status(400).send({
+        status: 400,
+        error: 'enter a valid id',
+      });
+    }
   },
 };
 

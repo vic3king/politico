@@ -1,5 +1,3 @@
-import Office from '../models/office';
-
 const validId = id => Number.isInteger(parseInt(id, 10));
 
 const spaces = (obj) => {
@@ -76,18 +74,10 @@ const ValidateOffice = {
   },
 
   isNotValid(req, res, next) {
-    // eslint-disable-next-line radix
-    const office = Office.findById(parseInt(req.params.id));
     if (!validId(req.params.id)) {
       return res.status(406).json({
         status: 406,
         error: 'The id parameter must be a number',
-      });
-    }
-    if (!office) {
-      return res.status(404).send({
-        status: 404,
-        error: 'office not found, enter a valid id',
       });
     }
     return next();
