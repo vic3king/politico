@@ -83,25 +83,37 @@ const PartyController = {
     }
   },
 
-  updatedName(req, res) {
-    if (!req.body.name) {
-      res.status(400).send({
-        status: 400,
-        message: 'Party name is required',
+  async updatedName(req, res) {
+    const findOneQuery = 'SELECT * FROM party WHERE id=$1';
+    const updateOneQuery = `UPDATE party
+      SET name=$1,modefied_on=$2,status=$3
+      WHERE id=$4 returning id, name, status, modefied_on`;
+    try {
+      const { rows } = await db.query(findOneQuery, [req.params.id]);
+      if (!rows[0]) {
+        return res.status(404).send({
+          status: 404,
+          error: 'party not found, enter a valid id',
+        });
+      }
+      const values = [
+        req.body.name.trim(),
+        new Date(),
+        'updated',
+        req.params.id,
+      ];
+      const response = await db.query(updateOneQuery, values);
+      return res.status(200).send({
+        status: 200,
+        message: 'Party name updated succesfully',
+        data: response.rows[0],
       });
-    }
-    if (Validate.spaceUpdate(req.body)) {
+    } catch (err) {
       return res.status(400).send({
         status: 400,
-        error: 'Field should contain actual characters and not only spaces',
+        error: err.message,
       });
     }
-    const updatedName = Party.updateParty(req.params.id, req.body);
-    return res.status(200).send({
-      status: 200,
-      message: 'Party name succesfully updated',
-      data: [updatedName],
-    });
   },
 
   deleteOneParty(req, res) {

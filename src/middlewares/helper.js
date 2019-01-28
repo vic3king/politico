@@ -4,6 +4,13 @@ import { isURL } from 'validator';
 
 dotenv.load();
 const validId = id => Number.isInteger(parseInt(id, 10));
+const spaceUpdate = (obj) => {
+  const strName = obj.name.split(' ').join('');
+  if (strName.length < 1) {
+    return true;
+  }
+  return false;
+};
 
 const Validate = {
   validUrl(req, res, next) {
@@ -95,6 +102,27 @@ const Validate = {
     }
     return next();
   },
+
+  upadteNoName(request, response, next) {
+    if (!request.body.name) {
+      response.status(400).send({
+        status: 400,
+        message: 'Party name is required',
+      });
+    }
+    return next();
+  },
+
+  updateEmptyName(request, response, next) {
+    if (spaceUpdate(request.body)) {
+      return response.status(400).send({
+        status: 400,
+        error: 'Name Field should contain actual characters and not only spaces',
+      });
+    }
+    return next();
+  },
+
 
   isNotValid(req, res, next) {
     if (!validId(req.params.id)) {
