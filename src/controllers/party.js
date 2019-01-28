@@ -65,13 +65,22 @@ const PartyController = {
     }
   },
 
-  getAllParties(req, res) {
-    const data = Party.findAllParties();
-    return res.status(200).send({
-      status: 200,
-      message: 'All parties retrieved',
-      data,
-    });
+  async getAllParties(req, res) {
+    const findAllQuery = 'SELECT * FROM party';
+    try {
+      const { rows, rowCount } = await db.query(findAllQuery);
+      return res.status(200).send({
+        status: 200,
+        message: 'All parties retrieved',
+        data: rows,
+        rowCount,
+      });
+    } catch (error) {
+      return res.status(500).send({
+        status: 500,
+        message: error.message,
+      });
+    }
   },
 
   updatedName(req, res) {
