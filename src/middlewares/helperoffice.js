@@ -1,19 +1,20 @@
 import Office from '../models/office';
 
 const validId = id => Number.isInteger(parseInt(id, 10));
-const ValidateOffice = {
-  spaces(obj) {
-    const strType = obj.type.split(' ').join('');
-    const strOfficeName = obj.officeName.split(' ').join('');
-    if (strType.length < 1) {
-      return true;
-    }
-    if (strOfficeName.length < 1) {
-      return true;
-    }
-    return false;
-  },
 
+const spaces = (obj) => {
+  const strType = obj.type.split(' ').join('');
+  const strOfficeName = obj.officeName.split(' ').join('');
+  if (strType.length < 1) {
+    return true;
+  }
+  if (strOfficeName.length < 1) {
+    return true;
+  }
+  return false;
+};
+
+const ValidateOffice = {
   postOffice(request, response, next) {
     const errorsMessages = [];
     if (!request.body.type) {
@@ -37,9 +38,35 @@ const ValidateOffice = {
     return next();
   },
 
+  postOfficeValidate(req, res, next) {
+    // eslint-disable-next-line no-restricted-globals
+    if (isNaN(req.body.age)) {
+      return res.status(406).json({
+        status: 406,
+        error: 'must be a numeber',
+      });
+    }
+
+    if (spaces(req.body)) {
+      return res.status(400).send({
+        status: 400,
+        error: 'Fields should contain actual characters and not only spaces',
+      });
+    }
+
+    if (req.body.age.trim() < 30) {
+      return res.status(406).json({
+        status: 406,
+        error: 'Too young to run',
+      });
+    }
+
+    return next();
+  },
+
   isValidType(req, res, next) {
     const obj = req.body.type.trim();
-    if (obj === 'federal' || obj === 'legislative' || obj === 'state' || obj === 'local government') {
+    if (obj === 'federal' || obj === 'legislative' || obj === 'state' || obj === 'local-government') {
       return next();
     }
     return res.status(406).send({

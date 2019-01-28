@@ -17,7 +17,7 @@ router.patch('/api/v1/parties/:id/name', Validate.isNotValid, Validate.upadteNoN
 
 router.delete('/api/v1/parties/:id', Validate.isNotValid, controllerParty.deleteOneParty);
 
-router.post('/api/v1/offices', ValidateOffice.postOffice, ValidateOffice.isValidType, controllerOffice.createOffice);
+router.post('/api/v1/offices', ValidateOffice.postOffice, ValidateOffice.postOfficeValidate, ValidateOffice.isValidType, controllerOffice.createOffice);
 
 router.get('/api/v1/offices', controllerOffice.getAllOffices);
 

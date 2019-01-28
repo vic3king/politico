@@ -1,35 +1,37 @@
 /* eslint-disable max-len */
 import Office from '../models/office';
-import ValidateOffice from '../middlewares/helperoffice';
+import db from '../db/index';
 
 const ControllerOffice = {
-  createOffice(req, res) {
-    // eslint-disable-next-line no-restricted-globals
-    if (isNaN(req.body.age)) {
-      return res.status(406).json({
-        status: 406,
-        error: 'must be a numeber',
-      });
-    }
-    if (req.body.age.trim() < 30) {
-      return res.status(406).json({
-        status: 406,
-        error: 'Too young to run',
-      });
-    }
+  async createOffice(request, response) {
+    const { type, officeName, age } = request.body;
 
-    if (ValidateOffice.spaces(req.body)) {
-      return res.status(400).send({
+    const text = `INSERT INTO
+          office(type, officename, age, status, created_on, modefied_on)
+          VALUES($1, $2, $3, $4, $5, $6)
+          returning *`;
+    const values = [
+      type.trim(),
+      officeName.trim(),
+      age.trim(),
+      'new',
+      new Date(),
+      new Date(),
+    ];
+
+    try {
+      const { rows } = await db.query(text, values);
+      return response.status(201).send({
+        status: 201,
+        message: 'Political Office Created',
+        data: rows[0],
+      });
+    } catch (error) {
+      return response.status(400).send({
         status: 400,
-        error: 'Fields should contain actual characters and not only spaces',
+        message: error.message,
       });
     }
-
-    const office = Office.createOffice(req.body);
-    return res.status(201).send({
-      status: 201,
-      data: [office],
-    });
   },
 
   getAllOffices(req, res) {
