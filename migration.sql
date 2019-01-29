@@ -4,7 +4,7 @@ CREATE DATABASE politico;
 \c politico;
 
 CREATE TYPE officetype AS ENUM('federal', 'legislative', 'state', 'local-government');
-CREATE TYPE usertype AS ENUM('citizen', 'politician');
+CREATE TYPE usertype AS ENUM('citizen', 'politician', 'admin');
 CREATE TYPE partystat AS ENUM('new', 'updated');
 CREATE TYPE officestat AS ENUM('new', 'updated');
 
@@ -41,3 +41,7 @@ CREATE TABLE IF NOT EXISTS users(
   type usertype NOT NULL,
   isAdmin boolean NOT NULL DEFAULT false
 );
+
+INSERT INTO
+      users(firstname, lastname, othernames, email, phoneNumber, username, password, isadmin, type)
+      VALUES('akaniru', 'victory', 'ifeanyi', 'example@gmail.com', '07063212299','vee', '$2a$08$7e/bWKTSvmvI.34fgssyY.N69EYPjTpYLnWKxPN8NJXDZES9Ol69m', 'true', 'admin');

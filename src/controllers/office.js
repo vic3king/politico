@@ -1,17 +1,17 @@
+
 import db from '../db/index';
 
 const ControllerOffice = {
   async createOffice(request, response) {
-    const { type, officeName, age } = request.body;
-
+    const { type, name, ageLimit } = request.body;
     const text = `INSERT INTO
-          office(type, officename, age, status, created_on, modefied_on)
+          office(type, name, agelimit, status, created_on, modefied_on)
           VALUES($1, $2, $3, $4, $5, $6)
           returning *`;
     const values = [
       type.trim(),
-      officeName.trim(),
-      age.trim(),
+      name.trim(),
+      ageLimit.trim(),
       'new',
       new Date(),
       new Date(),

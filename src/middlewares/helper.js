@@ -1,11 +1,11 @@
 /* eslint-disable consistent-return */
 import dotenv from 'dotenv';
-import { isURL } from 'validator';
+import { isURL, isAlpha } from 'validator';
 
 dotenv.load();
 const validId = id => Number.isInteger(parseInt(id, 10));
 const spaceUpdate = (obj) => {
-  const strName = obj.name.split(' ').join('');
+  const strName = obj.name.trim();
   if (strName.length < 1) {
     return true;
   }
@@ -14,6 +14,13 @@ const spaceUpdate = (obj) => {
 
 const Validate = {
   validUrl(req, res, next) {
+    const { name } = req.body;
+    if (name && !isAlpha(name)) {
+      return res.status(406).send({
+        status: 406,
+        message: 'invaild input',
+      });
+    }
     const url = req.body.logoUrl;
     if (req.body.logoUrl && !isURL(url)) {
       return res.status(400).send({
@@ -24,9 +31,9 @@ const Validate = {
     return next();
   },
   spaces(obj) {
-    const strName = obj.name.split(' ').join('');
-    const strHqAddressUrl = obj.hqAddressUrl.split(' ').join('');
-    const strLogoUrl = obj.logoUrl.split(' ').join('');
+    const strName = obj.name.trim();
+    const strHqAddressUrl = obj.hqAddress.trim();
+    const strLogoUrl = obj.logoUrl.trim();
     if (strName.length < 1) {
       return true;
     }
@@ -40,7 +47,7 @@ const Validate = {
   },
 
   spaceUpdate(obj) {
-    const strName = obj.name.split(' ').join('');
+    const strName = obj.name.trim();
     if (strName.length < 1) {
       return true;
     }
@@ -48,11 +55,11 @@ const Validate = {
   },
 
   validateParty(request, response, next) {
-    if (!request.body.hqAddressUrl || request.body.hqAddressUrl.split(' ').join('').length < 1) {
+    if (!request.body.hqAddress || request.body.hqAddress.trim().length < 1) {
       return next();
     }
-    let { hqAddressUrl } = request.body;
-    hqAddressUrl = hqAddressUrl.trim();
+    let { hqAddress } = request.body;
+    hqAddress = hqAddress.trim();
     // eslint-disable-next-line global-require
     const googleMapsClient = require('@google/maps').createClient({
       key: process.env.GOOGLE,
@@ -60,13 +67,15 @@ const Validate = {
     });
 
     googleMapsClient.places({
-      query: hqAddressUrl,
+      query: hqAddress,
     })
       .asPromise()
       .then((res) => {
         if (res.json.results) {
-          request.hqAddressUrl = res.json.results[0].formatted_address;
-        } else {
+          request.hqAddress = res.json.results[0].formatted_address;
+        }
+
+        if (res.json.results.length < 1) {
           return response.status(404).send({
             status: 404,
             error: 'Address not found, enter a valid add',
@@ -86,7 +95,7 @@ const Validate = {
       const error = { name: 'Party name is required' };
       errorsMessages.push(error);
     }
-    if (!request.body.hqAddressUrl) {
+    if (!request.body.hqAddress) {
       const error = { Address: 'your Address is required' };
       errorsMessages.push(error);
     }

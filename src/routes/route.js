@@ -5,27 +5,36 @@ import controllerOffice from '../controllers/office';
 import ValidateOffice from '../middlewares/helperoffice';
 import User from '../controllers/users';
 import Helper from '../middlewares/helperuser';
+import Auth from '../middlewares/auth';
 
 const router = express.Router();
+const admin = [
+  Auth.verifyToken,
+  Helper.isAdmin,
+];
+const user = [
+  Auth.verifyToken,
+];
 
+router.post('/api/v1/parties', admin, Validate.validateParty, Validate.validUrl, Validate.postParty, controllerParty.createParty);
 
-router.post('/api/v1/parties', Validate.validateParty, Validate.validUrl, Validate.postParty, controllerParty.createParty);
+router.get('/api/v1/parties/:id', user, Validate.isNotValid, controllerParty.getOneParty);
 
-router.get('/api/v1/parties/:id', Validate.isNotValid, controllerParty.getOneParty);
+router.get('/api/v1/parties', user, controllerParty.getAllParties);
 
-router.get('/api/v1/parties', controllerParty.getAllParties);
+router.patch('/api/v1/parties/:id/name', admin, Validate.isNotValid, Validate.upadteNoName, Validate.updateEmptyName, controllerParty.updatedName);
 
-router.patch('/api/v1/parties/:id/name', Validate.isNotValid, Validate.upadteNoName, Validate.updateEmptyName, controllerParty.updatedName);
+router.delete('/api/v1/parties/:id', admin, Validate.isNotValid, controllerParty.deleteOneParty);
 
-router.delete('/api/v1/parties/:id', Validate.isNotValid, controllerParty.deleteOneParty);
+router.post('/api/v1/offices', admin, ValidateOffice.postOffice, ValidateOffice.postOfficeValidate, ValidateOffice.isValidType, controllerOffice.createOffice);
 
-router.post('/api/v1/offices', ValidateOffice.postOffice, ValidateOffice.postOfficeValidate, ValidateOffice.isValidType, controllerOffice.createOffice);
+router.get('/api/v1/offices', user, controllerOffice.getAllOffices);
 
-router.get('/api/v1/offices', controllerOffice.getAllOffices);
+router.get('/api/v1/offices/:id', user, ValidateOffice.isNotValid, controllerOffice.getOneOffice);
 
-router.get('/api/v1/offices/:id', ValidateOffice.isNotValid, controllerOffice.getOneOffice);
+router.post('/api/v1/auth/signup', Helper.validValues, Helper.postUser, Helper.postUserValidate, Helper.isValidInput, Helper.isValidType, Helper.validValues, User.createUser);
 
-router.post('/api/v1/auth/signup', Helper.postUser, Helper.postUserValidate, Helper.isValidInput, Helper.isValidType, Helper.validValues, User.createUser);
+router.post('/api/v1/auth/login', Helper.postValidateLogin, User.login);
 
 router.all('*', (req, res) => {
   res.status(404).send({

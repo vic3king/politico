@@ -1,8 +1,10 @@
+import { isAlpha } from 'validator';
+
 const validId = id => Number.isInteger(parseInt(id, 10));
 
 const spaces = (obj) => {
-  const strType = obj.type.split(' ').join('');
-  const strOfficeName = obj.officeName.split(' ').join('');
+  const strType = obj.type.trim();
+  const strOfficeName = obj.name.trim();
   if (strType.length < 1) {
     return true;
   }
@@ -19,12 +21,12 @@ const ValidateOffice = {
       const error = { type: 'office type is required eg (fedral,state...)' };
       errorsMessages.push(error);
     }
-    if (!request.body.officeName) {
-      const error = { officeName: 'office name is required eg(presiency)' };
+    if (!request.body.name) {
+      const error = { name: 'office name is required eg(presiency)' };
       errorsMessages.push(error);
     }
-    if (!request.body.age) {
-      const error = { age: 'Kindly Provide your age' };
+    if (!request.body.ageLimit) {
+      const error = { ageLimit: 'Kindly Provide your ageLimit' };
       errorsMessages.push(error);
     }
     if (errorsMessages.length !== 0) {
@@ -37,11 +39,18 @@ const ValidateOffice = {
   },
 
   postOfficeValidate(req, res, next) {
+    const { name } = req.body;
+    if (!isAlpha(name)) {
+      return res.status(406).send({
+        status: 406,
+        message: 'invaild input',
+      });
+    }
     // eslint-disable-next-line no-restricted-globals
-    if (isNaN(req.body.age)) {
+    if (isNaN(req.body.ageLimit)) {
       return res.status(406).json({
         status: 406,
-        error: 'must be a numeber',
+        error: 'ageLimit Limit must be a numeber',
       });
     }
 
@@ -52,7 +61,7 @@ const ValidateOffice = {
       });
     }
 
-    if (req.body.age.trim() < 30) {
+    if (req.body.ageLimit.trim() < 30) {
       return res.status(406).json({
         status: 406,
         error: 'Too young to run',

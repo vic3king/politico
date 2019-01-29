@@ -12,10 +12,24 @@ pool.on('connect', () => {
   console.log('connected to the db');
 });
 
+const createAdmin = async () => {
+  const user = ` INSERT INTO
+  users(firstname, lastname, othernames, email, phoneNumber, username, password, isadmin, type)
+  VALUES('akaniru', 'victory', 'ifeanyi', 'example@yahoo.com', '07063212299','vee', '$2a$08$7e/bWKTSvmvI.34fgssyY.N69EYPjTpYLnWKxPN8NJXDZES9Ol69m', 'true', 'admin');`;
+
+  pool.query(user)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 const createType = async () => {
   const type = `
   CREATE TYPE officetype AS ENUM('federal', 'legislative', 'state', 'local-government');
-  CREATE TYPE usertype AS ENUM('citizen', 'politician');
+  CREATE TYPE usertype AS ENUM('citizen', 'politician', 'admin');
   CREATE TYPE partystat AS ENUM('new', 'updated');
   CREATE TYPE officestat AS ENUM('new', 'updated');
  `;
@@ -64,8 +78,8 @@ const createTables = async () => {
       office(
         id serial PRIMARY KEY,
         type officetype NOT NULL,
-        officename VARCHAR(128) NOT NULL UNIQUE,
-        age VARCHAR(50) NOT NULL,
+        name VARCHAR(128) NOT NULL UNIQUE,
+        ageLimit VARCHAR(50) NOT NULL,
         status officestat NOT NULL,
         modefied_on TIMESTAMP,
         created_on TIMESTAMP
@@ -116,6 +130,7 @@ const dropTables = async () => {
 const createAllTables = async () => {
   await dropTables();
   await createTables();
+  await createAdmin();
 };
 
 // createAllTables();

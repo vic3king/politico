@@ -10,9 +10,9 @@ const PartyController = {
         error: 'Fields should contain actual characters and not only spaces',
       });
     }
-    const address = request.hqAddressUrl;
-    let { name, hqAddressUrl, logoUrl } = request.body;
-    hqAddressUrl = address;
+    const address = request.hqAddress;
+    let { name, hqAddress, logoUrl } = request.body;
+    hqAddress = address;
 
     const text = `INSERT INTO
           party(name, hqaddress, logourl, status, created_on, modefied_on)
@@ -20,7 +20,7 @@ const PartyController = {
           returning *`;
     const values = [
       name.trim(),
-      hqAddressUrl,
+      hqAddress,
       logoUrl,
       'new',
       new Date(),

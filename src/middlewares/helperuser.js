@@ -3,16 +3,26 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import db from '../db/index';
 
-
+const spacesLogin = (obj) => {
+  const emailAdd = obj.email.trim();
+  const passWord = obj.password.trim();
+  if (passWord.length < 1) {
+    return true;
+  }
+  if (emailAdd.length < 1) {
+    return true;
+  }
+  return false;
+};
 const spaces = (obj) => {
-  const firstName = obj.firstname.split(' ').join('');
-  const lastName = obj.lastname.split(' ').join('');
-  const otherNames = obj.othernames.split(' ').join('');
-  const userName = obj.username.split(' ').join('');
-  const phoneNumber = obj.phonenumber.split(' ').join('');
-  const emailAdd = obj.email.split(' ').join('');
-  const passWord = obj.password.split(' ').join('');
-  const userType = obj.type.split(' ').join('');
+  const firstName = obj.firstname.trim();
+  const lastName = obj.lastname.trim();
+  const otherNames = obj.othernames.trim();
+  const userName = obj.username.trim();
+  const phoneNumber = obj.phonenumber.trim();
+  const emailAdd = obj.email.trim();
+  const passWord = obj.password.trim();
+  const userType = obj.type.trim();
   if (firstName.length < 1) {
     return true;
   }
@@ -42,11 +52,7 @@ const spaces = (obj) => {
 
 const isValidEmail = email => /\S+@\S+\.\S+/.test(email);
 
-function isValid(p) {
-  const phoneRe = /^[2-9]\d{2}[2-9]\d{2}\d{4}$/;
-  const digits = p.replace(/\D/g, '');
-  return phoneRe.test(digits);
-}
+const isValid = num => /\+\d{1,3}-\d{1,14}/.test(num);
 
 const Helper = {
   /**
@@ -106,6 +112,10 @@ const Helper = {
       const error = { type: 'user Type is required' };
       errorsMessages.push(error);
     }
+    if (!request.body.phonenumber) {
+      const error = { phonenumber: 'user phonenumber is required' };
+      errorsMessages.push(error);
+    }
     if (errorsMessages.length !== 0) {
       return response.status(400).send({
         status: 400,
@@ -128,6 +138,36 @@ const Helper = {
     return next();
   },
 
+  postValidateLogin(req, res, next) {
+    const errorsMessages = [];
+    if (!req.body.password) {
+      const error = { password: 'password is required' };
+      errorsMessages.push(error);
+    }
+    if (!req.body.email) {
+      const error = { email: 'email is required' };
+      errorsMessages.push(error);
+    }
+    if (errorsMessages.length !== 0) {
+      return res.status(400).send({
+        status: 400,
+        error: errorsMessages,
+      });
+    }
+
+    if (spacesLogin(req.body)) {
+      return res.status(400).send({
+        status: 400,
+        error: 'Fields should contain actual characters and not only spaces',
+      });
+    }
+
+    if (!isValidEmail(req.body.email)) {
+      return res.status(400).send({ message: 'Please enter a valid email address' });
+    }
+    return next();
+  },
+
   isValidType(req, res, next) {
     const obj = req.body.type.trim();
     if (obj === 'politician' || obj === 'citizen') {
@@ -142,18 +182,12 @@ const Helper = {
   validValues(req, res, next) {
     const phnNum = req.body.phonenumber;
     // const userName = req.body.username;
-    if (req.body.phnNum && isValid(phnNum)) {
+    if (phnNum && !isValid(phnNum)) {
       return res.status(400).send({
         status: 400,
         message: 'please enter a valid phone number',
       });
     }
-    // if (req.body.userName && !isAlphanumeric(userName)) {
-    //   return res.status(400).send({
-    //     status: 400,
-    //     message: 'please enter a valid username',
-    //   });
-    // }
     return next();
   },
   async isValidInput(req, res, next) {
@@ -163,6 +197,21 @@ const Helper = {
       return res.status(400).send({
         status: 400,
         error: 'user already exists',
+      });
+    }
+    return next();
+  },
+
+  async isAdmin(req, res, next) {
+    const token = req.headers['x-access-token'];
+    if (!token) {
+      return res.status(401).send({ message: 'Token is not provided' });
+    }
+    const decoded = await jwt.verify(token, process.env.SECRET);
+    if (decoded.isAdmin === false) {
+      return res.status(403).json({
+        status: 400,
+        error: 'only admin users have access to this route',
       });
     }
     return next();
