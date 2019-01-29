@@ -37,7 +37,7 @@ const Validate = {
     if (strName.length < 1) {
       return true;
     }
-    if (strHqAddress.length < 1) {
+    if (strHqAddressUrl.length < 1) {
       return true;
     }
     if (strLogoUrl.length < 1) {
@@ -53,7 +53,7 @@ const Validate = {
     }
     return false;
   },
-  
+
   validateParty(request, response, next) {
     if (!request.body.hqAddress || request.body.hqAddress.trim().length < 1) {
       return next();
