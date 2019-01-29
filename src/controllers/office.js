@@ -5,13 +5,13 @@ import ValidateOffice from '../middlewares/helperoffice';
 const ControllerOffice = {
   createOffice(req, res) {
     // eslint-disable-next-line no-restricted-globals
-    if (isNaN(req.body.age)) {
+    if (isNaN(req.body.ageLimit)) {
       return res.status(406).json({
         status: 406,
-        error: 'must be a numeber',
+        error: 'Age Limit entered must be a numeber',
       });
     }
-    if (req.body.age.trim() < 30) {
+    if (req.body.ageLimit.trim() < 30) {
       return res.status(406).json({
         status: 406,
         error: 'Too young to run',

@@ -3,8 +3,8 @@ import Office from '../models/office';
 const validId = id => Number.isInteger(parseInt(id, 10));
 const ValidateOffice = {
   spaces(obj) {
-    const strType = obj.type.split(' ').join('');
-    const strOfficeName = obj.officeName.split(' ').join('');
+    const strType = obj.type.trim();
+    const strOfficeName = obj.name.trim();
     if (strType.length < 1) {
       return true;
     }
@@ -20,12 +20,12 @@ const ValidateOffice = {
       const error = { type: 'office type is required eg (fedral,state...)' };
       errorsMessages.push(error);
     }
-    if (!request.body.officeName) {
+    if (!request.body.name) {
       const error = { officeName: 'office name is required eg(presiency)' };
       errorsMessages.push(error);
     }
-    if (!request.body.age) {
-      const error = { age: 'Kindly Provide your age' };
+    if (!request.body.ageLimit) {
+      const error = { ageLimit: 'Kindly Provide your ageLimit' };
       errorsMessages.push(error);
     }
     if (errorsMessages.length !== 0) {
