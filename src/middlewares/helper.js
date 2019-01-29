@@ -19,12 +19,12 @@ const Validate = {
   },
   spaces(obj) {
     const strName = obj.name.split(' ').join('');
-    const strHqAddressUrl = obj.hqAddressUrl.split(' ').join('');
+    const strHqAddress = obj.hqAddress.split(' ').join('');
     const strLogoUrl = obj.logoUrl.split(' ').join('');
     if (strName.length < 1) {
       return true;
     }
-    if (strHqAddressUrl.length < 1) {
+    if (strHqAddress.length < 1) {
       return true;
     }
     if (strLogoUrl.length < 1) {
@@ -42,11 +42,11 @@ const Validate = {
   },
 
   validateParty(request, response, next) {
-    if (!request.body.hqAddressUrl || request.body.hqAddressUrl.split(' ').join('').length < 1) {
+    if (!request.body.hqAddress || request.body.hqAddress.trim().length < 1) {
       return next();
     }
-    let { hqAddressUrl } = request.body;
-    hqAddressUrl = hqAddressUrl.trim();
+    let { hqAddress } = request.body;
+    hqAddress = hqAddress.trim();
     // eslint-disable-next-line global-require
     const googleMapsClient = require('@google/maps').createClient({
       key: process.env.GOOGLE,
@@ -54,13 +54,15 @@ const Validate = {
     });
 
     googleMapsClient.places({
-      query: hqAddressUrl,
+      query: hqAddress,
     })
       .asPromise()
       .then((res) => {
         if (res.json.results) {
-          request.hqAddressUrl = res.json.results[0].formatted_address;
-        } else {
+          request.hqAddress = res.json.results[0].formatted_address;
+        }
+
+        if (res.json.results.length < 1) {
           return response.status(404).send({
             status: 404,
             error: 'Address not found, enter a valid add',
@@ -80,7 +82,7 @@ const Validate = {
       const error = { name: 'Party name is required' };
       errorsMessages.push(error);
     }
-    if (!request.body.hqAddressUrl) {
+    if (!request.body.hqAddress) {
       const error = { Address: 'your Address is required' };
       errorsMessages.push(error);
     }

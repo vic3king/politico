@@ -10,15 +10,15 @@ const PartyController = {
         error: 'Fields should contain actual characters and not only spaces',
       });
     }
-    const address = request.hqAddressUrl;
+    const address = request.hqAddress;
     let {
-      id, name, hqAddressUrl, logoUrl, status, createdOn, createdBy,
+      id, name, hqAddress, logoUrl, status, createdOn, createdBy,
     } = Party.createParty(request.body);
-    hqAddressUrl = address;
+    hqAddress = address;
     const data = {
       id,
       name,
-      hqAddressUrl,
+      hqAddress,
       logoUrl,
       status,
       createdOn,
