@@ -3,7 +3,7 @@ import Validate from '../middlewares/helper';
 import db from '../db/index';
 
 const PartyController = {
-  async createParty(request, response) {
+  createParty(request, response) {
     if (Validate.spaces(request.body)) {
       return response.status(400).send({
         status: 400,

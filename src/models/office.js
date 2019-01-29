@@ -14,7 +14,7 @@ class PoliticoOffice {
       createdOn: new Date(),
       modifiedOn: new Date(),
     };
-
+    
     this.office.push(createOffice);
     return createOffice;
   }

@@ -1,4 +1,3 @@
-
 import db from '../db/index';
 
 const ControllerOffice = {
