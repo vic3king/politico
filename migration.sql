@@ -42,6 +42,15 @@ CREATE TABLE IF NOT EXISTS users(
   isAdmin boolean NOT NULL DEFAULT false
 );
 
+ CREATE TABLE IF NOT EXISTS 
+      candidates( 
+        id SERIAL PRIMARY KEY,
+        office INT REFERENCES office(id) ON DELETE CASCADE,
+        party INT REFERENCES party(id) ON DELETE CASCADE,
+        ageLimit VARCHAR(50) NOT NULL,
+        user_id INT REFERENCES users(id) ON DELETE CASCADE,
+        registered_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
 INSERT INTO
       users(firstname, lastname, othernames, email, phoneNumber, username, password, isadmin, type)
       VALUES('akaniru', 'victory', 'ifeanyi', 'example@gmail.com', '07063212299','vee', '$2a$08$7e/bWKTSvmvI.34fgssyY.N69EYPjTpYLnWKxPN8NJXDZES9Ol69m', 'true', 'admin');

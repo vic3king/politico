@@ -24,9 +24,10 @@ const User = {
       const { rows } = await db.query(text, values);
       const token = Helper.generateToken(rows[0].id, rows[0].isAdmin);
       const {
-        firstname, lastname, othernames, username, type, email, phonenumber, isadmin,
+        id, firstname, lastname, othernames, username, type, email, phonenumber, isadmin,
       } = rows[0];
       const user = {
+        id,
         firstname,
         lastname,
         othernames,
@@ -63,9 +64,10 @@ const User = {
         return res.status(401).send({ message: 'The credentials you provided is incorrect' });
       }
       const {
-        firstname, lastname, othernames, username, type, email, phonenumber, isadmin,
+        id, firstname, lastname, othernames, username, type, email, phonenumber, isadmin,
       } = rows[0];
       const user = {
+        id,
         firstname,
         lastname,
         othernames,
