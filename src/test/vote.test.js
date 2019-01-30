@@ -6,6 +6,7 @@ import server from '../server';
 chai.should();
 chai.use(chaiHttp);
 let adminToken;
+let uID;
 
 const userAdmin = {
   email: 'example@yahoo.com',
@@ -14,12 +15,12 @@ const userAdmin = {
 
 const office = {
   type: 'federal',
-  name: 'vicep',
+  name: 'admin',
   ageLimit: '50',
 };
 
 const party = {
-  name: 'pdpzzwref',
+  name: 'testparty',
   hqAddress: 'folawiyo bankole street',
   logoUrl: 'www.testurl.com',
 };
@@ -30,20 +31,12 @@ before((done) => {
     .send(userAdmin)
     .end((err, res) => {
       adminToken = res.body.data[0].token;
+      uID = res.body.data[0].user.id;
+      // uID = req.params.id;
       done();
     });
 });
 
-
-before((done) => {
-  chai.request(server)
-    .post('/api/v1/parties')
-    .send(party)
-    .set('x-access-token', adminToken)
-    .end(() => {
-      done();
-    });
-});
 before((done) => {
   chai.request(server)
     .post('/api/v1/offices')
@@ -54,31 +47,55 @@ before((done) => {
     });
 });
 
-describe('/Post create candidate', () => {
+before((done) => {
+  chai.request(server)
+    .post('/api/v1/parties')
+    .send(party)
+    .set('x-access-token', adminToken)
+    .end(() => {
+      done();
+    });
+});
+
+const regCan = {
+  office: '2',
+  party: '3',
+  ageLimit: '50',
+};
+before((done) => {
+  chai.request(server)
+    .post(`/api/v1/office/${uID}/register`)
+    .send(regCan)
+    .set('x-access-token', adminToken)
+    .end(() => {
+      done();
+    });
+});
+
+
+describe('/Post vote for choice candidate', () => {
   const office2 = {
-    office: '2',
-    party: '2',
-    ageLimit: '50',
+    office: '1',
+    candidate: '1',
   };
 
-  it('it should Create a new candidate with correct status code', (done) => {
+  it('it should post a vote for a candidate', (done) => {
     chai.request(server)
-      .post('/api/v1/office/2/register')
+      .post('/api/v1/votes')
       .send(office2)
       .set('x-access-token', adminToken)
       .end((err, res) => {
         res.should.have.status(201);
         res.body.status.should.be.equal(201);
-        res.body.data.should.have.include.key('party');
         res.body.data.should.have.include.key('office');
-        res.body.data.should.have.include.key('agelimit');
+        res.body.data.should.have.include.key('candidate');
         done();
       });
   });
 
-  it('it should Not Create a new candidate when the candidate already exist', (done) => {
+  it('it should Not post a vote for a candidate twice', (done) => {
     chai.request(server)
-      .post('/api/v1/office/2/register')
+      .post('/api/v1/votes')
       .send(office2)
       .set('x-access-token', adminToken)
       .end((err, res) => {

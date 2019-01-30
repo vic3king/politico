@@ -109,7 +109,15 @@ const createTables = async () => {
         ageLimit VARCHAR(50) NOT NULL,
         user_id INT REFERENCES users(id) ON DELETE CASCADE,
         registered_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )
+      );
+
+      CREATE TABLE IF NOT EXISTS vote( 
+        id SERIAL PRIMARY KEY,
+        created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        office INT REFERENCES office(id) ON DELETE CASCADE,
+        candidate INT REFERENCES candidates(id) ON DELETE CASCADE,
+        voter INT REFERENCES users(id) ON DELETE CASCADE
+          )
       `;
 
   await pool.query(queryText)
@@ -126,6 +134,7 @@ const createTables = async () => {
  */
 const dropTables = async () => {
   const queryText = `
+  DROP TABLE IF EXISTS vote;
   DROP TABLE IF EXISTS candidates;
   DROP TABLE IF EXISTS party; 
   DROP TABLE IF EXISTS office;
