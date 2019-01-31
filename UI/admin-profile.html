@@ -13,13 +13,14 @@
 </head>
 
 <body>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCf2fhPBsGoCDbZRUCnZGqUQJJRhGFRej8&libraries=places"></script>
-    <script type="text/javascript" > 
-      google.maps.event.addDomListener(window, 'load', initialize);
-      function initialize() {
-          let autoComplete = new google.maps.places.Autocomplete(document.getElementById('search_term'));
-      }   
-          </script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCf2fhPBsGoCDbZRUCnZGqUQJJRhGFRej8&libraries=places"></script>
+  <script type="text/javascript">
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    function initialize() {
+      let autoComplete = new google.maps.places.Autocomplete(document.getElementById('search_term'));
+    }
+  </script>
   <div class="background"></div>
   <header class="main-header">
     <div>
@@ -30,9 +31,9 @@
     </div>
     <nav class="main-nav">
       <ul class="main-nav__items">
-          <li class="main-nav__item">
-              <a href="index.html">Home</a>
-            </li>
+        <li class="main-nav__item">
+          <a href="index.html">Home</a>
+        </li>
         <li class="main-nav__item">
           <a href="office.html">Add Office</a>
         </li>
@@ -47,176 +48,184 @@
   </header>
   <main class="main-body">
     <section class="profile">
-        <div class="profile__image">
-            <div class="profile__details">
-              <p><b>Fullname:</b> akaniru victory</p>
-              <p><b>Party:</b> hope</p>
-              <p><b>Email:</b> victory@yahoo.com</p>
-              <p><b>Age:</b> 00</p>
-              <p><b>Phone:</b> 09023xxxx</p>
-              <p><b>Status:</b> admin</p>
-            </div>
+      <div class="profile__image">
+        <div class="profile__details">
+          <p><b>Fullname:</b> akaniru victory</p>
+          <p><b>Party:</b> hope</p>
+          <p><b>Email:</b> victory@yahoo.com</p>
+          <p><b>Age:</b> 00</p>
+          <p><b>Phone:</b> 09023xxxx</p>
+          <p><b>Status:</b> admin</p>
+        </div>
     </section>
     <section class="displa-sec">
-        <div>
-            <h4 class="page-title">Open Positions</h4>
-          </div>
-          <div class="container2">
-            <div class="div1 vote">
-              <h6>Local Government Chairman</h6>
-              <p class="admin">0</p>
-              <button id="lgc" class="veiwrecord vote1">View</button>
-            </div>
-            <div class="div1 vote">
-              <h6>Senate House</h6>
-              <p class="admin">0</p>
-              <button id="senate-house" class="veiwrecord vote1">View</button>
-            </div>
-            <div class="div1 vote">
-              <h6>House of Reps</h6>
-              <p class="admin">0</p>
-              <button id="house-of-reps" class="veiwrecord vote1">View</button>
-            </div>
-          </div>
-          <section class="candidates" style="display:none">
-              <div><div class="flex accordion2">
-                  <div class="party__image"></div>
-                  <p style="text-align: left">
-                      Candidate 1: Jane Doe<br>
-                      Party: Hope <br>
-                      Position: Local Government Chairman
-                  </p>
-                  <button id="results">Approve</button>
-                </div></div>
-                  <div><div class="flex accordion2">
-                      <div class="party__image"></div>
-                      <p style="text-align: left">
-                        Candidate 2: Jane Doe<br>
-                        Party: Hope <br>
-                        Position: Local Government Chairman
-                      </p>
-                      <button id="results">Approve</button>
-                    </div></div><br><br><br><br><br><br><br><br>
-            </section>
-          <div>
-            </div>
-            <div class="container2">
-              <div class="div1 vote">
-                <h6>Local Government Chairman</h6>
-                <p class="admin">0</p>
-                <button id="lgc" class="veiwrecord vote1">View</button>
-              </div>
-              <div class="div1 vote">
-                <h6>Senate House</h6>
-                <p class="admin">0</p>
-                <button id="senate-house" class="veiwrecord vote1">View</button>
-              </div>
-              <div class="div1 vote">
-                <h6>House of Reps</h6>
-                <p class="admin">0</p>
-                <button id="house-of-reps" class="veiwrecord vote1">View</button>
-              </div>
-            </div>
-            <section class="candidates" style="display:none">
-              <div><button id="flex" class="accordion">Candidate 2: Jane Doe<br>
-                  Party: Hope <br>
-                  Position: Local Government Chairman</button></div>
-              <div><button id="flex" class="accordion">Candidate 2: Jane Doe<br>
-                  Party: Hope <br>
-                  Position: Local Government Chairman</button></div><br><br><br><br><br><br><br><br>
-            </section>
+      <div>
+        <h4 class="page-title">Open Positions</h4>
       </div>
-        <div class="pagination pagination2">
-          <a href="#">&laquo;</a>
-          <a href="#">1</a>
-          <a href="#">2</a>
-          <a href="#">3</a>
-          <a href="#">4</a>
-          <a href="#">5</a>
-          <a href="#">6</a>
-          <a href="#">&raquo;</a>
-        </div><br><br><br><br>
-        <div style="margin-top: -144px">
-            <h4 class="page-title">Political Parties</h4>
+      <div class="container2">
+        <div class="div1 vote">
+          <h6>Local Government Chairman</h6>
+          <p class="admin">0</p>
+          <button id="lgc" class="veiwrecord vote1">View</button>
+        </div>
+        <div class="div1 vote">
+          <h6>Senate House</h6>
+          <p class="admin">0</p>
+          <button id="senate-house" class="veiwrecord vote1">View</button>
+        </div>
+        <div class="div1 vote">
+          <h6>House of Reps</h6>
+          <p class="admin">0</p>
+          <button id="house-of-reps" class="veiwrecord vote1">View</button>
+        </div>
+      </div>
+      <section class="candidates" style="display:none">
+        <div>
+          <div class="flex accordion2">
+            <div class="party__image"></div>
+            <p style="text-align: left">
+              Candidate 1: Jane Doe<br>
+              Party: Hope <br>
+              Position: Local Government Chairman
+            </p>
+            <button id="results">Approve</button>
           </div>
-          <div class="container2">
-            <div id="del-test" class="div1 vote party">
-                <div class="party__image1"></div>
-                <div class="party__details">
-                    <div>Party: apga</div>
-                    <div>Email: apga@yahoo.com</div>
-                    <div>Members: 00</div>
-                    <div>Hq address: epic towers</div>
-                    <div>Created on: 11/11/11</div>
-                    <div>Modified on: 12/11/12</div>
-                    <button class="update-accord">Edit</button>
-                    <button id="myBtn" class="delete-record">Delete</button>
-                  </div>
-                  <div id="myModal" class="modal">
-
-                      <!-- Modal content -->
-                      <section class="modal-content">
-                        <p>Are you sure you want to delete?</p>
-                        <button id="modalyes" class="modalbtn">Yes</button>
-                        <button id="modalno"
-                        class="modalbtn2">No</button>
-                      </section>
-                    </div>
-            </div>
-            <div class="div1 vote party">
-                <div class="party__image2"></div>
-                <div class="party__details">
-                  <div>Party: kowa</div>
-                    <div>Email: kowa@yahoo.com</div>
-                    <div>Members: 00</div>
-                    <div>Hq address: epic towers</div>
-                    <div>Created on: 11/11/11</div>
-                    <div>Modified on: 12/11/12</div>
-                    <button class="update-accord">Edit</button>
-                    <button class="delete-record">Delete</button>
-                  </div>
-            </div>
-            <div class="div1 vote party">
-                <div class="party__image3"></div>
-                <div class="party__details">
-                  <div>Party: CPP</div>
-                    <div>Email: cpp@yahoo.com</div>
-                    <div>Members: 00</div>
-                    <div>Hq address: epic towers</div>
-                    <div>Created on: 11/11/11</div>
-                    <div>Modified on: 12/11/12</div>
-                    <button class="update-accord">Edit</button>
-                    <button class="delete-record">Delete</button>
-                  </div>
-            </div>
-          </section><br><br>
-          <div id="office-form2">
-            <form >
-              <div>
-                    <h3 class="page-title">Update Party Details:</h3>
-                    <form>
-                      <label for="title">Name: </label>
-                <input type="text" id="title" placeholder="what will this party be called?" name="title" id="title" required>
+        </div>
+        <div>
+          <div class="flex accordion2">
+            <div class="party__image"></div>
+            <p style="text-align: left">
+              Candidate 2: Jane Doe<br>
+              Party: Hope <br>
+              Position: Local Government Chairman
+            </p>
+            <button id="results">Approve</button>
+          </div>
+        </div><br><br><br><br><br><br><br><br>
+      </section>
+      <div>
+      </div>
+      <div class="container2">
+        <div class="div1 vote">
+          <h6>Local Government Chairman</h6>
+          <p class="admin">0</p>
+          <button id="lgc" class="veiwrecord vote1">View</button>
+        </div>
+        <div class="div1 vote">
+          <h6>Senate House</h6>
+          <p class="admin">0</p>
+          <button id="senate-house" class="veiwrecord vote1">View</button>
+        </div>
+        <div class="div1 vote">
+          <h6>House of Reps</h6>
+          <p class="admin">0</p>
+          <button id="house-of-reps" class="veiwrecord vote1">View</button>
+        </div>
+      </div>
+      <section class="candidates" style="display:none">
+        <div><button id="flex" class="accordion">Candidate 2: Jane Doe<br>
+            Party: Hope <br>
+            Position: Local Government Chairman</button></div>
+        <div><button id="flex" class="accordion">Candidate 2: Jane Doe<br>
+            Party: Hope <br>
+            Position: Local Government Chairman</button></div><br><br><br><br><br><br><br><br>
+      </section>
+      </div>
+      <div class="pagination pagination2">
+        <a href="#">&laquo;</a>
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">&raquo;</a>
+      </div><br><br><br><br>
+      <div style="margin-top: -144px">
+        <h4 class="page-title">Political Parties</h4>
+      </div>
+      <div class="container2">
+        <div id="del-test" class="div1 vote party">
+          <div class="party__image1"></div>
+          <div class="party__details">
+            <div>Party: apga</div>
+            <div>Email: apga@yahoo.com</div>
+            <div>Members: 00</div>
+            <div>Hq address: epic towers</div>
+            <div>Created on: 11/11/11</div>
+            <div>Modified on: 12/11/12</div>
+            <button class="update-accord">Edit</button>
+            <button id="myBtn" class="delete-record">Delete</button>
+          </div>
+          <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <section class="modal-content">
+              <p>Are you sure you want to delete?</p>
+              <button id="modalyes" class="modalbtn">Yes</button>
+              <button id="modalno" class="modalbtn2">No</button>
+            </section>
+          </div>
+        </div>
+        <div class="div1 vote party">
+          <div class="party__image2"></div>
+          <div class="party__details">
+            <div>Party: kowa</div>
+            <div>Email: kowa@yahoo.com</div>
+            <div>Members: 00</div>
+            <div>Hq address: epic towers</div>
+            <div>Created on: 11/11/11</div>
+            <div>Modified on: 12/11/12</div>
+            <button class="update-accord">Edit</button>
+            <button class="delete-record">Delete</button>
+          </div>
+        </div>
+        <div class="div1 vote party">
+          <div class="party__image3"></div>
+          <div class="party__details">
+            <div>Party: CPP</div>
+            <div>Email: cpp@yahoo.com</div>
+            <div>Members: 00</div>
+            <div>Hq address: epic towers</div>
+            <div>Created on: 11/11/11</div>
+            <div>Modified on: 12/11/12</div>
+            <button class="update-accord">Edit</button>
+            <button class="delete-record">Delete</button>
+          </div>
+        </div>
+    </section><br><br>
+    <div id="myEditModal" class="modal">
+      <section class="modal-content-edit">
+        <form style="color: white">
+          <div>
+            <h3 class="page-title3">Update Party Details:</h3>
+            <form>
+              <label for="title">Name: </label>
+              <input type="text" id="title" placeholder="what will this party be called?" name="title" id="title"
+                required>
               <label for="address">HQ Address</label>
-              <input type="text" id="search_term" placeholder="enter your address" name="address" >
+              <input type="text" id="search_term" placeholder="enter your address" name="address">
               <label for="image">Upload Logo</label>
               <input type="file" name="image" id="image">
-                      <p>
-                        <button type="submit" id="update-office">Update</button>
-                      </p>
-                </div>
-            </form>
+              <p>
+                <button type="submit" id="update-office">Update</button>
+              </p>
           </div>
-          <div class="pagination">
-            <a href="#">&laquo;</a>
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-            <a href="#">&raquo;</a>
-          </div>
+        </form>
+    </section>
+    </div>
+    <!-- Modal content -->
+    
+
+    <div class="pagination">
+      <a href="#">&laquo;</a>
+      <a href="#">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#">5</a>
+      <a href="#">6</a>
+      <a href="#">&raquo;</a>
+    </div>
     </section>
   </main>
   <script src="js/admin.js"></script>
