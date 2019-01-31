@@ -10,6 +10,8 @@ import Candidate from '../middlewares/helpercandidates';
 import ControllerCandidate from '../controllers/candidate';
 import ControllerVote from '../controllers/votes';
 import Vote from '../middlewares/helpervote';
+import Results from '../middlewares/results';
+import ControllerResult from '../controllers/results';
 
 const router = express.Router();
 const admin = [
@@ -43,6 +45,8 @@ router.post('/api/v1/auth/login', Helper.postValidateLogin, User.login);
 router.post('/api/v1/office/:id/register', admin, Candidate.postCandidate, Candidate.isValidInt, ValidateOffice.isNotValid, Candidate.isValidCandidate, Candidate.isValidIDt, Candidate.isOffice, Candidate.isValidParty, ControllerCandidate.createCandidate);
 
 router.post('/api/v1/votes', user, Vote.postCandidate, Vote.isValidInt, Vote.hasVoted, Vote.isValidCandidate, Vote.isOffice, ControllerVote.vote);
+
+router.post('/api/v1/office/:id/result', user, ValidateOffice.isNotValid, Results.verifyOffice, ControllerResult.viewResult);
 
 router.all('*', (req, res) => {
   res.status(404).send({
