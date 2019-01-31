@@ -9,8 +9,8 @@ const ControllerVote = {
           VALUES($1, $2, $3)
           returning *`;
     const values = [
-      req.body.office.trim(),
-      req.body.candidate.trim(),
+      req.body.office,
+      req.body.candidate,
       voter,
     ];
 

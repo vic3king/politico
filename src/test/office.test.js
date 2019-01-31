@@ -168,17 +168,17 @@ describe('/Post create political office', () => {
       });
   });
 
-  it('it should throw a 406 when there are spaces in the party office name field', (done) => {
+  it('it should throw a 400 when there are spaces in the party office name field', (done) => {
     chai.request(server)
       .post('/api/v1/offices')
       .send(emptyofficeName)
       .set('x-access-token', adminToken)
       .end((err, res) => {
-        res.should.have.status(406);
+        res.should.have.status(400);
         done();
       });
   });
-  it('it should throw a 406 when there are spaces in the office type field', (done) => {
+  it('it should throw a 400 when there are spaces in the office type field', (done) => {
     chai.request(server)
       .post('/api/v1/offices')
       .send(emptyType)
@@ -189,24 +189,24 @@ describe('/Post create political office', () => {
       });
   });
 
-  it('it should throw a 406 when there are spaces in the office ageLimit field', (done) => {
+  it('it should throw a 400 when there are spaces in the office ageLimit field', (done) => {
     chai.request(server)
       .post('/api/v1/offices')
       .send(emptyAge)
       .set('x-access-token', adminToken)
       .end((err, res) => {
-        res.should.have.status(406);
+        res.should.have.status(400);
         done();
       });
   });
 
-  it('it should throw a 406 when creating a party with invalid type', (done) => {
+  it('it should throw a 400 when creating a party with invalid type', (done) => {
     chai.request(server)
       .post('/api/v1/offices')
       .send(invalidType)
       .set('x-access-token', adminToken)
       .end((err, res) => {
-        res.should.have.status(406);
+        res.should.have.status(400);
         done();
       });
   });
@@ -217,18 +217,18 @@ describe('/Post create political office', () => {
       .send(invalidAge)
       .set('x-access-token', adminToken)
       .end((err, res) => {
-        res.should.have.status(406);
+        res.should.have.status(400);
         done();
       });
   });
 
-  it('it should throw a 406 when the ageLimit value isNan', (done) => {
+  it('it should throw a 400 when the ageLimit value isNan', (done) => {
     chai.request(server)
       .post('/api/v1/offices')
       .send(invalidAgeType)
       .set('x-access-token', adminToken)
       .end((err, res) => {
-        res.should.have.status(406);
+        res.should.have.status(400);
         done();
       });
   });
@@ -259,12 +259,12 @@ describe('GET /offices/:id', () => {
       });
   });
 
-  it('should return 406 on nan ids', (done) => {
+  it('should return 400 on nan ids', (done) => {
     chai.request(server)
       .get('/api/v1/offices/sv')
       .set('x-access-token', tokenUser)
       .end((err, res) => {
-        res.should.have.status(406);
+        res.should.have.status(400);
         done();
       });
   });

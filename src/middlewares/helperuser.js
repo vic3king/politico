@@ -86,6 +86,27 @@ const Helper = {
     return token;
   },
 
+  isValidInputSignup(req, res, next) {
+    const {
+      firstname, lastname, othernames, email, username, type, password,
+    } = req.body;
+    if (typeof firstname === 'number' || lastname === 'number' || typeof othernames === 'number' || typeof email === 'number' || typeof username === 'number' || typeof type === 'number' || typeof password === 'number') {
+      return res.status(400).send({
+        error: 'invalid input type',
+      });
+    }
+    return next();
+  },
+
+  isValidInputLogin(req, res, next) {
+    const { email, password } = req.body;
+    if (typeof email === 'number' || password === 'number') {
+      return res.status(400).send({
+        error: 'invalid input type',
+      });
+    }
+    return next();
+  },
   postUser(request, response, next) {
     const errorsMessages = [];
     if (!request.body.firstname) {
@@ -173,8 +194,8 @@ const Helper = {
     if (obj === 'politician' || obj === 'citizen') {
       return next();
     }
-    return res.status(406).send({
-      status: 406,
+    return res.status(400).send({
+      status: 400,
       error: 'user type is limited to citizen and politician',
     });
   },

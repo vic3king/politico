@@ -182,7 +182,7 @@ describe('/Post create political party', () => {
       .send(partyEmptyField)
       .set('x-access-token', adminToken)
       .end((err, res) => {
-        res.should.have.status(406);
+        res.should.have.status(400);
         done();
       });
   });
@@ -242,12 +242,12 @@ describe('GET /parties/:id', () => {
       });
   });
 
-  it('should return 406 on nan ids', (done) => {
+  it('should return 400 on nan ids', (done) => {
     chai.request(server)
       .get('/api/v1/parties/sv')
       .set('x-access-token', tokenUser)
       .end((err, res) => {
-        res.should.have.status(406);
+        res.should.have.status(400);
         done();
       });
   });
@@ -330,7 +330,7 @@ describe('/patch Update party name', () => {
       .set('x-access-token', adminToken)
       .end((err, res) => {
         res.body.should.be.deep.equal({
-          status: 406,
+          status: 400,
           error: 'The id parameter must be a number',
         });
         done();
@@ -400,7 +400,7 @@ describe('DELETE a party', () => {
       .set('x-access-token', adminToken)
       .end((err, res) => {
         res.body.should.be.deep.equal({
-          status: 406,
+          status: 400,
           error: 'The id parameter must be a number',
         });
         done();

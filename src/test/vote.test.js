@@ -6,7 +6,6 @@ import server from '../server';
 chai.should();
 chai.use(chaiHttp);
 let adminToken;
-let uID;
 
 const userAdmin = {
   email: 'example@yahoo.com',
@@ -31,7 +30,6 @@ before((done) => {
     .send(userAdmin)
     .end((err, res) => {
       adminToken = res.body.data[0].token;
-      uID = res.body.data[0].user.id;
       // uID = req.params.id;
       done();
     });
@@ -58,13 +56,13 @@ before((done) => {
 });
 
 const regCan = {
-  office: '2',
-  party: '3',
+  office: 2,
+  party: 3,
   ageLimit: '50',
 };
 before((done) => {
   chai.request(server)
-    .post(`/api/v1/office/${uID}/register`)
+    .post('/api/v1/office/3/register')
     .send(regCan)
     .set('x-access-token', adminToken)
     .end(() => {
@@ -75,8 +73,8 @@ before((done) => {
 
 describe('/Post vote for choice candidate', () => {
   const office2 = {
-    office: '1',
-    candidate: '1',
+    office: 1,
+    candidate: 1,
   };
 
   it('it should post a vote for a candidate', (done) => {

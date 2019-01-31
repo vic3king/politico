@@ -15,6 +15,16 @@ const spaces = (obj) => {
 };
 
 const ValidateOffice = {
+  isValidInputOffice(req, res, next) {
+    const { type, name } = req.body;
+    if (typeof type === 'number' || typeof name === 'number') {
+      return res.status(400).send({
+        error: 'invalid input type',
+      });
+    }
+    return next();
+  },
+
   postOffice(request, response, next) {
     const errorsMessages = [];
     if (!request.body.type) {
@@ -41,15 +51,15 @@ const ValidateOffice = {
   postOfficeValidate(req, res, next) {
     const { name } = req.body;
     if (!isAlpha(name)) {
-      return res.status(406).send({
-        status: 406,
+      return res.status(400).send({
+        status: 400,
         message: 'invaild input',
       });
     }
     // eslint-disable-next-line no-restricted-globals
     if (isNaN(req.body.ageLimit)) {
-      return res.status(406).json({
-        status: 406,
+      return res.status(400).json({
+        status: 400,
         error: 'ageLimit Limit must be a numeber',
       });
     }
@@ -62,8 +72,8 @@ const ValidateOffice = {
     }
 
     if (req.body.ageLimit.trim() < 30) {
-      return res.status(406).json({
-        status: 406,
+      return res.status(400).json({
+        status: 400,
         error: 'Too young to run',
       });
     }
@@ -76,16 +86,16 @@ const ValidateOffice = {
     if (obj === 'federal' || obj === 'legislative' || obj === 'state' || obj === 'local-government') {
       return next();
     }
-    return res.status(406).send({
-      status: 406,
+    return res.status(400).send({
+      status: 400,
       error: 'office type is limited to federal, legislative, state, local government',
     });
   },
 
   isNotValid(req, res, next) {
     if (!validId(req.params.id)) {
-      return res.status(406).json({
-        status: 406,
+      return res.status(400).json({
+        status: 400,
         error: 'The id parameter must be a number',
       });
     }

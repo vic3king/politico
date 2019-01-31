@@ -8,8 +8,8 @@ const ControllerCandidate = {
           VALUES($1, $2, $3, $4)
           returning *`;
     const values = [
-      req.body.office.trim(),
-      req.body.party.trim(),
+      req.body.office,
+      req.body.party,
       req.params.id,
       req.body.ageLimit.trim(),
     ];

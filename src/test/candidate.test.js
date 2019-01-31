@@ -56,8 +56,8 @@ before((done) => {
 
 describe('/Post create candidate', () => {
   const office2 = {
-    office: '2',
-    party: '2',
+    office: 2,
+    party: 2,
     ageLimit: '50',
   };
 

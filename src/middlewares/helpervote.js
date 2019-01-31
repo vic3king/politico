@@ -1,24 +1,11 @@
-import { isInt } from 'validator';
 import db from '../db/index';
 
 const Vote = {
   isValidInt(req, res, next) {
     const { office, candidate } = req.body;
-    if (typeof office === 'number' || typeof candidate === 'number') {
+    if (typeof office === 'string' || typeof candidate === 'string') {
       return res.status(400).send({
         error: 'invalid input type',
-      });
-    }
-    if (!isInt(office)) {
-      return res.status(400).send({
-        status: 400,
-        error: 'invalid input on office id',
-      });
-    }
-    if (!isInt(candidate)) {
-      return res.status(400).send({
-        status: 400,
-        error: 'invalid input on candidate id',
       });
     }
     return next();

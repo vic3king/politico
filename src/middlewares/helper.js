@@ -13,16 +13,26 @@ const spaceUpdate = (obj) => {
 };
 
 const Validate = {
+  isValidInputParty(req, res, next) {
+    const { name, hqAddress, logoUrl } = req.body;
+    if (typeof name === 'number' || typeof hqAddress === 'number' || typeof logoUrl === 'number') {
+      return res.status(400).send({
+        error: 'invalid input type',
+      });
+    }
+    return next();
+  },
+
   validUrl(req, res, next) {
     const { name } = req.body;
-    if (name && !isAlpha(name)) {
-      return res.status(406).send({
-        status: 406,
+    if (name && !isAlpha(name.trim())) {
+      return res.status(400).send({
+        status: 400,
         message: 'invaild input',
       });
     }
     const url = req.body.logoUrl;
-    if (req.body.logoUrl && !isURL(url)) {
+    if (req.body.logoUrl && !isURL(url.trim())) {
       return res.status(400).send({
         status: 400,
         message: 'please enter a valid url',
@@ -134,8 +144,8 @@ const Validate = {
 
   isNotValid(req, res, next) {
     if (!validId(req.params.id)) {
-      return res.status(406).json({
-        status: 406,
+      return res.status(400).json({
+        status: 400,
         error: 'The id parameter must be a number',
       });
     }

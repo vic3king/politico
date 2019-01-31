@@ -22,7 +22,7 @@ const User = {
 
     try {
       const { rows } = await db.query(text, values);
-      const token = Helper.generateToken(rows[0].id, rows[0].isAdmin);
+      const token = Helper.generateToken(rows[0].id, rows[0].isadmin);
       const {
         id, firstname, lastname, othernames, username, type, email, phonenumber, isadmin,
       } = rows[0];

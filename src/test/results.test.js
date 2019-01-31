@@ -39,7 +39,7 @@ describe('/POST returns results of election', () => {
       .post('/api/v1/office/xyz/result')
       .set('x-access-token', adminToken)
       .end((err, res) => {
-        res.should.have.status(406);
+        res.should.have.status(400);
         done();
       });
   });

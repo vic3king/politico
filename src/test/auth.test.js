@@ -283,7 +283,7 @@ describe('CREATE a user', () => {
       .post('/api/v1/auth/signup')
       .send(userBadType)
       .end((err, res) => {
-        res.should.have.status(406);
+        res.should.have.status(400);
         done();
       });
   });

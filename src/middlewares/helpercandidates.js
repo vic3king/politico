@@ -1,30 +1,11 @@
-import { isInt } from 'validator';
 import db from '../db/index';
 
 const Candidate = {
   isValidInt(req, res, next) {
     const { office, party, ageLimit } = req.body;
-    if (typeof office === 'number' || typeof party === 'number' || ageLimit === 'number') {
+    if (typeof office === 'string' || typeof party === 'string' || ageLimit === 'string') {
       return res.status(400).send({
         error: 'invalid input type',
-      });
-    }
-    if (office && !isInt(office)) {
-      return res.status(400).send({
-        status: 400,
-        error: 'invalid input on office id',
-      });
-    }
-    if (party && !isInt(party)) {
-      return res.status(400).send({
-        status: 400,
-        error: 'invalid input on party id',
-      });
-    }
-    if (ageLimit && !isInt(ageLimit)) {
-      return res.status(400).send({
-        status: 400,
-        error: 'invalid input on field on age',
       });
     }
     return next();
@@ -34,11 +15,11 @@ const Candidate = {
     const { office, party, ageLimit } = req.body;
     const errorsMessages = [];
     if (!office) {
-      const error = { office: 'office id is' };
+      const error = { office: 'office id is required' };
       errorsMessages.push(error);
     }
     if (!party) {
-      const error = { name: 'party id is' };
+      const error = { name: 'party id is required' };
       errorsMessages.push(error);
     }
     if (!ageLimit) {
@@ -55,7 +36,7 @@ const Candidate = {
   },
 
   async isValidCandidate(req, res, next) {
-    const findOneQuery = 'SELECT id FROM candidates WHERE user_id=$1';
+    const findOneQuery = 'SELECT user_id FROM candidates WHERE user_id=$1';
     const { rows } = await db.query(findOneQuery, [req.params.id]);
     if (rows[0]) {
       return res.status(409).send({

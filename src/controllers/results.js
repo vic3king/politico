@@ -11,7 +11,7 @@ const ControllerResult = {
       return res.status(200).send({
         status: 200,
         message: 'results retrived',
-        data: rows[0],
+        data: rows,
       });
     } catch (error) {
       return res.status(400).send({
