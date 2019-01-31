@@ -6,9 +6,79 @@ import server from '../server';
 chai.should();
 chai.use(chaiHttp);
 
+let tokenUser;
+let adminToken;
+let idD;
+
+const user = {
+  firstname: 'akaniru',
+  lastname: 'precious',
+  othernames: 'presh',
+  email: 'preshxxx@gmail.com',
+  password: '2020ada',
+  type: 'citizen',
+  phonenumber: '+234-7032425462',
+  username: 'prehxxxxxx',
+};
+const user1 = {
+  email: 'preshxxx@gmail.com',
+  password: '2020ada',
+};
+const userAdmin = {
+  email: 'example@yahoo.com',
+  password: '2020ada',
+};
+const party2 = {
+  name: 'pdpzz',
+  hqAddress: 'folawiyo bankole street',
+  logoUrl: 'www.testurl.com',
+};
+const party4 = {
+  name: 'pdpzzv',
+  hqAddress: 'folawiyo bankole street',
+  logoUrl: 'www.testurl.com',
+};
+before((done) => {
+  chai.request(server)
+    .post('/api/v1/auth/signup')
+    .send(user)
+    .end(() => {
+      done();
+    });
+});
+before((done) => {
+  chai.request(server)
+    .post('/api/v1/auth/login')
+    .send(user1)
+    .end((err, res) => {
+      tokenUser = res.body.data[0].token;
+      done();
+    });
+});
+before((done) => {
+  chai.request(server)
+    .post('/api/v1/auth/login')
+    .send(userAdmin)
+    .end((err, res) => {
+      adminToken = res.body.data[0].token;
+      done();
+    });
+});
+
+before((done) => {
+  chai.request(server)
+    .post('/api/v1/parties')
+    .set('x-access-token', adminToken)
+    .send(party2)
+    .end((err, res) => {
+      idD = res.body.data.id;
+      done();
+    });
+});
+
 describe('/Post create political party', () => {
   const party = {
-    name: 'pdp',
+    name: 'apga',
     hqAddress: 'folawiyo bankole street',
     logoUrl: 'www.testurl.com',
   };
@@ -54,6 +124,7 @@ describe('/Post create political party', () => {
     chai.request(server)
       .post('/api/v1/parties')
       .send(party)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.should.have.status(201);
         res.body.status.should.be.equal(201);
@@ -64,11 +135,12 @@ describe('/Post create political party', () => {
   it('it should Create a new party with required fields', (done) => {
     chai.request(server)
       .post('/api/v1/parties')
-      .send(party)
+      .send(party4)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
-        res.body.data[0].should.have.include.key('name');
-        res.body.data[0].should.have.include.key('hqAddress');
-        res.body.data[0].should.have.include.key('logoUrl');
+        res.body.data.should.have.include.key('name');
+        res.body.data.should.have.include.key('hqaddress');
+        res.body.data.should.have.include.key('logourl');
         done();
       });
   });
@@ -77,6 +149,7 @@ describe('/Post create political party', () => {
     chai.request(server)
       .post('/api/v1/parties')
       .send(partyNoName)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.should.have.status(400);
         done();
@@ -86,6 +159,7 @@ describe('/Post create political party', () => {
     chai.request(server)
       .post('/api/v1/parties')
       .send(partyNoLogo)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.should.have.status(400);
         done();
@@ -95,6 +169,7 @@ describe('/Post create political party', () => {
     chai.request(server)
       .post('/api/v1/parties')
       .send(partyNoAddress)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.should.have.status(400);
         done();
@@ -105,6 +180,7 @@ describe('/Post create political party', () => {
     chai.request(server)
       .post('/api/v1/parties')
       .send(partyEmptyField)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.should.have.status(400);
         done();
@@ -114,6 +190,7 @@ describe('/Post create political party', () => {
     chai.request(server)
       .post('/api/v1/parties')
       .send(hqEmptyField)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.should.have.status(400);
         done();
@@ -124,6 +201,7 @@ describe('/Post create political party', () => {
     chai.request(server)
       .post('/api/v1/parties')
       .send(logoEmptyField)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.should.have.status(400);
         done();
@@ -134,6 +212,7 @@ describe('/Post create political party', () => {
     chai.request(server)
       .post('/api/v1/parties')
       .send(invalidLogoUrl)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.should.have.status(400);
         done();
@@ -144,6 +223,7 @@ describe('/Post create political party', () => {
     chai.request(server)
       .post('/api/v1/parties')
       .send(invalidAddress)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.should.have.status(500);
         done();
@@ -151,35 +231,23 @@ describe('/Post create political party', () => {
   });
 });
 
-
 describe('GET /parties/:id', () => {
-  const party2 = {
-    name: 'pdp',
-    hqAddress: 'folawiyo bankole street',
-    logoUrl: 'www.testurl.com',
-  };
-  before((done) => {
-    chai.request(server)
-      .post('/api/v1/parties')
-      .send(party2)
-      .end(() => {
-        done();
-      });
-  });
   it('should get the matching party', (done) => {
     chai.request(server)
-      .get('/api/v1/parties/1')
+      .get(`/api/v1/parties/${idD}`)
+      .set('x-access-token', tokenUser)
       .end((err, res) => {
         res.should.have.status(200);
         done();
       });
   });
 
-  it('should return 406 on nan ids', (done) => {
+  it('should return 400 on nan ids', (done) => {
     chai.request(server)
       .get('/api/v1/parties/sv')
+      .set('x-access-token', tokenUser)
       .end((err, res) => {
-        res.should.have.status(406);
+        res.should.have.status(400);
         done();
       });
   });
@@ -187,6 +255,7 @@ describe('GET /parties/:id', () => {
   it('should return 404 when id is not found', (done) => {
     chai.request(server)
       .get('/api/v1/parties/10')
+      .set('x-access-token', tokenUser)
       .end((err, res) => {
         res.should.have.status(404);
         done();
@@ -198,6 +267,7 @@ describe('GET /parties', () => {
   it('should get all existing parties', (done) => {
     chai.request(server)
       .get('/api/v1/parties')
+      .set('x-access-token', tokenUser)
       .end((err, res) => {
         res.should.have.status(200);
         done();
@@ -205,10 +275,9 @@ describe('GET /parties', () => {
   });
 });
 
-
 describe('/patch Update party name', () => {
   const party3 = {
-    name: 'pdp',
+    name: 'pdpupdate',
     hqAddress: 'folawiyo bankole street',
     logoUrl: 'www.testurl.com',
   };
@@ -222,6 +291,7 @@ describe('/patch Update party name', () => {
     chai.request(server)
       .patch('/api/v1/parties/1/name')
       .send(party3)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.should.have.status(200);
         done();
@@ -232,6 +302,7 @@ describe('/patch Update party name', () => {
     chai.request(server)
       .patch('/api/v1/parties/42/name')
       .send(party3)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.should.have.status(404);
         done();
@@ -242,6 +313,7 @@ describe('/patch Update party name', () => {
     chai.request(server)
       .patch('/api/v1/parties/41/name')
       .send(party3)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.body.should.be.deep.equal({
           status: 404,
@@ -255,9 +327,10 @@ describe('/patch Update party name', () => {
     chai.request(server)
       .patch('/api/v1/parties/ercf/name')
       .send(party3)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.body.should.be.deep.equal({
-          status: 406,
+          status: 400,
           error: 'The id parameter must be a number',
         });
         done();
@@ -268,6 +341,7 @@ describe('/patch Update party name', () => {
     chai.request(server)
       .patch('/api/v1/parties/1/name')
       .send(party3NoName)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.body.should.be.deep.equal({
           status: 400,
@@ -281,42 +355,27 @@ describe('/patch Update party name', () => {
     chai.request(server)
       .patch('/api/v1/parties/1/name')
       .send(party3Spaces)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.body.should.be.deep.equal({
           status: 400,
-          error: 'Field should contain actual characters and not only spaces',
+          error: 'Name Field should contain actual characters and not only spaces',
         });
         done();
       });
   });
 });
 
-
 describe('DELETE a party', () => {
-  const party4 = {
-    name: 'pdp',
-    hqAddress: 'folawiyo bankole street',
-    logoUrl: 'www.testurl.com',
-  };
-  beforeEach((done) => {
-    chai.request(server)
-      .post('/api/v1/parties')
-      .send(party4)
-      .end(() => {
-        done();
-      });
-  });
   it('should return a success status 200', (done) => {
     chai.request(server)
-      .delete('/api/v1/parties/1')
+      .delete(`/api/v1/parties/${idD}`)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.deep.equal({
           status: 200,
-          data: [{
-            id: '1',
-            message: 'party has been deleted',
-          }],
+          message: 'party has been deleted',
         });
         done();
       });
@@ -325,6 +384,7 @@ describe('DELETE a party', () => {
   it('should return correct error message when id does not exist', (done) => {
     chai.request(server)
       .delete('/api/v1/parties/25')
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.body.should.deep.equal({
           status: 404,
@@ -337,10 +397,10 @@ describe('DELETE a party', () => {
   it('should return correct error message when id is not valid', (done) => {
     chai.request(server)
       .delete('/api/v1/parties/ercf')
-      .send(party4)
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         res.body.should.be.deep.equal({
-          status: 406,
+          status: 400,
           error: 'The id parameter must be a number',
         });
         done();

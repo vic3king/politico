@@ -1,15 +1,38 @@
 /* eslint-disable consistent-return */
 import dotenv from 'dotenv';
-import { isURL } from 'validator';
-import Party from '../models/party';
+import { isURL, isAlpha } from 'validator';
 
 dotenv.load();
 const validId = id => Number.isInteger(parseInt(id, 10));
+const spaceUpdate = (obj) => {
+  const strName = obj.name.trim();
+  if (strName.length < 1) {
+    return true;
+  }
+  return false;
+};
 
 const Validate = {
+  isValidInputParty(req, res, next) {
+    const { name, hqAddress, logoUrl } = req.body;
+    if (typeof name === 'number' || typeof hqAddress === 'number' || typeof logoUrl === 'number') {
+      return res.status(400).send({
+        error: 'invalid input type',
+      });
+    }
+    return next();
+  },
+
   validUrl(req, res, next) {
+    const { name } = req.body;
+    if (name && !isAlpha(name.trim())) {
+      return res.status(400).send({
+        status: 400,
+        message: 'invaild input',
+      });
+    }
     const url = req.body.logoUrl;
-    if (req.body.logoUrl && !isURL(url)) {
+    if (req.body.logoUrl && !isURL(url.trim())) {
       return res.status(400).send({
         status: 400,
         message: 'please enter a valid url',
@@ -18,13 +41,13 @@ const Validate = {
     return next();
   },
   spaces(obj) {
-    const strName = obj.name.split(' ').join('');
-    const strHqAddress = obj.hqAddress.split(' ').join('');
-    const strLogoUrl = obj.logoUrl.split(' ').join('');
+    const strName = obj.name.trim();
+    const strHqAddressUrl = obj.hqAddress.trim();
+    const strLogoUrl = obj.logoUrl.trim();
     if (strName.length < 1) {
       return true;
     }
-    if (strHqAddress.length < 1) {
+    if (strHqAddressUrl.length < 1) {
       return true;
     }
     if (strLogoUrl.length < 1) {
@@ -34,7 +57,7 @@ const Validate = {
   },
 
   spaceUpdate(obj) {
-    const strName = obj.name.split(' ').join('');
+    const strName = obj.name.trim();
     if (strName.length < 1) {
       return true;
     }
@@ -99,19 +122,31 @@ const Validate = {
     return next();
   },
 
-  isNotValid(req, res, next) {
-    // eslint-disable-next-line radix
-    const party = Party.findById(parseInt(req.params.id));
-    if (!validId(req.params.id)) {
-      return res.status(406).json({
-        status: 406,
-        error: 'The id parameter must be a number',
+  upadteNoName(request, response, next) {
+    if (!request.body.name) {
+      response.status(400).send({
+        status: 400,
+        message: 'Party name is required',
       });
     }
-    if (!party) {
-      return res.status(404).send({
-        status: 404,
-        error: 'party not found, enter a valid id',
+    return next();
+  },
+
+  updateEmptyName(request, response, next) {
+    if (spaceUpdate(request.body)) {
+      return response.status(400).send({
+        status: 400,
+        error: 'Name Field should contain actual characters and not only spaces',
+      });
+    }
+    return next();
+  },
+
+  isNotValid(req, res, next) {
+    if (!validId(req.params.id)) {
+      return res.status(400).json({
+        status: 400,
+        error: 'The id parameter must be a number',
       });
     }
     return next();

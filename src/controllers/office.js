@@ -1,53 +1,75 @@
-/* eslint-disable max-len */
-import Office from '../models/office';
-import ValidateOffice from '../middlewares/helperoffice';
+
+import db from '../db/index';
 
 const ControllerOffice = {
-  createOffice(req, res) {
-    // eslint-disable-next-line no-restricted-globals
-    if (isNaN(req.body.ageLimit)) {
-      return res.status(406).json({
-        status: 406,
-        error: 'Age Limit entered must be a numeber',
-      });
-    }
-    if (req.body.ageLimit.trim() < 30) {
-      return res.status(406).json({
-        status: 406,
-        error: 'Too young to run',
-      });
-    }
+  async createOffice(request, response) {
+    const { type, name, ageLimit } = request.body;
+    const text = `INSERT INTO
+          office(type, name, agelimit, status, created_on, modefied_on)
+          VALUES($1, $2, $3, $4, $5, $6)
+          returning *`;
+    const values = [
+      type.trim(),
+      name.trim(),
+      ageLimit.trim(),
+      'new',
+      new Date(),
+      new Date(),
+    ];
 
-    if (ValidateOffice.spaces(req.body)) {
+    try {
+      const { rows } = await db.query(text, values);
+      return response.status(201).send({
+        status: 201,
+        message: 'Political Office Created',
+        data: rows[0],
+      });
+    } catch (error) {
+      return response.status(400).send({
+        status: 400,
+        message: error.message,
+      });
+    }
+  },
+
+  async getAllOffices(req, res) {
+    const findAllQuery = 'SELECT * FROM office';
+    try {
+      const { rows, rowCount } = await db.query(findAllQuery);
+      return res.status(200).send({
+        status: 200,
+        message: 'All offices retrieved',
+        data: rows,
+        rowCount,
+      });
+    } catch (error) {
+      return res.status(500).send({
+        status: 500,
+        message: error.message,
+      });
+    }
+  },
+
+  async getOneOffice(req, res) {
+    const text = 'SELECT * FROM office WHERE id = $1';
+    try {
+      const { rows } = await db.query(text, [req.params.id]);
+      if (!rows[0]) {
+        return res.status(404).send({
+          status: 404,
+          message: 'office not found',
+        });
+      }
+      return res.status(200).send({
+        status: 200,
+        data: rows[0],
+      });
+    } catch (error) {
       return res.status(400).send({
         status: 400,
-        error: 'Fields should contain actual characters and not only spaces',
+        error: 'enter a valid id',
       });
     }
-
-    const office = Office.createOffice(req.body);
-    return res.status(201).send({
-      status: 201,
-      data: [office],
-    });
-  },
-
-  getAllOffices(req, res) {
-    const data = Office.findAllOffices();
-    return res.status(200).send({
-      status: 200,
-      message: 'All offices retrieved',
-      data,
-    });
-  },
-
-  getOneOffice(req, res) {
-    const data = Office.findById(req.params.id);
-    return res.status(200).send({
-      status: 200,
-      message: 'office retrieved',
-      data: [data],
-    });
   },
 };
 

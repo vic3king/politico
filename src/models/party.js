@@ -15,7 +15,7 @@ class PoliticoParty {
     const createParty = {
       id: this.party.length + 1,
       name: partyInfo.name.trim(),
-      hqAddress: partyInfo.hqAddress,
+      hqAddressUrl: partyInfo.hqAddressUrl,
       logoUrl: partyInfo.logoUrl,
       createdOn: new Date(),
       createdBy: 'Admin',

@@ -7,8 +7,8 @@ class PoliticoOffice {
     const createOffice = {
       id: this.office.length + 1,
       type: officeInfo.type.trim(),
-      name: officeInfo.name.trim(),
-      ageLimit: officeInfo.ageLimit.trim(),
+      officeName: officeInfo.officeName.trim(),
+      age: officeInfo.age.trim(),
       createdBy: 'Admin',
       status: 'new',
       createdOn: new Date(),
