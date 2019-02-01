@@ -202,8 +202,8 @@ section.candidates div {
 
 .pagination2 {
   display: inline-block;
-  margin-left: 49% !important;
-  margin-top: 178px !important;
+  margin-left: 35% !important;
+  margin-top: 4px !important;
 }
 .pagination2 a{
   color: #005f6b;
@@ -212,15 +212,21 @@ section.candidates div {
   text-decoration: none;
 }
 .pagination3 {
-  margin-top: 25px !important;
+  margin-left: 37% !important;
+  margin-top: 4px !important;
 }
 .pagination4 {
-  margin-left: 26% !important;
+  margin-left: 36% !important;
+  margin-top: -5% !important;
+}
+.pagination5 {
+  margin-top: -3%  !important;
+  margin-left: 41% !important;
 }
 .pagination {
   display: inline-block;
-    margin-top: -11px;
-    margin-left: 30%;
+    margin-top: 169px;
+    margin-left: 53%;
 }
 
 .pagination a {
@@ -629,7 +635,7 @@ input[type = "radio"] {
   width: 76%;
 }
 .delete-record {
-  width: 0 %;
+  width: 0%;
   padding: 0px 4px !important ;
 }
 
