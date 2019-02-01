@@ -1,0 +1,396 @@
+FORMAT: 1A
+HOST: https://radiant-retreat-64120.herokuapp.com/api/v1
+
+# politico
+
+Politico API enables citizens give their mandate to politicians running for different government offices
+while building trust in the process through transparency.
+
+### Sign Up User [POST]
+Signs User Up and returns user details and token
+
++ Request (application/json)
+
+        {
+            "firstname": "king",
+            "lastname": "ray",
+            "othernames": "jones",
+            "email": "ray@gmail.com",
+            "phonenumber": "090632789922",
+            "username": "kingray",
+            "type": "citizen",
+            "password": "2020ada"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "status": 201,
+            "data": [
+                 {
+                    "user": {
+                        "id": 2,
+                        "firstname": "king",
+                        "lastname": "ray",
+                        "othernames": "jones",
+                        "username": "kingray",
+                        "type": "citizen",
+                        "email": "ray@gmail.com",
+                        "phonenumber": "+234-9780422466",
+                        "isadmin": false
+                     },
+                    "token": "< Token assigned to user >",
+                    "message": "Succesful signup"
+                }
+            ]
+        }
+            
+## User Login [/auth/login]
+
+### Log In User [POST]
+Logs user in and returns token which is required for modifying records
+
++ Request (application/json)
+
+        {
+            "email": "ray@gmail.com",
+            "password": "2020ada"
+         }
+
++ Response 200 (application/json)
+
+        {
+            "status": 200,
+            "data": [
+                {
+                     "message": "welcome to politico ray",
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE1NDg5NzExNjEsImV4cCI6MTU0OTU3NTk2MX0.6ORN2H8v1EXXuJDCGoz7qpy8bOaQ7pEI0BzunzXnYC4",
+                    "user": {
+                        "id": 2,
+                        "firstname": "king",
+                        "lastname": "ray",
+                        "othernames": "jones",
+                        "username": "kingray",
+                        "type": "citizen",
+                        "email": "ray@gmail.com",
+                        "phonenumber": "+234-9780422466",
+                        "isadmin": false
+                    }
+                }
+            ]
+        }
+
+## Party [/parties]
+
+### creates a new political party [POST]
+Creates a new political party where candidate can be registered under
+
++ Request (application/json)
+
+    + Headers
+
+            x-access-token: "Bearer <admin-token>"
+
+    + Body
+        
+            {
+                "name": "KOWA",
+                "hqAddress":"epic tower",
+                "logoUrl": "www.testlogourl.com"
+            }
+
++ Response 201 (application/json)
+
+        {
+            "status": 201,
+            "message": "Political Party Created",
+            "data": {
+                "id": 1,
+                "name": "KOWA",
+                "hqaddress": "235 Ikorodu Rd, Ilupeju, Lagos, Nigeria",
+                "logourl": "www.testlogourl.com",
+                "status": "new",
+                "modefied_on": "2019-01-31T22:05:09.415Z",
+                "created_on": "2019-01-31T22:05:09.415Z"
+            }
+        }
+
+### Get all existing parties [/parties]
+Returns all political parties existing and their ids
+
++ Response 200 (application/json)
+    + Headers
+
+            x-access-token: "Bearer <user-token>"
+
+    + Body
+
+            {
+                "status" : 200,
+                "data" : [{ <parties-objects> }]
+            }
+
+
+### Get a specific party [/parties/:id]
+Returns an existing party based on its unique id
+
++ Response 200 (application/json)
+
+        {
+            "status" : 200,
+            "data" : [{ <Requested Party>}]
+        }
+ 
+## Update Party name [/parties/:id/name]
+ 
+### updates a particular party name [PATCH]
+Updates the name of an existing party based off of its id
+
++ Request (application/json)
+
+    + Headers
+
+            x-access-token: "Bearer <admin-token>"
+    
+    + Body
+        
+            {
+                "name": "All Progressives Grand Alliance (APGA)"
+            }
+            
++ Response 200 (application/json)
+
+        {
+            "status": 200,
+            "data": {
+                "id": < party ID>,
+                "name": "All Progressives Grand Alliance (APGA)",
+                <Rest of Record>
+            }
+        }
+        
+## delete party [/parties/:id]
+
+### deletes a particular party [DELETE]
+an admin should be able to delete an existing record
+
++ Request (application/json)
+
+    + Headers
+
+            x-access-token: "Bearer <user-token>"
+    
+            
++ Response 200 (application/json)
+
+            {
+                "status": 200,
+                "message": "party has been deleted"
+            }
+
+## Admin Login [/auth/login]
+
+### Log In administrator [POST]
+Logs admin in and returns a taoken to be used to access private routes
+
++ Request (application/json)
+
+        {
+            "email": "example@yahoo.com",
+            "password": "2020ada"
+         }
+
+
++ Response 200 (application/json)
+
+        {
+            "status": 200,
+            "data": [
+                 {  
+                    "message": "welcome to politico victory",
+                    "token": "< Token assigned to admon >",
+                    "user": {
+                        "firstname": "akaniru",
+                        "lastname": "victory",
+                        "othernames": "ifeanyi",
+                        "username": "vee",
+                        "type": "admin",
+                        "email": "example@yahoo.com",
+                        "phonenumber": "07063212299",
+                        "isadmin": true
+                    }
+                }
+            ]
+        }
+
+## Offices [/offices]
+
+### creates a new office [POST]
+Creates a new political office where users can be registered to contest
+
++ Request (application/json)
+
+    + Headers
+
+            x-access-token: "Bearer <admin-token>"
+
+    + Body
+        
+            {
+                "type": "state",
+                "name":"governor",
+                "ageLimit": "40"
+            }
+
++ Response 201 (application/json)
+
+        {
+            "status": 201,
+            "message": "Political Office Created",
+            "data": {
+                "id": 1,
+                "type": "state",
+                "name": "governor",
+                "agelimit": "40",
+                "status": "new",
+                "modefied_on": "2019-01-31T22:05:09.415Z",
+                "created_on": "2019-01-31T22:05:09.415Z"
+            }
+        }
+
+### Get all existing offices [/offices]
+Returns all political office existing and their ids
+
++ Response 200 (application/json)
+    + Headers
+
+            x-access-token: "Bearer <user-token>"
+
+    + Body
+
+            {
+                "status" : 200,
+                "message": "All offices retrieved",
+                "data" : [{ <offices-objects> }]
+            }
+
+
+### Get a specific office [/offices/:id]
+Returns an existing office based on its unique id
+
+    + Headers
+
+            x-access-token: "Bearer <admin-token>"
+
+    + Body
+
++ Response 200 (application/json)
+
+        {
+            "status" : 200,
+            "message": "All offices retrieved",
+            "data" : [{ <Requested Office>}]
+        }
+
+## Register [/office/:id/register]
+
+### registers a user as a candidate [POST]
+Registers a user to be a candidate under a party for the coming elections
+
++ Request (application/json)
+
+    + Headers
+
+            x-access-token: "Bearer <admin-token>"
+
+    + Body
+        
+            {
+                "office": 1,
+                "part": 1,
+                "ageLimit": "20"
+            }
+
++ Response 201 (application/json)
+
+        {
+            "status": 201,
+            "message": "candidate registered",
+            "data": {
+                "id": 2,
+                "office": 1,
+                "party": 3,
+                "agelimit": "20",
+                "user_id": 2,
+            "registered_on": "2019-01-31T23:07:53.869Z"
+            }
+        }
+
+## Vote [/votes]
+
+### users can vote [POST]
+users can vote for registered candidates of choice once
+
++ Request (application/json)
+
+    + Headers
+
+            x-access-token: "Bearer <user-token>"
+
+    + Body
+        
+            {
+                "office": 1,
+                "candidate": 1
+            }
+
++ Response 201 (application/json)
+
+            {
+                "status": 201,
+                "message": "thank you for voting",
+                "data": {
+                 "id": 3,
+                 "created_on": "2019-01-31T23:19:03.444Z",
+                 "office": 1,
+                 "candidate": 2,
+                 "voter": 3
+                }
+            }
+
+## Results [/votes]
+
+### view Election results [POST]
+users can view results of an election 
+
++ Request (application/json)
+
+    + Headers
+
+            x-access-token: "Bearer <user-token>"
+
+    + Body
+        
+            {
+                "office": 1,
+                "candidate": 1
+            }
+
++ Response 201 (application/json)
+
+        {
+            "status": 200,
+            "message": "results retrived",
+            "data": [
+                {
+                    "office": 1,
+                    "candidate": 1,
+                    "results": "1"
+                },
+                {
+                    "office": 1,
+                    "candidate": 2,
+                    "results": "2"
+                }
+            ]
+        }

@@ -391,12 +391,16 @@ border-width: 2px;
   color: #005f6b;
   margin-top: 105px;
 }
+.page-title3 {
+  font-size: 26px;
+  text-align: center;
+  margin-top: 7px;
+}
 .page-title2 {
-  margin-top: -33px;
+  margin-top: 105pxpx;
   margin-left: 382px;
   font-size: larger;
   text-align: center;
-  color: #005f6b;
 }
 .page-title2 {
   text-align: center;
@@ -549,6 +553,13 @@ input[type = "radio"] {
   margin: 185px auto auto 480px;
   padding: 20px;
   border: 1px solid #888;
+  width: 50%;
+}
+
+.modal-content-edit {
+  background-color: #005f6b;
+  margin: 99px auto auto 480px;
+  padding: 20px;
   width: 50%;
 }
 
