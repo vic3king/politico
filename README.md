@@ -31,8 +31,8 @@ To install and run this project you would need to have installed:
 
 To run:
 ```
-$ git clone https://github.com/Chrismarcel/iReporter.git
-$ cd iReporter
+https://github.com/vic3king/politico.git
+$ cd politico
 $ npm install
 $ npm run dev-start
 ```
