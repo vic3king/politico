@@ -28,6 +28,7 @@ const createAdmin = async () => {
 
 const createType = async () => {
   const type = `
+  CREATE TYPE petitiontype AS ENUM('draft', 'under-investigation', 'rejected', 'resolved');
   CREATE TYPE officetype AS ENUM('federal', 'legislative', 'state', 'local-government');
   CREATE TYPE usertype AS ENUM('citizen', 'politician', 'admin');
   CREATE TYPE partystat AS ENUM('new', 'updated');
@@ -44,7 +45,8 @@ const createType = async () => {
 };
 
 const dropType = async () => {
-  const type = `DROP TYPE IF EXISTS officetype;
+  const type = `DROP TYPE IF EXISTS petitiontype;
+  DROP TYPE IF EXISTS officetype;
   DROP TYPE IF EXISTS usertype;
   DROP TYPE IF EXISTS partystat;
   DROP TYPE IF EXISTS officestat;`;
@@ -117,7 +119,17 @@ const createTables = async () => {
         office INT REFERENCES office(id) ON DELETE CASCADE,
         candidate INT REFERENCES candidates(id) ON DELETE CASCADE,
         voter INT REFERENCES users(id) ON DELETE CASCADE
-          )
+          );
+
+      CREATE TABLE IF NOT EXISTS petitions( 
+        id SERIAL PRIMARY KEY,
+        created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        created_by INT REFERENCES users(id) ON DELETE CASCADE,
+        office INT REFERENCES office(id) ON DELETE CASCADE,
+        comment VARCHAR(128) NOT NULL,
+        status petitiontype NOT NULL,
+        evidence VARCHAR[]
+        )
       `;
 
   await pool.query(queryText)
@@ -137,8 +149,9 @@ const dropTables = async () => {
   DROP TABLE IF EXISTS vote;
   DROP TABLE IF EXISTS candidates;
   DROP TABLE IF EXISTS party; 
-  DROP TABLE IF EXISTS office;
+  DROP TABLE IF EXISTS petitions;
   DROP TABLE IF EXISTS users;
+  DROP TABLE IF EXISTS office;
   `;
   await pool.query(queryText)
     .then((res) => {

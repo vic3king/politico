@@ -12,6 +12,8 @@ import ControllerVote from '../controllers/votes';
 import Vote from '../middlewares/helpervote';
 import Results from '../middlewares/results';
 import ControllerResult from '../controllers/results';
+import ControllerPetition from '../controllers/petitions';
+import Petition from '../middlewares/helperpetition';
 
 const router = express.Router();
 const admin = [
@@ -47,6 +49,8 @@ router.post('/api/v1/office/:id/register', admin, Candidate.postCandidate, Candi
 router.post('/api/v1/votes', user, Vote.postCandidate, Vote.isValidInt, Vote.hasVoted, Vote.isValidCandidate, Vote.isOffice, ControllerVote.vote);
 
 router.post('/api/v1/office/:id/result', user, ValidateOffice.isNotValid, Results.verifyOffice, ControllerResult.viewResult);
+
+router.post('/api/v1/petitions', user, Petition.validPost, Petition.isValidInt, Petition.postCandidate, Petition.isOffice, Petition.hasPetitioned, ControllerPetition.petition);
 
 router.all('*', (req, res) => {
   res.status(404).send({
