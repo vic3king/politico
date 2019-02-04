@@ -6,8 +6,8 @@ const User = {
   async createUser(req, res) {
     const hashPassword = Helper.hashPassword(req.body.password);
     const text = `INSERT INTO
-      users(firstname, lastname, othernames, email, phonenumber, username, type, password)
-      VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+      users(firstname, lastname, othernames, email, phonenumber, type, password)
+      VALUES($1, $2, $3, $4, $5, $6, $7)
       returning *`;
     const values = [
       req.body.firstname.trim(),
@@ -15,7 +15,6 @@ const User = {
       req.body.othernames.trim(),
       req.body.email.trim(),
       req.body.phonenumber.trim(),
-      req.body.username.trim(),
       req.body.type.trim(),
       hashPassword.trim(),
     ];
@@ -58,10 +57,20 @@ const User = {
     try {
       const { rows } = await db.query(text, [req.body.email.trim()]);
       if (!rows[0]) {
-        return res.status(400).send({ message: 'The credentials you provided is incorrect' });
+        return res.status(400).send({
+          status: 400,
+          error: {
+            message: 'The credentials you provided is incorrect',
+          },
+        });
       }
       if (!Helper.comparePassword(rows[0].password, req.body.password.trim())) {
-        return res.status(401).send({ message: 'The credentials you provided is incorrect' });
+        return res.status(401).send({
+          status: 401,
+          error: {
+            message: 'The credentials you provided is incorrect',
+          },
+        });
       }
       const {
         id, firstname, lastname, othernames, username, type, email, phonenumber, isadmin,

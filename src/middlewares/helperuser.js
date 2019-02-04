@@ -18,7 +18,6 @@ const spaces = (obj) => {
   const firstName = obj.firstname.trim();
   const lastName = obj.lastname.trim();
   const otherNames = obj.othernames.trim();
-  const userName = obj.username.trim();
   const phoneNumber = obj.phonenumber.trim();
   const emailAdd = obj.email.trim();
   const passWord = obj.password.trim();
@@ -30,9 +29,6 @@ const spaces = (obj) => {
     return true;
   }
   if (otherNames.length < 1) {
-    return true;
-  }
-  if (userName.length < 1) {
     return true;
   }
   if (phoneNumber.length < 1) {
@@ -114,7 +110,7 @@ const Helper = {
       errorsMessages.push(error);
     }
     if (!request.body.lastname) {
-      const error = { lasrname: 'lastname is required' };
+      const error = { lastname: 'lastname is required' };
       errorsMessages.push(error);
     }
     if (!request.body.othernames) {
@@ -154,7 +150,12 @@ const Helper = {
       });
     }
     if (!isValidEmail(req.body.email)) {
-      return res.status(400).send({ message: 'Please enter a valid email address' });
+      return res.status(400).send({
+        status: 400,
+        error: {
+          message: 'Please enter a valid email address',
+        },
+      });
     }
     return next();
   },
@@ -179,12 +180,15 @@ const Helper = {
     if (spacesLogin(req.body)) {
       return res.status(400).send({
         status: 400,
-        error: 'Fields should contain actual characters and not only spaces',
+        error: { message: 'Fields should contain actual characters and not only spaces' },
       });
     }
 
     if (!isValidEmail(req.body.email)) {
-      return res.status(400).send({ message: 'Please enter a valid email address' });
+      return res.status(400).send({
+        status: 400,
+        error: { email: 'Please enter a valid email address' },
+      });
     }
     return next();
   },
@@ -206,18 +210,22 @@ const Helper = {
     if (phnNum && !isValid(phnNum)) {
       return res.status(400).send({
         status: 400,
-        message: 'please enter a valid phone number',
+        error: {
+          phone: 'phone number should be of this format +234-7063212299',
+        },
       });
     }
     return next();
   },
   async isValidInput(req, res, next) {
-    const findOneQuery = 'SELECT * FROM users WHERE username=$1 OR phonenumber=$2 OR email=$3';
-    const { rows } = await db.query(findOneQuery, [req.body.username, req.body.phonenumber, req.body.email]);
+    const findOneQuery = 'SELECT * FROM users WHERE phonenumber=$1 OR email=$2';
+    const { rows } = await db.query(findOneQuery, [req.body.phonenumber, req.body.email]);
     if (rows[0]) {
       return res.status(400).send({
         status: 400,
-        error: 'user already exists',
+        error: {
+          user: 'user already exists',
+        },
       });
     }
     return next();
