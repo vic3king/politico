@@ -37,8 +37,8 @@ h1 {
 }
 
 .profile__details {
-  padding: 10px;
- color: #005f6b;
+  padding: 23px;
+ color: black;
   margin-top: 184px;
   padding-left: 10px;
 }
@@ -84,7 +84,7 @@ h6 {
 .container2 div .veiwrecord:hover,
 .update-accord:hover,
 .delete-record:hover {
-  background-color: #424242;
+  background-color: black;
   color: #f5f6fa;
   border-radius: 5px;
 }
@@ -93,7 +93,7 @@ h6 {
 }
 .party__details {
   padding-left: 10px;
-  color: white;
+  color: black;
   text-align: left; 
   width: 100%;
 }
@@ -144,8 +144,8 @@ h6 {
 }
 
 .div1 {
-  background-color:#424242;
-  color: #f5f6fa;
+  background-color:whitesmoke;
+  color: black;
 }
 
 .button-declare {
@@ -244,7 +244,7 @@ section.candidates div {
 }
 
 .pagination a:hover:not(.active) {
-  background-color: #424242;
+  background-color: black;
   color: #f5f6fa;
   border-radius: 5px;
 }
@@ -334,7 +334,7 @@ border-width: 2px;
 }
 
 .delete-record{
-  font-size: 15px;
+  font-size: 20px;
   float: right;
   background-color: rgb(184, 32, 32);
   display: block;
@@ -344,7 +344,7 @@ border-width: 2px;
   padding: 2px 30px;
   color: #f5f6fa;
   cursor: pointer;
-  margin-top: 28px;
+  margin-top: 21px;
   transition: 0.4s;
 }
 .update-accord:hover,
@@ -365,7 +365,7 @@ border-width: 2px;
 }
 
 .active,#btn1:hover, #btn2:hover {
-  border: 2px solid #005f6b;
+  border: 2px solid black;
   color: black;
   background-color: #f7f7f7; 
 }
@@ -391,10 +391,19 @@ border-width: 2px;
 .active:after {
   content: "\2796"; 
 }
+
+hr {
+    width: 8%;
+    background-color: #005f6b;
+    margin: 0 435px;
+    font-weight: 208px;
+    border-bottom: 3px solid;
+}
+
 .page-title {
   font-size: 26px;
   text-align: center;
-  color: #005f6b;
+  color: black;
   margin-top: 105px;
 }
 .page-title3 {
@@ -426,7 +435,7 @@ input[type = "radio"] {
   margin-bottom: 10px;
 }
 .img:hover {
-  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+  box-shadow: 0 0 2px 1px black;
 }
 
 .displayrecords {
@@ -469,7 +478,7 @@ input[type = "radio"] {
 }
 
 .update-accord {
-  font-size: 15px;
+  font-size: 20px;
   float: left;
   background-color: rgb(26, 60, 26); 
   display: block;
@@ -479,8 +488,9 @@ input[type = "radio"] {
   padding: 2px 30px;
   color: #f5f6fa;
   cursor: pointer;
-  margin-top: 28px;
+  margin-top: 21px;
   transition: 0.4s;
+  margin-left: -6px;
 }
 
 .update-accord:hover{
