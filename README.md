@@ -31,7 +31,7 @@ To install and run this project you would need to have installed:
 
 To run:
 ```
-https://github.com/vic3king/politico.git
+$ git clone https://github.com/vic3king/politico.git
 $ cd politico
 $ npm install
 $ npm run dev-start

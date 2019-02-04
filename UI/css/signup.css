@@ -112,6 +112,13 @@ a:hover {
   }
 } 
 
+@media only screen and (max-width: 1024px) {
+
+  select {
+    width: 224px;
+  }
+} 
+
 /*media queries*/
 @media only screen and (max-width: 1388px) {
   .wholeform{
@@ -122,11 +129,18 @@ a:hover {
   .wholeform{
     display: block !important;
   }
+
+  .signbox {
+    width: 101% ;
+   }
 }
 @media only screen and (max-width: 787px) {
   .wholeform{
     display: block !important;
   }
+  .signbox {
+    width: 101% ;
+   }
 } 
 
 @media only screen and (max-width: 768px) {
@@ -148,6 +162,9 @@ a:hover {
     width: 463px;
     border-color: #005f6b;
   }
+  .signbox {
+    width: 101% ;
+   }
 } 
 
 @media only screen and (max-width: 500px) {
@@ -161,6 +178,9 @@ a:hover {
   .center {
     margin-bottom: 100px;
   } 
+  .signbox {
+    width: 101% ;
+   }
   
 } 
 
@@ -183,6 +203,9 @@ a:hover {
     width: 270px;
     border-color: #005f6b;
   }
+  .signbox {
+    width: 101% ;
+   }
 } 
 
 @media only screen and (max-width: 320px) {
@@ -199,17 +222,34 @@ a:hover {
     width: 205px;
     border-color: #005f6b;
   }
+  .signbox {
+    width: 101% ;
+   }
 } 
 
 @media only screen and (max-width: 375px) {
   #login-form {
-    margin-top: 200px;
+    margin-top: 191px !important;
   }
+
+  .signbox {
+    width: 101% ;
+   }
 } 
 
 @media only screen and (max-width: 320px) {
   #login-form {
     margin-top: 200px;
+  }
+} 
+
+@media only screen and (max-width: 360px) {
+  #login-form {
+    margin-top: 234px !important;
+  }
+
+  .signbox {
+   width: 101% ;
   }
 } 
 

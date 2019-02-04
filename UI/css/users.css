@@ -202,19 +202,31 @@ section.candidates div {
 
 .pagination2 {
   display: inline-block;
-  margin-left: 37% !important;
-  margin-top: -15px !important;
+  margin-left: 35% !important;
+  margin-top: 4px !important;
+}
+.pagination2 a{
+  color: #005f6b;
+  font-weight: bold;
+  padding: 8px 16px;
+  text-decoration: none;
 }
 .pagination3 {
-  margin-top: 25px !important;
+  margin-left: 37% !important;
+  margin-top: 4px !important;
 }
 .pagination4 {
-  margin-left: 26% !important;
+  margin-left: 36% !important;
+  margin-top: -5% !important;
+}
+.pagination5 {
+  margin-top: -3%  !important;
+  margin-left: 41% !important;
 }
 .pagination {
   display: inline-block;
-  margin-top: 174px;
-  margin-left: 48%;
+    margin-top: 169px;
+    margin-left: 53%;
 }
 
 .pagination a {
@@ -591,3 +603,45 @@ input[type = "radio"] {
   color: #f5f6fa;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 360px) {
+  .profile {
+    display: none;
+  }
+  .container2 .vote .vote1 {
+    font-size: 12px;
+  }
+
+  button#lgc {
+    margin-top: -69px;
+  }
+
+  button#house-of-reps {
+    margin-top: -52px
+  }
+
+  .pagination {
+    /* display: inline-block; */
+    margin-top: 29px !important;
+    margin-left: -16% !important;
+    width: 149%;
+}
+.pagination2 {
+  display: inline-block;
+  margin-left: -33px !important;
+  margin-top: 240px !important;
+}
+.container2 {
+  width: 76%;
+}
+.delete-record {
+  width: 0%;
+  padding: 0px 4px !important ;
+}
+
+
+  section > div.pagination {
+   margin-top: 0px !important;
+   margin-left: -66px !important;
+}
+} 
