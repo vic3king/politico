@@ -112,9 +112,15 @@ body {
   }
 } 
 
+@media only screen and (max-width: 360px) {
+  .main-footer {
+    margin-top: 37px !important
+  }
+} 
+
 @media only screen and (max-width: 375px) {
   .main-footer {
-    margin-top: 470px
+    margin-top: 470px !important;
   }
 } 
 

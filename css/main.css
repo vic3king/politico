@@ -221,46 +221,68 @@ body {
 @media only screen and (max-width: 360px) {
   #button1 {
     margin-bottom: 10px;
-    margin-left: 36px
+    margin-left: 37px !important;
   }
   #showcase h1 {
     font-size: 24px;
     margin-bottom: 90px;
   }
-  margin-bottom: 24px;
-  margin-left: 37px;
+ .text {
+   font-size: 13px;
+ }
+ .animate {
+   font-size: 26px;
+ }
 } 
 
 @media only screen and (max-width: 375px) {
   #button1 {
     margin-bottom: 24px;
-    margin-left: 37px;
+    margin-left: 35px !important;
   }
   #showcase h1 {
     font-size: 24px;
     margin-bottom: 90px;
   }
+  .text {
+    font-size: 22px;
+  }
+  .animate {
+    font-size: 27px;
+  }
+  .main-footer {
+    margin-top: 37px !important;
+  }
 } 
 
 
-@media only screen and (max-width: 414px) {
+@media all and (max-width: 414px) {
   #button1 {
     margin-bottom: 24px;
-    margin-left: 37px;
+    margin-left: 40px !important;
   }
   #showcase h1 {
     font-size: 41px;
     margin-bottom: 90px;
   }
+  .text {
+    font-size: 24px;
+  }
+  .animate {
+    font-size: 30px;
+  }
+  .main-footer {
+    margin-top: 37px !important;
+  }
 } 
 
-@media only screen and (max-width: 768px) {
+@media all and (max-width: 768px) {
   #button1 {
     margin-left: 62px;
   }
 } 
 
-@media only screen and (max-width: 1024px) {
+@media all and (max-width: 1024px) {
   #showcase h1 {
     font-size: 56px;
     margin-bottom: 90px;
