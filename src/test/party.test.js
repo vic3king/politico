@@ -331,7 +331,9 @@ describe('/patch Update party name', () => {
       .end((err, res) => {
         res.body.should.be.deep.equal({
           status: 400,
-          error: 'The id parameter must be a number',
+          error: {
+            message: 'The id parameter must be a number',
+          },
         });
         done();
       });
@@ -345,7 +347,9 @@ describe('/patch Update party name', () => {
       .end((err, res) => {
         res.body.should.be.deep.equal({
           status: 400,
-          message: 'Party name is required',
+          error: {
+            message: 'Party name is required',
+          },
         });
         done();
       });
@@ -359,7 +363,9 @@ describe('/patch Update party name', () => {
       .end((err, res) => {
         res.body.should.be.deep.equal({
           status: 400,
-          error: 'Name Field should contain actual characters and not only spaces',
+          error: {
+            message: 'Name Field should contain actual characters and not only spaces',
+          },
         });
         done();
       });
@@ -401,7 +407,9 @@ describe('DELETE a party', () => {
       .end((err, res) => {
         res.body.should.be.deep.equal({
           status: 400,
-          error: 'The id parameter must be a number',
+          error: {
+            message: 'The id parameter must be a number',
+          },
         });
         done();
       });
