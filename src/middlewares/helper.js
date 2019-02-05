@@ -17,7 +17,10 @@ const Validate = {
     const { name, hqAddress, logoUrl } = req.body;
     if (typeof name === 'number' || typeof hqAddress === 'number' || typeof logoUrl === 'number') {
       return res.status(400).send({
-        error: 'invalid input type',
+        status: 400,
+        error: {
+          message: 'invalid input type',
+        },
       });
     }
     return next();
@@ -28,14 +31,18 @@ const Validate = {
     if (name && !isAlpha(name.trim())) {
       return res.status(400).send({
         status: 400,
-        message: 'invaild input',
+        error: {
+          message: 'invaild input',
+        },
       });
     }
     const url = req.body.logoUrl;
     if (req.body.logoUrl && !isURL(url.trim())) {
       return res.status(400).send({
         status: 400,
-        message: 'please enter a valid url',
+        error: {
+          message: 'please enter a valid url',
+        },
       });
     }
     return next();
@@ -88,14 +95,18 @@ const Validate = {
         if (res.json.results.length < 1) {
           return response.status(404).send({
             status: 404,
-            error: 'Address not found, enter a valid add',
+            error: {
+              message: 'Address not found, enter a valid add',
+            },
           });
         }
         return next();
       })
       .catch(err => response.status(500).send({
         status: 500,
-        error: err.message,
+        error: {
+          err: err.message,
+        },
       }));
   },
 
@@ -126,7 +137,9 @@ const Validate = {
     if (!request.body.name) {
       response.status(400).send({
         status: 400,
-        message: 'Party name is required',
+        error: {
+          message: 'Party name is required',
+        },
       });
     }
     return next();
@@ -136,7 +149,9 @@ const Validate = {
     if (spaceUpdate(request.body)) {
       return response.status(400).send({
         status: 400,
-        error: 'Name Field should contain actual characters and not only spaces',
+        error: {
+          message: 'Name Field should contain actual characters and not only spaces',
+        },
       });
     }
     return next();
@@ -146,7 +161,9 @@ const Validate = {
     if (!validId(req.params.id)) {
       return res.status(400).json({
         status: 400,
-        error: 'The id parameter must be a number',
+        error: {
+          message: 'The id parameter must be a number',
+        },
       });
     }
     return next();

@@ -39,17 +39,20 @@
   <div class="box" id="addparty">
       <h2 class="page-title">Request Dashboard</h2>
      <button id="btn1">Add Party </button>
-  <form id="record-form" class="box red-flag">
+  <form id="party-form" class="box red-flag">
       <div class="box2">
             <h3 class="page-title">Create party:</h3>
             <form>
-                <label for="title">Name: </label>
-                <input type="text" id="title" placeholder="what will this party be called?" name="title" id="title" required>
-              <label for="address">HQ Address</label>
-              <input type="text" id="search_term" placeholder="enter your address" name="address" >
-              <label for="image">Upload Logo</label>
-              <input type="file" name="image" id="image">
-              <button type="submit">Save Party</button>
+                <label for="title">Name: </label> 
+                <input type="text" id="name" placeholder="what will this party be called?" name="title" id="title" required>
+                <span id="spanname"></span><br><br>
+              <label for="address">HQ Address</label>  
+              <input type="text" id="search_term" placeholder="enter your address" name="address" required>
+              <span id="spanaddress"></span><br><br>
+              <label for="image">Upload Logo Url</label>
+              <input type="text" id="image" placeholder="enter link to you logo"  required>
+              <span id="spanlogo"></span><br><br> 
+              <button type="submit" id="results" class="vote1" style="margin-left: 39%;">Save Party</button>
         </div>
     </form>
     </div>   
@@ -71,6 +74,7 @@
       </form>
       </div>   
       </div>
+      <script src="js/admin-profile.js"></script>
     <script src="js/office.js"></script>
 </body>
 
