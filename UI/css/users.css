@@ -13,7 +13,7 @@ main.main-body {
   display: flex;
   position: fixed;
   width: 20%;
-  border-right: 8px black solid;
+  border-right: 3px black solid;
   margin-top: 47px;
   height: 100%;
 }
@@ -27,8 +27,9 @@ main.main-body {
   background-image: url("../img/download.jpg");
   background-size: cover;
   background-position: 50% 50%;
-  height: 240px;
+  height: 323px;
   border-radius: 26px;
+  width: 287px;
 }
 h1 {
   font-size: 30px;
@@ -39,8 +40,9 @@ h1 {
 .profile__details {
   padding: 10px;
  color: black;
-  margin-top: 240px;
+  margin-top: 359px;
   padding-left: 10px;
+  font-size: 18px;
 }
 .party__details > div {
   padding-top: 5px;
@@ -95,7 +97,7 @@ h6 {
   border-radius: 5px;
 }
 .party {
-  height: 403px;;
+  height: 304px;
 }
 .party__details {
   padding-left: 10px;
@@ -104,10 +106,10 @@ h6 {
   width: 100%;
 }
 .party__image {
-  background-image: url(../img/download.jpg);
-    background-size: cover;
-    height: 205px;
-    background-repeat: no-repeat
+  background-image: url(../img/download\ \(1\).jpg);
+  background-size: cover;
+  height: 142px;
+  background-repeat: no-repeat;
 }
 
 .party__image1 {
@@ -120,7 +122,7 @@ h6 {
 .party__image2 {
   background-image: url(../img/download\ \(1\).jpg);
     background-size: cover;
-    height: 205px;
+    height: 165px;
     background-repeat: no-repeat;
 }
 
@@ -230,7 +232,7 @@ section.candidates div {
 }
 .pagination {
   display: inline-block;
-    margin-top: 169px;
+    margin-top: 100px;
     margin-left: 53%;
 }
 
@@ -339,11 +341,9 @@ border-width: 2px;
   font-size: 20px;
   float: right;
   background-color: rgb(184, 32, 32);
-  display: block;
   width: 45%;
   outline: none;
-  border: 2px solid #f5f6fa;
-  padding: 2px 30px;
+  border: 0px solid #f5f6fa;
   color: #f5f6fa;
   cursor: pointer;
   margin-top: 21px;
@@ -395,11 +395,11 @@ border-width: 2px;
 }
 
 hr {
-    width: 8%;
-    background-color: #005f6b;
-    margin: 0 435px;
-    font-weight: 208px;
-    border-bottom: 3px solid;
+  width: 8%;
+  background-color: #005f6b;
+  margin: 0 auto;
+  font-weight: 208px;
+  border-bottom: 3px solid;
 }
 
 .page-title {
@@ -483,11 +483,9 @@ input[type = "radio"] {
   font-size: 20px;
   float: left;
   background-color: rgb(26, 60, 26); 
-  display: block;
   width: 45%;
   outline: none;
-  border: 2px solid #f5f6fa;
-  padding: 2px 30px;
+  border: 0px solid #f5f6fa;
   color: #f5f6fa;
   cursor: pointer;
   margin-top: 21px;
