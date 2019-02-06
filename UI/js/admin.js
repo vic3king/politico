@@ -5,10 +5,6 @@ updateForm.onclick = () => {
   modal2.style.display = 'block';
 };
 
-// btn11.onclick = function () {
-//   modal.style.display = 'none';
-// };
-
 // reusable conditional statement
 const conditional = (e, btnId, elClass, state) => {
   // the div wont have an id of btn1, so js will check the next element which will be the button
@@ -29,10 +25,6 @@ function dislayRedForm() {
     // conditional logic function
     conditional(e, 'lgc', '.candidates', 'flex');
     e.stopPropagation();
-    // conditional(e, 'house-of-reps', '.candidates1', 'flex');
-    // e.stopPropagation();
-    // conditional(e, 'senate-house', '.candidates2', 'flex');
-    // e.stopPropagation();
   }
   // event listeners placed on divs
   lgc.addEventListener('click', displayForm1);

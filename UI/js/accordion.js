@@ -1,6 +1,5 @@
 //  accordion to render list of red flags
 const accordion = document.getElementsByClassName('accordion');
-// const candidates = document.getElementsByClassName('vote1')
 
 for (let i = 0; i < accordion.length; i += 1) {
   accordion[i].addEventListener('click', function toggle() {
@@ -32,7 +31,7 @@ const conditional = (e, btnId, elClass, state) => {
 function dislayRedForm() {
   const lgc = document.querySelector('#lgc');
   const houseReps = document.querySelector('#house-of-reps');
-  const senateHouse= document.querySelector('#senate-house');
+  const senateHouse = document.querySelector('#senate-house');
 
   function displayForm1(e) {
     // conditional logic function
@@ -47,7 +46,6 @@ function dislayRedForm() {
   lgc.addEventListener('click', displayForm1);
   houseReps.addEventListener('click', displayForm1);
   senateHouse.addEventListener('click', displayForm1);
-
 }
 
 dislayRedForm();

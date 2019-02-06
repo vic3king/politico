@@ -27,8 +27,8 @@ main.main-body {
   background-image: url("../img/download.jpg");
   background-size: cover;
   background-position: 50% 50%;
-  height: 200px;
-  border-radius: 23px;
+  height: 240px;
+  border-radius: 26px;
 }
 h1 {
   font-size: 30px;
@@ -37,9 +37,9 @@ h1 {
 }
 
 .profile__details {
-  padding: 23px;
+  padding: 10px;
  color: black;
-  margin-top: 184px;
+  margin-top: 240px;
   padding-left: 10px;
 }
 .party__details > div {
@@ -57,6 +57,11 @@ h1 {
 #open-position{
   margin-top: 104px;
 }
+#grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 19px
+}
 .container2 {
   display: flex;
   justify-content: center;
@@ -65,7 +70,7 @@ h1 {
 }
 h6 {
   font-size: 17px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 .container2 > div {
   text-align: center;
@@ -80,6 +85,7 @@ h6 {
   cursor: pointer;
   margin-top: -31px;
   background: #005f6b;
+  margin-bottom: 11px;
 }
 .container2 div .veiwrecord:hover,
 .update-accord:hover,
@@ -176,17 +182,16 @@ button.flex {
 }
 
 button.flex2 {
-  /* margin-left: 10px; */
   margin-top: 142px;
 }
 section.candidates {
   margin-bottom: 10px;
+  display: flex;
 }
 
 section.candidates div {
-  /* flex: 1; */
+  flex: 1;
   margin-left: 3%;
-  /* margin-bottom: 130px; */
 }
 .admin{
   text-align: center;
@@ -203,7 +208,7 @@ section.candidates div {
 .pagination2 {
   display: inline-block;
   margin-left: 35% !important;
-  margin-top: 4px !important;
+  margin-top: 237px !important;
 }
 .pagination2 a{
   color: #005f6b;
@@ -213,11 +218,11 @@ section.candidates div {
 }
 .pagination3 {
   margin-left: 37% !important;
-  margin-top: 4px !important;
+  margin-top: 500px !important;
 }
 .pagination4 {
   margin-left: 36% !important;
-  margin-top: -5% !important;
+  margin-top: 48% !important;
 }
 .pagination5 {
   margin-top: -3%  !important;
@@ -285,7 +290,8 @@ section.candidates div {
 }
 #polit-candidate {
   width: 50%;
-  margin-left: 40px;
+  margin-top: 90px;
+  background-color: whitesmoke;
 }
 
 input{
@@ -313,20 +319,16 @@ border-width: 2px;
   cursor: pointer;
   padding: 18px;
   width: 100%;
-  /* border: none; */
   text-align: left;
   outline: none;
   font-size: 15px;
   transition: 0.4s;
 }
 
-.accordion2 {
-  background-color: #424242; 
+.accordion2 { 
   color: white;
   cursor: pointer;
   padding: 18px;
-  width: 100%;
-  /* border: none; */
   text-align: center;
   outline: none;
   font-size: 15px;
@@ -513,7 +515,6 @@ input[type = "radio"] {
   border-radius: 5px;
   background-color: #fff;
   padding: 3px 5px;
-  /* box-shadow: inset 0 3px 6px #005f6b; */
   width: 100%;
 }
 
@@ -550,17 +551,17 @@ input[type = "radio"] {
 }
 
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  display: none; 
+  position: fixed;
+  z-index: 1; 
+  padding-top: 100px;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
 }
 
 /* Modal Content */
@@ -631,7 +632,6 @@ input[type = "radio"] {
   }
 
   .pagination {
-    /* display: inline-block; */
     margin-top: 29px !important;
     margin-left: -16% !important;
     width: 149%;

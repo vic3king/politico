@@ -42,7 +42,6 @@ body{
   width: 80%;
   justify-content: space-between;
   margin-bottom: 15px;
-  /* background: black; */
 }
 
 .formgroup {
@@ -61,7 +60,6 @@ input { font-size: 20px; }
   width: 200px;
   outline: none;
   color: #f5f6fa;
-  /* border-radius: 24px; */
   transition: 0.25s;
 }
 
@@ -77,7 +75,6 @@ input { font-size: 20px; }
   width: 200px;
   outline: none;
   color: #f5f6fa;
-  /* border-radius: 24px; */
   transition: 0.25s;
 }
 input:focus{

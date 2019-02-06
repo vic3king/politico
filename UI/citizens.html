@@ -39,12 +39,10 @@
     <section class="profile">
         <div class="profile__image">
             <div class="profile__details">
-              <p><b>Fullname:</b> akaniru victory</p>
-              <p><b>Party:</b> hope</p>
-              <p><b>Email:</b> victory@yahoo.com</p>
-              <p><b>Age:</b> 00</p>
-              <p><b>Phone:</b> 09023xxxx</p>
-              <p><b>Status:</b> Citizen</p>
+              <p id="fullname">Fullname: akaniru victory</p>
+              <p id="email">Email: victory@yahoo.com</p>
+              <p id="phonenumber">Phone: 09023xxxx</p>
+              <p id="type">Status: Citizen</p>
             </div>
             <button id="results">Election Results</button>
     </section>
@@ -52,7 +50,7 @@
         <div>
             <h4 class="page-title">Open Positions</h4>
           </div>
-          <div class="container2">
+          <div class="container2" id="grid">
             <div class="div1 vote">
               <h6>Local Government Chairman</h6>
               <p class="admin">0</p>
@@ -69,12 +67,13 @@
               <button id="house-of-reps" class="veiwrecord vote1">View</button>
             </div>
           </div>
-          <section class="candidates" style="display:none">
+          <div id="votemodal" class="modal">
+            <section class="candidates modal-content-edit">
             <div><div class="flex accordion2">
                 <div class="party__image"></div>
                 <p style="text-align: left">
-                    Candidate 1: Jane Doe<br>
-                    Party: Hope <br>
+                    Candidate 1: John Doe<br>
+                    Party: APC <br>
                     Position: Local Government Chairman
                 </p>
                 <button id="results">Vote</button>
@@ -82,31 +81,15 @@
                 <div><div class="flex accordion2">
                     <div class="party__image"></div>
                     <p style="text-align: left">
-                        Candidate 1: Jane Doe<br>
+                        Candidate 2: Jane Doe<br>
                         Party: Hope <br>
                         Position: Local Government Chairman
                     </p>
                     <button id="results">Vote</button>
                   </div></div><br><br><br><br><br><br><br><br>
           </section>
+          </div>
           <div>
-            </div>
-            <div class="container2">
-              <div class="div1 vote">
-                <h6>Local Government Chairman</h6>
-                <p class="admin">0</p>
-                <button id="lgc" class="veiwrecord vote1">View</button>
-              </div>
-              <div class="div1 vote">
-                <h6>Senate House</h6>
-                <p class="admin">0</p>
-                <button id="senate-house" class="veiwrecord vote1">View</button>
-              </div>
-              <div class="div1 vote">
-                <h6>House of Reps</h6>
-                <p class="admin">0</p>
-                <button id="house-of-reps" class="veiwrecord vote1">View</button>
-              </div>
             </div>
             <section class="candidates" style="display:none">
               <div><button id="flex" class="accordion">Candidate 2: Jane Doe<br>
@@ -117,19 +100,9 @@
                   Position: Local Government Chairman</button></div><br><br><br><br><br><br><br><br>
             </section>
       </div>
-        <div class="pagination pagination3">
-          <a href="#">&laquo;</a>
-          <a href="#">1</a>
-          <a href="#">2</a>
-          <a href="#">3</a>
-          <a href="#">4</a>
-          <a href="#">5</a>
-          <a href="#">6</a>
-          <a href="#">&raquo;</a>
-        </div><br><br><br><br>
     </section>
   </main>
-  <script src="js/citizen.js"></script>
+  <script src="js/citizens-profile.js"></script>
 </body>
 </body>
 
