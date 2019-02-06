@@ -36,12 +36,11 @@
     <section class="profile">
         <div class="profile__image formgroup">
         <div class="profile__details">
-          <p><b>Fullname:</b> akaniru victory</p>
-          <p><b>Party:</b> hope</p>
-          <p><b>Email:</b> victory@yahoo.com</p>
-          <p><b>Age:</b> 00</p>
-          <p><b>Phone:</b> 09023xxxx</p>
-          <p><b>Status:</b> politician</p>
+          <p id="fullname"><b>Fullname:</b> akaniru victory</p>
+          <p id="party"><b>Party:</b> hope</p>
+          <p id="email"><b>Email:</b> victory@yahoo.com</p>
+          <p id="phonenumber"><b>Phone:</b> 09023xxxx</p>
+          <p id="type"><b>Status:</b> politician</p>
         </div>
         <button id="results">Election Results</button>
     </section>
@@ -49,7 +48,7 @@
       <div>
         <h4 class="page-title">Open Positions</h4>
       </div>
-        <div class="container2">
+        <div class="container2" id="grid">
           <div class="div1">
             <h6>Local Government Chairman</h6>
             <p class="admin">0</p>
@@ -66,8 +65,8 @@
             <button class="veiwrecord">Declare interest</button>
           </div>
         </div>
-        <div class="form-section">
-            <form id="polit-candidate">
+          <div id="form-modal" class="modal">
+            <form id="polit-candidate" class="modal-content-edit">
                 <divclass="box2">
                   <h3>Candidate declaration form</h3>
                   <form>
@@ -76,48 +75,17 @@
                           <option value="APC">APC</option>
                           <option value="PDP">PDP</option>
                         </select><br><br>
-                        <label for="dateofbirth">Date Of Birth</label><br>
-                        <input type="date" name="dateofbirth" id="dateofbirth"><br>
-                    <label for="description">Introduce yourself: </label>
-                    <input type="text" placeholder="give a brief intro..." name="description">
-                    <label for="comment">Tell us why you are a fit for this role: </label>
-                    <textarea name="comment" rows="4"></textarea>
+                        <label for="type">Office: <br></label>
+                        <select>
+                            <option value="president">President</option>
+                            <option value="vice president">Vice President</option>
+                          </select><br><br>
                     <button class="button-declare">Declare</button>
                 </div>
               </form>
         </div>
-        <div id="open-position">
-            <div class="container2">
-              <div class="div1">
-                <h6>Local Government Chairman</h6>
-                <p class="admin">0</p>
-                <button class="veiwrecord">Declare interest</button>
-              </div>
-              <div class="div1">
-                <h6>Senate House</h6>
-                <p class="admin">0</p>
-                <button class="veiwrecord">Declare interest</button>
-              </div>
-              <div class="div1">
-                <h6>House of Reps</h6>
-                <p class="admin">0</p>
-                <button class="veiwrecord">Declare interest</button>
-              </div>
-            </div>
-        <br><br>
-        <div class="pagination pagination4">
-          <a href="#">&laquo;</a>
-          <a href="#">1</a>
-          <a href="#">2</a>
-          <a href="#">3</a>
-          <a href="#">4</a>
-          <a href="#">5</a>
-          <a href="#">6</a>
-          <a href="#">&raquo;</a>
-        </div>
-    </section>
   </main>
-  <script src="js/politico.js"></script>
+  <script src="js/politicians.js"></script>
 </body>
 
 </html>

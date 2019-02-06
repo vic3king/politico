@@ -50,20 +50,21 @@
     <section class="profile">
       <div class="profile__image">
         <div class="profile__details">
-          <p><b>Fullname:</b> akaniru victory</p>
-          <p><b>Party:</b> hope</p>
-          <p><b>Email:</b> victory@yahoo.com</p>
-          <p><b>Age:</b> 00</p>
-          <p><b>Phone:</b> 09023xxxx</p>
-          <p><b>Status:</b> admin</p>
+          <p id="fullname"> akaniru victory</p>
+          <p id="email"> victory@yahoo.com</p>
+          <p id="phonenumber"> 09023xxxx</p>
+          <p id="type"> admin</p>
         </div>
          <button id="results">Election Results</button>
     </section>
     <section class="displa-sec">
       <div>
-        <h4 class="page-title">Open Positions</h4>
+        <h4 class="page-title">Open Positions
+          <hr />
+          
+        </h4>
       </div>
-      <div class="container2">
+      <div class="container2" id="grid">
         <div class="div1 vote">
           <h6>Local Government Chairman</h6>
           <p class="admin">0</p>
@@ -106,23 +107,6 @@
       </section>
       <div>
       </div>
-      <div class="container2">
-        <div class="div1 vote">
-          <h6>Local Government Chairman</h6>
-          <p class="admin">0</p>
-          <button id="lgc" class="veiwrecord vote1">View</button>
-        </div>
-        <div class="div1 vote">
-          <h6>Senate House</h6>
-          <p class="admin">0</p>
-          <button id="senate-house" class="veiwrecord vote1">View</button>
-        </div>
-        <div class="div1 vote">
-          <h6>House of Reps</h6>
-          <p class="admin">0</p>
-          <button id="house-of-reps" class="veiwrecord vote1">View</button>
-        </div>
-      </div>
       <section class="candidates" style="display:none">
         <div><button id="flex" class="accordion">Candidate 2: Jane Doe<br>
             Party: Hope <br>
@@ -143,18 +127,21 @@
         <a href="#">&raquo;</a>
       </div><br><br><br><br>
       <div style="margin-top: -144px">
-        <h4 class="page-title">Political Parties</h4>
+        <h4 class="page-title">Political Parties
+          <hr />
+          
+        </h4>
       </div>
       <div class="container2">
         <div id="del-test" class="div1 vote party">
           <div class="party__image1"></div>
           <div class="party__details">
-            <div>Party: apga</div>
-            <div>Email: apga@yahoo.com</div>
-            <div>Members: 00</div>
-            <div>Hq address: epic towers</div>
-            <div>Created on: 11/11/11</div>
-            <div>Modified on: 12/11/12</div>
+            <div><b>Party</b>: apga</div>
+            <div><b>Email</b>: apga@yahoo.com</div>
+            <div><b>Members</b>: 00</div>
+            <div><b>Hq address</b>: epic towers</div>
+            <div><b>Created on</b>: 11/11/11</div>
+            <div><b>Modified on</b>: 12/11/12</div>
             <button class="update-accord">Edit</button>
             <button id="myBtn" class="delete-record">Delete</button>
           </div>
@@ -170,12 +157,12 @@
         <div class="div1 vote party">
           <div class="party__image2"></div>
           <div class="party__details">
-            <div>Party: kowa</div>
-            <div>Email: kowa@yahoo.com</div>
-            <div>Members: 00</div>
-            <div>Hq address: epic towers</div>
-            <div>Created on: 11/11/11</div>
-            <div>Modified on: 12/11/12</div>
+            <div><b>Party</b>: kowa</div>
+            <div><b>Email</b>: kowa@yahoo.com</div>
+            <div><b>Members</b>: 00</div>
+            <div><b>Hq address</b>: epic towers</div>
+            <div><b>Created on</b>: 11/11/11</div>
+            <div><b>Modified on</b>: 12/11/12</div>
             <button class="update-accord">Edit</button>
             <button class="delete-record">Delete</button>
           </div>
@@ -183,12 +170,12 @@
         <div class="div1 vote party">
           <div class="party__image3"></div>
           <div class="party__details">
-            <div>Party: CPP</div>
-            <div>Email: cpp@yahoo.com</div>
-            <div>Members: 00</div>
-            <div>Hq address: epic towers</div>
-            <div>Created on: 11/11/11</div>
-            <div>Modified on: 12/11/12</div>
+            <div><b>Party</b>: CPP</div>
+            <div><b>Email</b>: cpp@yahoo.com</div>
+            <div><b>Members</b>: 00</div>
+            <div><b>address</b>: epic towers</div>
+            <div><b>Created on</b>: 11/11/11</div>
+            <div><b>Modified on</b>: 12/11/12</div>
             <button class="update-accord">Edit</button>
             <button class="delete-record">Delete</button>
           </div>
@@ -230,6 +217,7 @@
     </section>
   </main>
   <script src="js/admin.js"></script>
+  <script src="js/admin-profile2.js"></script>
 </body>
 </body>
 

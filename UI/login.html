@@ -30,14 +30,16 @@
   </header>
 
   <div class="center"></div>
-  <form class="signbox" id="login-form">
-      <h1>Politico Sign In</h1>
-      <input type="text" placeholder="Username"  id="email">
-      <input type="password" placeholder="Password"  id="password">
+  <form class="signbox2" id="login-form">
+    <span id="spanuser"></span>
+      <input type="text" placeholder="Email"  id="email" required>
+      <span id="spanemail"></span>
+      <input type="password" placeholder="Password"  id="password" required><span id="spanpassword"></span>
       <input type="submit" name="" value="Login">
       <a href="reset.html">Forgotten your password?</a>
       <p style="text-align: center">Need an account?<a href="sign-up.html">Sign Up</a></p>
   </form>
+  <script src="js/login.js"></script>
 </body>
 
 </html>

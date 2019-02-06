@@ -66,10 +66,7 @@ body {
   width: 100%;
   height: 85vh;
 }
-/* #showcase h1{
-  font-size: 50px;  
-  margin-bottom: 90px; 
-} */
+
 
 .centered {
   position: absolute;
@@ -97,25 +94,7 @@ body {
   position: absolute;
   top: 0;
 }
-/* #citizen-overview {
-  background: url("../img/freedom.jpg"); 
-  width: 100%;
-  height: 40%;
-  padding: 10px;
-  background-size: cover;
-}
-#politician-overview {
-  margin-top: 11px;
-  background: url("../img/freedom.jpg"); 
-  width: 100%;
-  height: 40%;
-  padding: 10px;
-  background-size: cover; 
-}
-.call-action {
-  text-decoration: none;
-  color: inherit;
-} */
+
 
 .section-title {
   color: #2ddf5c;
@@ -205,18 +184,6 @@ body {
   outline: none;
 }
 
-
-
-/* /* 
-@media only screen and (max-width: 575px) {
-  #citizen-overview {
-    margin-top: 80px;
-  }
-
-  .key-feature {
-    width: 98%
-  }
-}  */
 
 @media only screen and (max-width: 360px) {
   #button1 {

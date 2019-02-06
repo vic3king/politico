@@ -30,28 +30,29 @@
   </header>
 
   <div class="center"></div>
-  <form class="signbox" id="login-form" style="margin-top: 156px">
-      <h1>Politico Sign Up</h1> 
+  <form class="signbox" id="signup-form" style="margin-top: 56px">
+      <span id="usergen"></span>
       <div class="wholeform">
-          <div class="formgroup"><input type="text" id="firstname" placeholder="First name" required></div>
-          <div class="formgroup"><input type="text" id="lastname" placeholder="Last name" required></div>
+          <div class="formgroup"><input type="text" id="firstname" placeholder="First name" required><span id="spanfirstname"></span></div>
+          <div class="formgroup"><input type="text" id="lastname" placeholder="Last name" required><span id="spanlastname"></span></div>
       </div>
       <div class="wholeform">
-          <div class="formgroup"><input type="text" id="username" placeholder="Username" required></div>
-          <div class="formgroup"><input type="number" id="phonenumber" placeholder="PhoneNumber" required></div>
+          <div class="formgroup"><input type="text" id="othernames" placeholder="Othernames" required><span id="spanothernames"></span></div>
+          <div class="formgroup"><input type="text" id="phonenumber" placeholder="PhoneNumber" required><span id="phone"></span></div>
   </div> 
   <div class="wholeform">
-          <div class="formgroup"><input type="email" id="email" placeholder="Please enter email" required></div>
-       <div class="formgroup"><input type="password" id="password" placeholder="Password" required></div>
+          <div class="formgroup"><input type="email" id="email" placeholder="Please enter email" required><span id="vemail"></span></div>
+       <div class="formgroup"><input type="password" id="password" placeholder="Password" required><span id="spanpass"></span></div>
   </div>
-  <select>
-      <option value="citizen">Citizen</option>
-      <option value="politician">Poitician</option>
+  <select id="selecttype">
+      <option value="citizen" id="citizen">Citizen</option>
+      <option value="politician" id="politician">Poitician</option>
     </select>
       <div class="formgroup submit"><input type="submit" name="" value="Sign Up"></div>
 </div>
   <p style="text-align: center">Already have an account? <a href="login.html">Login</a></p>
   </form>
+  <script src="js/signup.js"></script>
 </body>
 
 </html>

@@ -27,7 +27,9 @@ const ControllerOffice = {
     } catch (error) {
       return response.status(400).send({
         status: 400,
-        message: error.message,
+        error: {
+          duplicate: 'this office already eists',
+        },
       });
     }
   },

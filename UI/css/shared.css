@@ -17,7 +17,7 @@ body {
   background: #343838;
   width: 100%;
   padding: 8px 16px; 
-  height: 80px;
+  height: 60px;
   position: fixed;
   display: flex;
   flex-direction: row;
@@ -78,6 +78,7 @@ body {
   position: relative;
   top: 42px;
   z-index: -10;
+  margin-top: -18px;
 }
 
 .main-footer {

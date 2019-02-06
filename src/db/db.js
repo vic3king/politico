@@ -14,8 +14,8 @@ pool.on('connect', () => {
 
 const createAdmin = async () => {
   const user = ` INSERT INTO
-  users(firstname, lastname, othernames, email, phoneNumber, username, password, isadmin, type)
-  VALUES('akaniru', 'victory', 'ifeanyi', 'example@yahoo.com', '07063212299','vee', '$2a$08$7e/bWKTSvmvI.34fgssyY.N69EYPjTpYLnWKxPN8NJXDZES9Ol69m', 'true', 'admin');`;
+  users(firstname, lastname, othernames, email, phoneNumber, password, isadmin, type)
+  VALUES('akaniru', 'victory', 'ifeanyi', 'example@yahoo.com', '07063212299', '$2a$08$7e/bWKTSvmvI.34fgssyY.N69EYPjTpYLnWKxPN8NJXDZES9Ol69m', 'true', 'admin');`;
 
   pool.query(user)
     .then((res) => {
@@ -96,7 +96,6 @@ const createTables = async () => {
         password VARCHAR(128) NOT NULL,
         email VARCHAR(50) NOT NULL UNIQUE,
         phonenumber VARCHAR(128) NOT NULL UNIQUE,
-        username VARCHAR(50) NOT NULL UNIQUE,
         type usertype NOT NULL,
         registered TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         modefied_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

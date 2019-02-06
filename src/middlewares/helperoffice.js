@@ -53,7 +53,9 @@ const ValidateOffice = {
     if (!isAlpha(name)) {
       return res.status(400).send({
         status: 400,
-        message: 'invaild input',
+        error: {
+          message: 'invaild input',
+        },
       });
     }
     // eslint-disable-next-line no-restricted-globals
@@ -74,7 +76,9 @@ const ValidateOffice = {
     if (req.body.ageLimit.trim() < 30) {
       return res.status(400).json({
         status: 400,
-        error: 'Too young to run',
+        error: {
+          agemessage: 'Too young to run',
+        },
       });
     }
 
