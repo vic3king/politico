@@ -30,7 +30,7 @@ const logout = () => {
   window.location = './index.html';
 };
 document.getElementById('logout').addEventListener('click', logout);
-const currApiEndpoint = 'radiant-retreat-64120.herokuapp.com/api/v1';
+const currApiEndpoint = 'https://radiant-retreat-64120.herokuapp.com/api/v1';
 
 const setUpHeader = () => ({ 'x-access-token': politicoToken });
 

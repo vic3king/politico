@@ -17,7 +17,7 @@ const officeForm = document.getElementById('office-form');
 
 const { politicoToken } = localStorage;
 
-const currApiEndpoint = 'radiant-retreat-64120.herokuapp.com/api/v1';
+const currApiEndpoint = 'https://radiant-retreat-64120.herokuapp.com/api/v1';
 
 officeForm.addEventListener('submit', (e) => {
   e.preventDefault();
