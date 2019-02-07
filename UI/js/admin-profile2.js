@@ -15,7 +15,6 @@ const logout = () => {
 };
 
 document.getElementById('logout').addEventListener('click', logout);
-
 const currApiEndpoint = 'http://127.0.0.1:3000/api/v1';
 
 const setUpHeader = () => ({ 'x-access-token': politicoToken });
@@ -45,31 +44,7 @@ const displayDiv = office => `<div class="div1">
 <button id="lgc" class="veiwrecord vote1">View</button>
 </div>`;
 
-// const displayDiv2 = (party) => {
-//   console.log(party.id);
-//   return `<div class="div1 vote party">
-// <div class="party__image2"></div>
-// <div class="party__details">
-//   <div><b>Party</b>: ${party.name}</div>
-//   <div><b>Members</b>: 00</div>
-//   <div><b>Hq address</b>: ${party.hqaddress}</div>
-//   <button id="edit-name" class="edit-btn" onclick="updateModal()">Edit</button>
-//   <button class="delete-record">Delete</button>
-//   </div>
-// </div>
-// <div id="myEditModal" class="modal">
-// <section class="modal-content-edit">
-//   <form style="color: white">
-//       <h3 class="page-title3">Update Party Details:</h3>
-//         <label for="title">Name: </label>
-//         <input type="text" placeholder="Update your party name?" name="name" required>
-//           <button type="submit" id="party-name" onclick="handleUpdates(${party.id})">Update</button>
-//     </div>
-//   </form>
-// </section>
-// </div>
-// `;
-// };
+let id;
 function updateModal() {
   const modal = document.querySelector('.modal');
   const modal1 = document.querySelector('.modal1');
@@ -88,7 +63,8 @@ function updateModal() {
     };
   });
   updateForm.forEach((button) => {
-    button.onclick = () => {
+    button.onclick = (e) => {
+      id = e.target.attributes.key.value;
       modal.style.display = 'block';
     };
   });
@@ -129,24 +105,22 @@ fetch(`${currApiEndpoint}/parties`, getOfficesConfig)
     }
     let output = '';
     data.forEach((party) => {
-      const { id, name, hqaddress } = party;
       output += `<div class="div1 vote party">
-      <div class="party__image2"></div>
+      <div ><img src="${party.logourl}" class="party__image2"></div>
       <div class="party__details">
-        <div><b>Party</b>: ${name}</div>
+        <div><b>Party</b>: ${party.name}</div>
         <div><b>Members</b>: 00</div>
-        <div><b>Hq address</b>: ${hqaddress}</div>
-        <button id="edit-name" class="edit-btn" onclick="">Edit</button>
+        <div><b>Hq address</b>: ${party.hqaddress}</div>
+        <button id="edit-name" class="edit-btn" key="${party.id}">Edit</button>
         <button class="delete-record">Delete</button>
         </div>
       </div>
       <div id="myEditModal" class="modal">
       <section class="modal-content-edit">
         <form style="color: white">
-            <h3 class="page-title3">Update Party Details:</h3>
-              <label for="title">Name: </label>
-              <input type="text" id="party-name" placeholder="Update your party name?" required>
-                <button type="submit" class="update-btn" onclick="handleUpdates(event, ${id})">Update</button>
+            <h3 class="page-title3">Update Party Details:</h3><span id="spanname"></span>
+              <input type="text" id="party-name" required>
+                <button type="submit" class="update-btn" onclick="handleUpdates(event)">Update</button>
           </div>
         </form>
       </section>
@@ -154,7 +128,7 @@ fetch(`${currApiEndpoint}/parties`, getOfficesConfig)
       <div id="myModal" class="modal1">
             <section class="modal-content">
               <p>Are you sure you want to delete?</p>
-              <button id="modalyes" onclick="handleDelete(${id})" class="modalbtn">Yes</button>
+              <button id="modalyes" onclick="handleDelete()" class="modalbtn">Yes</button>
               <button id="modalno" class="modalbtn2">No</button>
             </section>
            </div> 
@@ -167,7 +141,7 @@ fetch(`${currApiEndpoint}/parties`, getOfficesConfig)
     updateModal();
   });
 
-function handleDelete(id) {
+function handleDelete() {
   const fetchConfig = {
     method: 'DELETE',
     headers: setUpHeader(),
@@ -180,14 +154,14 @@ function handleDelete(id) {
     });
 }
 
-function handleUpdates(event, id) {
+function handleUpdates(event) {
   event.preventDefault();
   const partyNameEl = document.getElementById('party-name');
+  const spanInput = document.getElementById('spanname');
   const formData = {};
   if (partyNameEl.value) {
     formData.name = partyNameEl.value;
   }
-  console.log(id);
 
   const fetchConfig = {
     method: 'PATCH',
@@ -201,7 +175,17 @@ function handleUpdates(event, id) {
   fetch(`${currApiEndpoint}/parties/${id}/name`, fetchConfig)
     .then(resp => resp.json())
     .then((resp) => {
-      console.log(resp);
-      // window.location = './profile.html';
+      const { error, data } = resp;
+      console.log(error);
+      if (error) {
+        if (error.message) {
+          spanInput.innerHTML = error.message;
+          spanInput.style.color = 'red';
+        }
+      }
+      if (data) {
+        console.log(resp);
+        window.location = './admin-profile.html';
+      }
     }).catch(err => console.log(err));
 }

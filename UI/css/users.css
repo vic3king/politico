@@ -22,7 +22,9 @@ main.main-body {
   margin: 32px;
   padding: 16px;
 }
-
+#party-name {
+  font-size: 30px;
+}
 .profile__image {
   background-image: url("../img/download.jpg");
   background-size: cover;
@@ -319,6 +321,7 @@ border-style: solid;
 border-radius: 5px;
 font-size: 16px;
 margin-bottom: 10px;
+padding-left: 7px;
 }
 textarea{
   width: 100%;
@@ -361,7 +364,7 @@ border-width: 2px;
   border: 0px solid #f5f6fa;
   color: #f5f6fa;
   cursor: pointer;
-  margin-top: 21px;
+  margin-top: 38px;
   transition: 0.4s;
 }
 .update-accord:hover,
@@ -503,7 +506,7 @@ input[type = "radio"] {
   border: 0px solid #f5f6fa;
   color: #f5f6fa;
   cursor: pointer;
-  margin-top: 21px;
+  margin-top: 38px;
   transition: 0.4s;
   margin-left: -6px;
 }
