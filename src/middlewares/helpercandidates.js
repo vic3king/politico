@@ -60,7 +60,6 @@ const Candidate = {
   },
 
   async isValidParty(req, res, next) {
-    // const findId = 'SELECT id from users WHERE id = $1';
     const findOneQuery = 'SELECT id FROM party WHERE id=$1';
     const { rows } = await db.query(findOneQuery, [req.body.party]);
     if (!rows[0]) {
@@ -72,7 +71,6 @@ const Candidate = {
     return next();
   },
   async isOffice(req, res, next) {
-    // const findId = 'SELECT id from users WHERE id = $1';
     const findOneQuery = 'SELECT id FROM office WHERE id=$1';
     const { rows } = await db.query(findOneQuery, [req.body.office]);
     if (!rows[0]) {

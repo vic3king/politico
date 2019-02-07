@@ -15,15 +15,9 @@ const spanAge = document.getElementById('spanage');
 const officeForm = document.getElementById('office-form');
 
 
-const invalidToken = () => {
-  window.location = './login.html';
-};
-
 const { politicoToken } = localStorage;
-if (!politicoToken) {
-  invalidToken();
-}
-const currApiEndpoint = 'http://127.0.0.1:3000/api/v1';
+
+const currApiEndpoint = 'radiant-retreat-64120.herokuapp.com/api/v1';
 
 officeForm.addEventListener('submit', (e) => {
   e.preventDefault();

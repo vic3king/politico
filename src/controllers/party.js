@@ -35,10 +35,10 @@ const PartyController = {
         data: rows[0],
       });
     } catch (error) {
-      return response.status(409).send({
-        status: 409,
+      return response.status(400).send({
+        status: 400,
         error: {
-          message: 'party already exists',
+          message: error.message,
         },
       });
     }
@@ -110,10 +110,10 @@ const PartyController = {
         data: response.rows[0],
       });
     } catch (error) {
-      return res.status(409).send({
-        status: 409,
+      return res.status(400).send({
+        status: 400,
         error: {
-          message: 'party already exists',
+          message: error.message,
         },
       });
     }

@@ -54,8 +54,8 @@
           <p id="phonenumber"> 09023xxxx</p>
           <p id="type"> admin</p>
         </div>
-        <button id="office-modal" class="admin-buttons">Add Office </button><br><br>
-        <button id="party-modal" class="admin-buttons">Add Party</button><br><br>
+        <button id="office-modal">Add Office </button><br><br>
+        <button id="party-modal">Add Party</button><br><br>
         <button id="results">Election Results</button>
     </section>
     <section class="displa-sec">
@@ -117,7 +117,9 @@
 
         </h4>
       </div>
-      <div class="container2" id="grid2"></div>
+      <div class="container2" id="grid2">
+
+      </div>
       <div id="myModal-party" class="modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -142,40 +144,11 @@
               </div>
           </form>
           </div>   
-          </div> 
+          </div>
       </div>
-    </div>
-    <div id="myModal-office" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <span class="close">&times;</span>
-      </div>
-      <div class="modal-body">
-          <div class="box" id="addoffice">
-           <form id="office-form" class="box red-flag1">
-               <div class="box2">
-                     <h3 class="page-title">Create a Political Office:</h3>
-                     <form>
-                       <label for="type">Office Type: </label>
-                       <select id="selecttype">
-                         <option value="federal" id="citizen">federal</option>
-                         <option value="legislative" id="politician">legislative</option>
-                         <option value="state" id="state">state</option>
-                         <option value="local-government" id="politician">local-government</option>
-                       </select><br><br>
-                       <label for="type">Office: </label>
-                       <input type="text" id="officename" placeholder="e.g Local government Chairman" name="title" id="type" required><span id="spanofficename"></span><br><br>
-                       <label for="title">AgeLimit: </label>
-                       <input type="number" id="age" required>
-                       <span id="spanage"></span><br><br>
-                       <button type="submit" id="results" class="vote1" style="margin-left: 39%;">Create office</button>
-                 </div>
-             </form>
-             </div>   
-             </div>
-             </div>
-    </div>
-   
+    
+  
+  
       <div class="pagination">
         <a href="#">&laquo;</a>
         <a href="#">1</a>
@@ -188,8 +161,8 @@
       </div>
     </section>
   </main>
-  <script src="js/admin-profile2.js"></script>
   <script src="js/admin.js"></script>
+  <script src="js/admin-profile2.js"></script>
 </body>
 </body>
 

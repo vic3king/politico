@@ -277,11 +277,12 @@ describe('GET /parties', () => {
 
 describe('/patch Update party name', () => {
   const party3 = {
-    name: 'pdpupdate',
-    hqAddress: 'folawiyo bankole street',
-    logoUrl: 'www.testurl.com',
+    name: 'pdpupdatex',
   };
 
+  const party4 = {
+    name: 'pdpupdatefffx',
+  };
   const party3Spaces = {
     name: '     ',
   };
@@ -298,27 +299,24 @@ describe('/patch Update party name', () => {
       });
   });
 
-  it('should return an error 404 if record not found', (done) => {
+  it('should return a success status 409 when party name already exists', (done) => {
     chai.request(server)
-      .patch('/api/v1/parties/42/name')
+      .patch('/api/v1/parties/1/name')
       .send(party3)
       .set('x-access-token', adminToken)
       .end((err, res) => {
-        res.should.have.status(404);
+        res.should.have.status(409);
         done();
       });
   });
 
-  it('should return correct error message when id is not found', (done) => {
+  it('should return an error 404 if party id is not found', (done) => {
     chai.request(server)
-      .patch('/api/v1/parties/41/name')
-      .send(party3)
+      .patch('/api/v1/parties/42/name')
+      .send(party4)
       .set('x-access-token', adminToken)
       .end((err, res) => {
-        res.body.should.be.deep.equal({
-          status: 404,
-          error: 'party not found, enter a valid id',
-        });
+        res.should.have.status(404);
         done();
       });
   });
