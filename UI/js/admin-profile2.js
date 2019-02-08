@@ -201,7 +201,6 @@ function updateModal() {
     }
     if (event.target === modalx) {
       modalx.style.display = 'none';
-      //   }
     }
   };
 }

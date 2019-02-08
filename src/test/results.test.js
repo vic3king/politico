@@ -25,7 +25,7 @@ before((done) => {
 describe('/POST returns results of election', () => {
   it('it should get a particular office election result', (done) => {
     chai.request(server)
-      .post('/api/v1/office/1/result')
+      .get('/api/v1/office/1/result')
       .set('x-access-token', adminToken)
       .end((err, res) => {
         res.should.have.status(200);
@@ -36,7 +36,7 @@ describe('/POST returns results of election', () => {
 
   it('it should throw an error when the request id is not a number', (done) => {
     chai.request(server)
-      .post('/api/v1/office/xyz/result')
+      .get('/api/v1/office/xyz/result')
       .set('x-access-token', adminToken)
       .end((err, res) => {
         res.should.have.status(400);
@@ -46,7 +46,7 @@ describe('/POST returns results of election', () => {
 
   it('it should Not return any result when the candidate id does not exist', (done) => {
     chai.request(server)
-      .post('/api/v1/office/100/result')
+      .get('/api/v1/office/100/result')
       .set('x-access-token', adminToken)
       .end((err, res) => {
         res.should.have.status(404);

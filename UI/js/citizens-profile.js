@@ -1,4 +1,10 @@
 /* eslint-disable no-unused-expressions */
+const modalOffice = document.getElementById('myModal-office');
+const btn = document.getElementById('results');
+btn.onclick = function () {
+  modalOffice.style.display = 'block';
+};
+
 const invalidToken = () => {
   window.location = './login.html';
 };
@@ -68,5 +74,9 @@ function dislayRedForm() {
 window.onclick = (event) => {
   if (event.target === modal) {
     modal.style.display = 'none';
+  }
+
+  if (event.target === modalOffice) {
+    modalOffice.style.display = 'none';
   }
 };

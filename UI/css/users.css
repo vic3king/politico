@@ -139,7 +139,8 @@ h6 {
   border-radius: 5px;
 }
 .party {
-  height: 304px;
+  height: 321px;
+  width: 100%;
 }
 .party__details {
   padding-left: 10px;
@@ -348,13 +349,13 @@ input{
   border-radius: 5px;
 }
 textarea{
+  border: 0.080rem solid #00000033;
+  block-size: 5px;
+  background-color: #fff;
+  padding: 3px 5px;
   width: 100%;
-border-color: #005f6b;
-border-style: solid;
-border-radius: 5px;
-font-size: 16px;
-margin-bottom: 10px;
-border-width: 2px;
+  height: 50px;
+  border-radius: 5px;
 }
 
 .accordion {
@@ -437,6 +438,10 @@ border-width: 2px;
   content: "\2796"; 
 }
 
+.petition {
+  margin-left: 21px;
+}
+
 hr {
   width: 8%;
   background-color: #005f6b;
@@ -455,6 +460,7 @@ hr {
   font-size: 26px;
   text-align: center;
   margin-top: 7px;
+  color: black;
 }
 .page-title2 {
   margin-top: 105pxpx;
@@ -553,10 +559,10 @@ input[type = "radio"] {
 
 .admin-buttons {
   border: 2px solid #f5f6fa;
-    padding: 7px 57px;
+    padding: 7px 56px;
     color: #f5f6fa;
     cursor: pointer;
-    margin-left: 13px;
+    margin-left: 21px;
     background: #005f6b;
     letter-spacing: 1px;
     animation: shadow-pulse 1s infinite;
@@ -595,10 +601,9 @@ input[type = "radio"] {
 
 #results {
   border: 2px solid #f5f6fa;
-  padding: 7px 40px;
+  padding: 7px 38px;
   color: #f5f6fa;
   cursor: pointer;
-  margin-left: 13px;
   background: #005f6b;
   letter-spacing: 1px;
   animation: shadow-pulse 1s infinite;
@@ -647,6 +652,12 @@ input[type = "radio"] {
   padding-top: 91px;
   width: 50%;
   height: 35%;
+}
+.modal-content-edit2 {
+  background-color: #005f6b;
+  margin: 7% auto auto 568px;
+  padding-top: 91px;
+  width: 50%;
 }
 
 /* The Close Button */
