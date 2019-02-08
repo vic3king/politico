@@ -162,6 +162,7 @@ const displayDiv = office => `<div class="div1">
 </div>`;
 
 let id;
+
 function updateModal() {
   const modal = document.querySelector('.modal');
   const modal1 = document.querySelector('.modal1');
@@ -175,8 +176,9 @@ function updateModal() {
     };
   });
   deleteBtn.forEach((button) => {
-    button.onclick = () => {
+    button.onclick = (e) => {
       modal1.style.display = 'block';
+      id = e.target.attributes.key.value;
     };
   });
   updateForm.forEach((button) => {
@@ -204,7 +206,6 @@ function updateModal() {
     }
   };
 }
-
 fetch(`${currApiEndpoint}/offices`, getOfficesConfig)
   .then(resp => resp.json())
   .then((resp) => {
@@ -238,7 +239,7 @@ fetch(`${currApiEndpoint}/parties`, getOfficesConfig)
         <div><b>Members</b>: 00</div>
         <div><b>Hq address</b>: ${party.hqaddress}</div>
         <button id="edit-name" class="edit-btn" key="${party.id}">Edit</button>
-        <button class="delete-record">Delete</button>
+        <button class="delete-record" key="${party.id}">Delete</button>
         </div>
       </div>
       <div id="myEditModal" class="modal">
@@ -272,11 +273,20 @@ fetch(`${currApiEndpoint}/parties`, getOfficesConfig)
 function handleDelete() {
   const fetchConfig = {
     method: 'DELETE',
-    headers: setUpHeader(),
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'x-access-token': politicoToken,
+    },
   };
   fetch(`${currApiEndpoint}/parties/${id}`, fetchConfig)
     .then(resp => resp.json())
     .then((resp) => {
+      const { error, data } = resp;
+
+      if (error) {
+        console.log(error);
+      }
       window.location = './admin-profile.html';
     });
 }
