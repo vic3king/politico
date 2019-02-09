@@ -8,7 +8,14 @@ if (!politicoToken) {
   invalidToken();
 }
 
-const currApiEndpoint = 'http://127.0.0.1:3000/api/v1';
+const logout = () => {
+  localStorage.removeItem('politicoToken');
+  window.location = './index.html';
+};
+
+document.getElementById('logout').addEventListener('click', logout);
+
+const currApiEndpoint = 'https://radiant-retreat-64120.herokuapp.com/api/v1';
 
 const setUpHeader = () => ({ 'x-access-token': politicoToken });
 

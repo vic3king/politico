@@ -1,4 +1,10 @@
 /* eslint-disable no-unused-expressions */
+const modalOffice = document.getElementById('myModal-office');
+const btn = document.getElementById('results');
+btn.onclick = function () {
+  modalOffice.style.display = 'block';
+};
+
 const invalidToken = () => {
   window.location = './login.html';
 };
@@ -8,7 +14,14 @@ if (!politicoToken) {
   invalidToken();
 }
 
-const currApiEndpoint = 'http://127.0.0.1:3000/api/v1';
+const logout = () => {
+  localStorage.removeItem('politicoToken');
+  window.location = './index.html';
+};
+
+document.getElementById('logout').addEventListener('click', logout);
+
+const currApiEndpoint = 'https://radiant-retreat-64120.herokuapp.com/api/v1';
 
 const setUpHeader = () => ({ 'x-access-token': politicoToken });
 
@@ -61,5 +74,9 @@ function dislayRedForm() {
 window.onclick = (event) => {
   if (event.target === modal) {
     modal.style.display = 'none';
+  }
+
+  if (event.target === modalOffice) {
+    modalOffice.style.display = 'none';
   }
 };

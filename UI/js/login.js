@@ -42,8 +42,8 @@ logInForm.addEventListener('submit', (e) => {
       }
       if (data) {
         const { user, token } = data[0];
-        localStorage.iUser = JSON.stringify(user);
-        localStorage.iToken = token;
+        localStorage.politicoUser = JSON.stringify(user);
+        localStorage.politicoToken = token;
         if (user.type === 'admin') {
           window.location = './admin-profile.html';
         } else if (user.type === 'politician') {

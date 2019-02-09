@@ -24,17 +24,28 @@ Required Features
 * User can reset password.
 * A politician can create a petition against a concluded political office election.
 
-## Requirements and Installation
-To install and run this project you would need to have installed:
-- Node Js
-- Git
+## API Documentation
+The full API documentation can be found by following the link below:
 
-To run:
+https://politico2.docs.apiary.io/
+
+## Requirements and Installation
+**Via Cloning The Repository**
 ```
-$ git clone https://github.com/vic3king/politico.git
-$ cd politico
-$ npm install
-$ npm run dev-start
+# Clone the app
+git clone https://github.com/vic3king/politico.git
+
+# Switch to directory
+cd politico
+
+# Install Package dependencies
+npm install
+
+#Start the application
+npm run dev-start
+
+#View the application
+navigate to localhost:3000 to view the application
 ```
 ## Testing
 ```

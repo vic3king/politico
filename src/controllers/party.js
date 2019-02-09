@@ -37,7 +37,9 @@ const PartyController = {
     } catch (error) {
       return response.status(400).send({
         status: 400,
-        message: error.message,
+        error: {
+          message: error.message,
+        },
       });
     }
   },
@@ -107,10 +109,12 @@ const PartyController = {
         message: 'Party name updated succesfully',
         data: response.rows[0],
       });
-    } catch (err) {
+    } catch (error) {
       return res.status(400).send({
         status: 400,
-        error: err.message,
+        error: {
+          message: error.message,
+        },
       });
     }
   },

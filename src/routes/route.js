@@ -30,7 +30,7 @@ router.get('/api/v1/parties/:id', user, Validate.isNotValid, controllerParty.get
 
 router.get('/api/v1/parties', user, controllerParty.getAllParties);
 
-router.patch('/api/v1/parties/:id/name', admin, Validate.isNotValid, Validate.upadteNoName, Validate.updateEmptyName, controllerParty.updatedName);
+router.patch('/api/v1/parties/:id/name', admin, Validate.updateEmptyName, Validate.isNotValid, Validate.validUrl, Validate.upadteNoName, Validate.partyExists, controllerParty.updatedName);
 
 router.delete('/api/v1/parties/:id', admin, Validate.isNotValid, controllerParty.deleteOneParty);
 
@@ -48,7 +48,7 @@ router.post('/api/v1/office/:id/register', admin, Candidate.postCandidate, Candi
 
 router.post('/api/v1/votes', user, Vote.postCandidate, Vote.isValidInt, Vote.hasVoted, Vote.isValidCandidate, Vote.isOffice, ControllerVote.vote);
 
-router.post('/api/v1/office/:id/result', user, ValidateOffice.isNotValid, Results.verifyOffice, ControllerResult.viewResult);
+router.get('/api/v1/office/:id/result', user, ValidateOffice.isNotValid, Results.verifyOffice, ControllerResult.viewResult);
 
 router.post('/api/v1/petitions', user, Petition.validPost, Petition.isValidInt, Petition.postCandidate, Petition.isOffice, Petition.hasPetitioned, ControllerPetition.petition);
 

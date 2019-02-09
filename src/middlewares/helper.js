@@ -1,6 +1,8 @@
 /* eslint-disable consistent-return */
 import dotenv from 'dotenv';
 import { isURL, isAlpha } from 'validator';
+import db from '../db/index';
+
 
 dotenv.load();
 const validId = id => Number.isInteger(parseInt(id, 10));
@@ -135,7 +137,7 @@ const Validate = {
 
   upadteNoName(request, response, next) {
     if (!request.body.name) {
-      response.status(400).send({
+      return response.status(400).send({
         status: 400,
         error: {
           message: 'Party name is required',
@@ -146,11 +148,30 @@ const Validate = {
   },
 
   updateEmptyName(request, response, next) {
-    if (spaceUpdate(request.body)) {
+    if (typeof request.body.name === 'number') {
+      return response.status(400).send({
+        error: 'invalid input type',
+      });
+    }
+    if (request.body.name && spaceUpdate(request.body)) {
       return response.status(400).send({
         status: 400,
         error: {
           message: 'Name Field should contain actual characters and not only spaces',
+        },
+      });
+    }
+    return next();
+  },
+
+  async partyExists(req, res, next) {
+    const findOneQuery = 'SELECT * FROM party WHERE name=$1';
+    const { rows } = await db.query(findOneQuery, [req.body.name]);
+    if (rows[0]) {
+      return res.status(409).send({
+        status: 409,
+        error: {
+          message: 'party already exists',
         },
       });
     }

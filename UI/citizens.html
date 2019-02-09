@@ -30,13 +30,13 @@
           <a href="history.html">History</a>
         </li>
         <li class="main-nav__item">
-          <a href="login.html">Logout</a>
+          <a id="logout">Logout</a>
         </li>
       </ul>
     </nav>
   </header>
   <main class="main-body">
-    <section class="profile">
+    <section class="profile sidenav">
         <div class="profile__image">
             <div class="profile__details">
               <p id="fullname">Fullname: akaniru victory</p>
@@ -44,11 +44,12 @@
               <p id="phonenumber">Phone: 09023xxxx</p>
               <p id="type">Status: Citizen</p>
             </div>
-            <button id="results">Election Results</button>
+            <button id="results" class="petition">Raise Petition</button><br><br>
+            <a href="results.html"><button id="results" >Election Results</button></a>
     </section>
     <section class="displa-sec">
         <div>
-            <h4 class="page-title">Open Positions</h4>
+            <h4 class="page-title">Polls</h4>
           </div>
           <div class="container2" id="grid">
             <div class="div1 vote">
@@ -68,7 +69,7 @@
             </div>
           </div>
           <div id="votemodal" class="modal">
-            <section class="candidates modal-content-edit">
+            <section class="candidates modal-content-edit2">
             <div><div class="flex accordion2">
                 <div class="profile__image"></div>
                 <p style="text-align: left">
@@ -100,6 +101,27 @@
                   Position: Local Government Chairman</button></div><br><br><br><br><br><br><br><br>
             </section>
       </div>
+      <div id="myModal-office" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+          </div>
+          <div class="modal-body">
+              <div class="box" id="addoffice">
+               <form id="office-form" class="box red-flag1">
+                   <div class="box2">
+                         <h3 class="page-title">Petition</h3>
+                         <form>
+                           <label for="type">Office Name: </label>
+                           <input type="text" id="officename" name="title" id="type" required><span id="spanofficename"></span><br><br>
+                           <label for="title">Comments: </label>
+                           <textarea rows="4" cols="50">
+                            </textarea><br><br>
+                           <button type="submit" id="results" class="vote1" style="margin-left: 39%;">Submit</button>
+                     </div>
+                 </form>
+                 </div>   
+                 </div>
+                 </div>
     </section>
   </main>
   <script src="js/citizens-profile.js"></script>
