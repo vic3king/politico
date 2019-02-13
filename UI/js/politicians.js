@@ -1,4 +1,19 @@
 /* eslint-disable no-unused-expressions */
+
+const btn = document.getElementById('results');
+const modalOffice = document.getElementById('myModal-office');
+const petitionForm = document.getElementById('petitions-form');
+const petitionComment = document.getElementById('comments');
+const petitionEvidenceUrl = document.getElementById('evidence');
+const selectOffice = document.getElementById('select-office');
+const petitionErrors = document.getElementById('petition-errors');
+
+// eslint-disable-next-line func-names
+btn.onclick = function () {
+  modalOffice.style.display = 'block';
+};
+
+
 const invalidToken = () => {
   window.location = './login.html';
 };
@@ -55,6 +70,17 @@ fetch(`${currApiEndpoint}/offices`, getOfficesConfig)
       output += displayDiv(office);
     });
 
+    // petitions
+    data.forEach((officedata) => {
+      const selectEl = document.querySelector('#select-office');
+      const option = document.createElement('option');
+
+      option.value = `${officedata.id}`;
+      option.innerHTML = `${officedata.name}`;
+      selectEl.appendChild(option);
+    });
+
+
     const div = document.querySelector('#grid');
     div.innerHTML = output;
   });
@@ -65,8 +91,54 @@ function dislayRedForm() {
   modal.style.display = 'block';
 }
 
+petitionForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const formData = {};
+
+  if (selectOffice.value) {
+    formData.office = Number(selectOffice.value);
+  }
+  if (petitionComment.value) {
+    formData.comment = petitionComment.value;
+  }
+  if (petitionEvidenceUrl.value) {
+    formData.evidence = petitionEvidenceUrl.value;
+  }
+  const fetchConfig = {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'x-access-token': politicoToken,
+    },
+    body: JSON.stringify(formData),
+  };
+  fetch(`${currApiEndpoint}/petitions`, fetchConfig)
+    .then(resp => resp.json())
+    .then((resp) => {
+      const { error, data } = resp;
+      if (error) {
+        if (error.message) {
+          petitionErrors.innerHTML = error.message;
+          petitionErrors.style.color = 'red';
+        }
+      }
+
+      if (data) {
+        console.log(data);
+      }
+    })
+    .catch(err => console.log(err));
+});
+
+
 window.onclick = (event) => {
   if (event.target === modal) {
     modal.style.display = 'none';
+  }
+
+  if (event.target === modalOffice) {
+    modalOffice.style.display = 'none';
   }
 };

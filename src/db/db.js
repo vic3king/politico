@@ -127,7 +127,7 @@ const createTables = async () => {
         office INT REFERENCES office(id) ON DELETE CASCADE,
         comment VARCHAR(128) NOT NULL,
         status petitiontype NOT NULL,
-        evidence VARCHAR[]
+        evidence VARCHAR(128)
         )
       `;
 

@@ -6,7 +6,10 @@ const Petition = {
     const { office, comment } = req.body;
     if (typeof office === 'string' || typeof comment === 'number') {
       return res.status(400).send({
-        error: 'invalid input type',
+        status: 400,
+        error: {
+          message: 'invalid input type',
+        },
       });
     }
     return next();
@@ -38,8 +41,10 @@ const Petition = {
     const { rows } = await db.query(findOneQuery, [req.body.office]);
     if (!rows[0]) {
       return res.status(404).send({
-        status: 404,
-        error: 'office not found',
+        status: 400,
+        error: {
+          message: 'office not found',
+        },
       });
     }
     return next();
@@ -56,7 +61,9 @@ const Petition = {
     if (rows[0]) {
       return res.status(409).send({
         status: 409,
-        error: 'already raised a petition for this office',
+        error: {
+          message: 'already raised a petition for this office',
+        },
       });
     }
     return next();
@@ -67,7 +74,9 @@ const Petition = {
     if (req.body.evidence && !isURL(url.trim())) {
       return res.status(400).send({
         status: 400,
-        message: 'please enter a valid url',
+        error: {
+          message: 'please enter a valid url',
+        },
       });
     }
     return next();
