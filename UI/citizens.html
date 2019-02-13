@@ -23,9 +23,9 @@
     </div>
     <nav class="main-nav">
       <ul class="main-nav__items">
-          <li class="main-nav__item">
-              <a href="index.html">Home</a>
-            </li>
+        <li class="main-nav__item">
+          <a href="index.html">Home</a>
+        </li>
         <li class="main-nav__item">
           <a href="history.html">History</a>
         </li>
@@ -37,91 +37,97 @@
   </header>
   <main class="main-body">
     <section class="profile sidenav">
-        <div class="profile__image">
-            <div class="profile__details">
-              <p id="fullname">Fullname: akaniru victory</p>
-              <p id="email">Email: victory@yahoo.com</p>
-              <p id="phonenumber">Phone: 09023xxxx</p>
-              <p id="type">Status: Citizen</p>
-            </div>
-            <button id="results" class="petition">Raise Petition</button><br><br>
-            <a href="results.html"><button id="results" >Election Results</button></a>
+      <div class="profile__image">
+        <div class="profile__details">
+          <p id="fullname">Fullname: akaniru victory</p>
+          <p id="email">Email: victory@yahoo.com</p>
+          <p id="phonenumber">Phone: 09023xxxx</p>
+          <p id="type">Status: Citizen</p>
+        </div>
+        <button id="results" class="petition">Raise Petition</button><br><br>
+        <a href="results.html"><button id="results">Election Results</button></a>
     </section>
     <section class="displa-sec">
-        <div>
-            <h4 class="page-title">Polls</h4>
-          </div>
-          <div class="container2" id="grid">
-            <div class="div1 vote">
-              <h6>Local Government Chairman</h6>
-              <p class="admin">0</p>
-              <button id="lgc" class="veiwrecord vote1">View</button>
+      <div>
+        <h4 class="page-title">Polls</h4>
+      </div>
+      <div class="container2" id="grid">
+        <div class="div1 vote">
+          <h6>Local Government Chairman</h6>
+          <p class="admin">0</p>
+          <button id="lgc" class="veiwrecord vote1">View</button>
+        </div>
+        <div class="div1 vote">
+          <h6>Senate House</h6>
+          <p class="admin">0</p>
+          <button id="senate-house" class="veiwrecord vote1">View</button>
+        </div>
+        <div class="div1 vote">
+          <h6>House of Reps</h6>
+          <p class="admin">0</p>
+          <button id="house-of-reps" class="veiwrecord vote1">View</button>
+        </div>
+      </div>
+      <div id="votemodal" class="modal">
+        <section class="candidates modal-content-edit2">
+          <div>
+            <div class="flex accordion2">
+              <div class="profile__image"></div>
+              <p style="text-align: left">
+                Candidate 1: John Doe<br>
+                Party: APC <br>
+                Position: Local Government Chairman
+              </p>
+              <button id="results">Vote</button>
             </div>
-            <div class="div1 vote">
-              <h6>Senate House</h6>
-              <p class="admin">0</p>
-              <button id="senate-house" class="veiwrecord vote1">View</button>
-            </div>
-            <div class="div1 vote">
-              <h6>House of Reps</h6>
-              <p class="admin">0</p>
-              <button id="house-of-reps" class="veiwrecord vote1">View</button>
-            </div>
-          </div>
-          <div id="votemodal" class="modal">
-            <section class="candidates modal-content-edit2">
-            <div><div class="flex accordion2">
-                <div class="profile__image"></div>
-                <p style="text-align: left">
-                    Candidate 1: John Doe<br>
-                    Party: APC <br>
-                    Position: Local Government Chairman
-                </p>
-                <button id="results">Vote</button>
-              </div></div>
-                <div><div class="flex accordion2">
-                    <div class="profile__image"></div>
-                    <p style="text-align: left">
-                        Candidate 2: Jane Doe<br>
-                        Party: Hope <br>
-                        Position: Local Government Chairman
-                    </p>
-                    <button id="results">Vote</button>
-                  </div></div><br><br><br><br><br><br><br><br>
-          </section>
           </div>
           <div>
+            <div class="flex accordion2">
+              <div class="profile__image"></div>
+              <p style="text-align: left">
+                Candidate 2: Jane Doe<br>
+                Party: Hope <br>
+                Position: Local Government Chairman
+              </p>
+              <button id="results">Vote</button>
             </div>
-            <section class="candidates" style="display:none">
-              <div><button id="flex" class="accordion">Candidate 2: Jane Doe<br>
-                  Party: Hope <br>
-                  Position: Local Government Chairman</button></div>
-              <div><button id="flex" class="accordion">Candidate 2: Jane Doe<br>
-                  Party: Hope <br>
-                  Position: Local Government Chairman</button></div><br><br><br><br><br><br><br><br>
-            </section>
+          </div><br><br><br><br><br><br><br><br>
+        </section>
+      </div>
+      <div>
+      </div>
+      <section class="candidates" style="display:none">
+        <div><button id="flex" class="accordion">Candidate 2: Jane Doe<br>
+            Party: Hope <br>
+            Position: Local Government Chairman</button></div>
+        <div><button id="flex" class="accordion">Candidate 2: Jane Doe<br>
+            Party: Hope <br>
+            Position: Local Government Chairman</button></div><br><br><br><br><br><br><br><br>
+      </section>
       </div>
       <div id="myModal-office" class="modal">
         <div class="modal-content">
           <div class="modal-header">
           </div>
           <div class="modal-body">
-              <div class="box" id="addoffice">
-               <form id="office-form" class="box red-flag1">
-                   <div class="box2">
-                         <h3 class="page-title">Petition</h3>
-                         <form>
-                           <label for="type">Office Name: </label>
-                           <input type="text" id="officename" name="title" id="type" required><span id="spanofficename"></span><br><br>
-                           <label for="title">Comments: </label>
-                           <textarea rows="4" cols="50">
-                            </textarea><br><br>
-                           <button type="submit" id="results" class="vote1" style="margin-left: 39%;">Submit</button>
-                     </div>
-                 </form>
-                 </div>   
-                 </div>
-                 </div>
+            <div class="box" id="addoffice">
+              <form id="petitions-form" class="box red-flag1">
+                <div class="box2">
+                  <h3 class="page-title">Petition</h3>
+                  <span id="petition-errors"></span><br><br>
+                      <label for="select-office">Select an office to petition</label>
+                    <select id="select-office">
+                    </select>
+                    <label for="evidence">Show evidence if any</label>
+                    <input type="text" id="evidence" placeholder="enter link here"  required><br><br>
+                    <label for="title">Comments: </label>
+                    <textarea rows="4" cols="50" placeholder="Leave your comments here" id="comments"></textarea><br><br>
+                    <button type="submit" id="results" class="vote1" style="margin-left: 39%;">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
     </section>
   </main>
   <script src="js/citizens-profile.js"></script>
