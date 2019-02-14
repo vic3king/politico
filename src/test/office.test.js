@@ -58,22 +58,22 @@ describe('/Post create political office', () => {
   const office = {
     type: 'federal',
     name: 'vice',
-    ageLimit: '50',
+    ageLimit: 50,
   };
 
   const office1 = {
     type: 'federal',
     name: 'speaker',
-    ageLimit: '50',
+    ageLimit: 50,
   };
 
   const noOfficeType = {
     name: 'presidency',
-    ageLimit: '50',
+    ageLimit: 50,
   };
   const noOfficeName = {
     type: 'federal',
-    ageLimit: '50',
+    ageLimit: 50,
   };
   const noOfficeAge = {
     type: 'federal',
@@ -83,12 +83,12 @@ describe('/Post create political office', () => {
   const emptyType = {
     type: '   ',
     name: 'vicepresident',
-    ageLimit: '50',
+    ageLimit: 50,
   };
   const emptyofficeName = {
     type: 'legislative',
     name: '    ',
-    ageLimit: '50',
+    ageLimit: 50,
   };
   const emptyAge = {
     type: 'state',
@@ -98,12 +98,12 @@ describe('/Post create political office', () => {
   const invalidType = {
     type: 'ioejbermob',
     name: 'cbngov',
-    ageLimit: '50',
+    ageLimit: 50,
   };
   const invalidAge = {
     type: 'state',
     name: 'president',
-    ageLimit: '10',
+    ageLimit: 10,
   };
   const invalidAgeType = {
     type: 'local government',
@@ -238,7 +238,7 @@ describe('GET /offices/:id', () => {
   const office2 = {
     type: 'federal',
     name: 'presidency',
-    ageLimit: '50',
+    ageLimit: 50,
   };
   before((done) => {
     chai.request(server)

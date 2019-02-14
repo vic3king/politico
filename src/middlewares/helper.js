@@ -150,7 +150,10 @@ const Validate = {
   updateEmptyName(request, response, next) {
     if (typeof request.body.name === 'number') {
       return response.status(400).send({
-        error: 'invalid input type',
+        status: 400,
+        error: {
+          message: 'invalid input type',
+        },
       });
     }
     if (request.body.name && spaceUpdate(request.body)) {

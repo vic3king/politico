@@ -7,7 +7,9 @@ const Auth = {
     if (!token) {
       return res.status(401).send({
         status: 401,
-        message: 'Token is not provided',
+        error: {
+          message: 'Token is not provided',
+        },
       });
     }
     try {
@@ -15,12 +17,22 @@ const Auth = {
       const text = 'SELECT * FROM users WHERE id = $1';
       const { rows } = await db.query(text, [decoded.userId]);
       if (!rows[0]) {
-        return res.status(401).send({ message: 'unauthenticated user' });
+        return res.status(401).send({
+          status: 401,
+          error: {
+            message: 'unauthenticated user',
+          },
+        });
       }
       req.user = { id: decoded.userId };
       return next();
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).send({
+        status: 400,
+        error: {
+          message: error,
+        },
+      });
     }
   },
 };

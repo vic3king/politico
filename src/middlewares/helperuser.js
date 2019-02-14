@@ -88,7 +88,10 @@ const Helper = {
     } = req.body;
     if (typeof firstname === 'number' || lastname === 'number' || typeof othernames === 'number' || typeof email === 'number' || typeof username === 'number' || typeof type === 'number' || typeof password === 'number') {
       return res.status(400).send({
-        error: 'invalid input type',
+        status: 400,
+        error: {
+          message: 'invalid input type',
+        },
       });
     }
     return next();
@@ -98,7 +101,10 @@ const Helper = {
     const { email, password } = req.body;
     if (typeof email === 'number' || password === 'number') {
       return res.status(400).send({
-        error: 'invalid input type',
+        status: 400,
+        error: {
+          message: 'invalid input type',
+        },
       });
     }
     return next();
@@ -136,7 +142,9 @@ const Helper = {
     if (errorsMessages.length !== 0) {
       return response.status(400).send({
         status: 400,
-        error: errorsMessages,
+        error: {
+          message: errorsMessages,
+        },
       });
     }
     return next();
@@ -146,7 +154,9 @@ const Helper = {
     if (spaces(req.body)) {
       return res.status(400).send({
         status: 400,
-        error: 'Fields should contain actual characters and not only spaces',
+        error: {
+          message: 'Fields should contain actual characters and not only spaces',
+        },
       });
     }
     if (!isValidEmail(req.body.email)) {
@@ -173,21 +183,27 @@ const Helper = {
     if (errorsMessages.length !== 0) {
       return res.status(400).send({
         status: 400,
-        error: errorsMessages,
+        error: {
+          message: errorsMessages,
+        },
       });
     }
 
     if (spacesLogin(req.body)) {
       return res.status(400).send({
         status: 400,
-        error: { message: 'Fields should contain actual characters and not only spaces' },
+        error: {
+          message: 'Fields should contain actual characters and not only spaces',
+        },
       });
     }
 
     if (!isValidEmail(req.body.email)) {
       return res.status(400).send({
         status: 400,
-        error: { email: 'Please enter a valid email address' },
+        error: {
+          email: 'Please enter a valid email address',
+        },
       });
     }
     return next();
@@ -200,7 +216,9 @@ const Helper = {
     }
     return res.status(400).send({
       status: 400,
-      error: 'user type is limited to citizen and politician',
+      error: {
+        message: 'user type is limited to citizen and politician',
+      },
     });
   },
 
@@ -234,13 +252,20 @@ const Helper = {
   async isAdmin(req, res, next) {
     const token = req.headers['x-access-token'];
     if (!token) {
-      return res.status(401).send({ message: 'Token is not provided' });
+      return res.status(401).send({
+        status: 400,
+        error: {
+          message: 'Token is not provided',
+        },
+      });
     }
     const decoded = await jwt.verify(token, process.env.SECRET);
     if (decoded.isAdmin === false) {
       return res.status(403).json({
         status: 400,
-        error: 'only admin users have access to this route',
+        error: {
+          message: 'only admin users have access to this route',
+        },
       });
     }
     return next();

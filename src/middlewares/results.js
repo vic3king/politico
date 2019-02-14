@@ -11,7 +11,9 @@ const Results = {
     if (!rows[0]) {
       return res.status(404).send({
         status: 404,
-        error: 'office not found',
+        error: {
+          message: 'office not found',
+        },
       });
     }
     return next();

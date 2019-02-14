@@ -30,7 +30,9 @@ const Petition = {
     if (errorsMessages.length !== 0) {
       return res.status(400).send({
         status: 400,
-        error: errorsMessages,
+        error: {
+          message: errorsMessages,
+        },
       });
     }
     return next();

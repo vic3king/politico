@@ -15,7 +15,7 @@ const userAdmin = {
 const office = {
   type: 'federal',
   name: 'vicep',
-  ageLimit: '50',
+  ageLimit: 50,
 };
 
 const party = {
@@ -58,7 +58,7 @@ describe('/Post create candidate', () => {
   const office2 = {
     office: 2,
     party: 2,
-    ageLimit: '50',
+    ageLimit: 50,
   };
 
   it('it should Create a new candidate with correct status code', (done) => {

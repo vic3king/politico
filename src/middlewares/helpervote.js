@@ -5,7 +5,10 @@ const Vote = {
     const { office, candidate } = req.body;
     if (typeof office === 'string' || typeof candidate === 'string') {
       return res.status(400).send({
-        error: 'invalid input type',
+        status: 400,
+        error: {
+          message: 'invalid input type',
+        },
       });
     }
     return next();
@@ -26,7 +29,9 @@ const Vote = {
     if (errorsMessages.length !== 0) {
       return res.status(400).send({
         status: 400,
-        error: errorsMessages,
+        error: {
+          message: errorsMessages,
+        },
       });
     }
     return next();
@@ -43,7 +48,9 @@ const Vote = {
     if (rows[0]) {
       return res.status(409).send({
         status: 409,
-        error: 'you already cast your vote for this candidate',
+        error: {
+          message: 'you already cast your vote for this candidate',
+        },
       });
     }
     return next();
@@ -55,7 +62,9 @@ const Vote = {
     if (!rows[0]) {
       return res.status(404).send({
         status: 404,
-        error: 'candidate not found',
+        error: {
+          message: 'candidate not found',
+        },
       });
     }
     return next();
@@ -66,7 +75,9 @@ const Vote = {
     if (!rows[0]) {
       return res.status(404).send({
         status: 404,
-        error: 'office not found',
+        error: {
+          message: 'office not found',
+        },
       });
     }
     return next();

@@ -16,10 +16,13 @@ const spaces = (obj) => {
 
 const ValidateOffice = {
   isValidInputOffice(req, res, next) {
-    const { type, name } = req.body;
-    if (typeof type === 'number' || typeof name === 'number') {
+    const { type, name, ageLimit } = req.body;
+    if (typeof type === 'number' || typeof name === 'number' || typeof ageLimit === 'string') {
       return res.status(400).send({
-        error: 'invalid input type',
+        status: 400,
+        error: {
+          message: 'invalid input type',
+        },
       });
     }
     return next();
@@ -59,21 +62,25 @@ const ValidateOffice = {
       });
     }
     // eslint-disable-next-line no-restricted-globals
-    if (isNaN(req.body.ageLimit)) {
-      return res.status(400).json({
-        status: 400,
-        error: 'ageLimit Limit must be a numeber',
-      });
-    }
+    // if (isNaN(req.body.ageLimit)) {
+    //   return res.status(400).json({
+    //     status: 400,
+    //     error: {
+    //       message: 'ageLimit Limit must be a numeber',
+    //     },
+    //   });
+    // }
 
     if (spaces(req.body)) {
       return res.status(400).send({
         status: 400,
-        error: 'Fields should contain actual characters and not only spaces',
+        error: {
+          message: 'Fields should contain actual characters and not only spaces',
+        },
       });
     }
 
-    if (req.body.ageLimit.trim() < 30) {
+    if (req.body.ageLimit < 30) {
       return res.status(400).json({
         status: 400,
         error: {
@@ -92,7 +99,9 @@ const ValidateOffice = {
     }
     return res.status(400).send({
       status: 400,
-      error: 'office type is limited to federal, legislative, state, local government',
+      error: {
+        message: 'office type is limited to federal, legislative, state, local government',
+      },
     });
   },
 
@@ -100,7 +109,9 @@ const ValidateOffice = {
     if (!validId(req.params.id)) {
       return res.status(400).json({
         status: 400,
-        error: 'The id parameter must be a number',
+        error: {
+          message: 'The id parameter must be a number',
+        },
       });
     }
     return next();

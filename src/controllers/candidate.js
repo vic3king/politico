@@ -11,7 +11,7 @@ const ControllerCandidate = {
       req.body.office,
       req.body.party,
       req.params.id,
-      req.body.ageLimit.trim(),
+      req.body.ageLimit,
     ];
 
     try {
@@ -24,7 +24,9 @@ const ControllerCandidate = {
     } catch (error) {
       return res.status(400).send({
         status: 400,
-        message: error.message,
+        error: {
+          message: error.message,
+        },
       });
     }
   },

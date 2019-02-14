@@ -47,7 +47,9 @@ const User = {
     } catch (error) {
       return res.status(400).send({
         status: 400,
-        error: error.message,
+        error: {
+          message: error.message,
+        },
       });
     }
   },
