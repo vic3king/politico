@@ -11,7 +11,7 @@ const ControllerOffice = {
     const values = [
       type.trim(),
       name.trim(),
-      ageLimit.trim(),
+      ageLimit,
       'new',
       new Date(),
       new Date(),
@@ -47,7 +47,9 @@ const ControllerOffice = {
     } catch (error) {
       return res.status(500).send({
         status: 500,
-        message: error.message,
+        error: {
+          message: error.message,
+        },
       });
     }
   },

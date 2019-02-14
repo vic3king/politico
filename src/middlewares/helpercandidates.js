@@ -3,9 +3,12 @@ import db from '../db/index';
 const Candidate = {
   isValidInt(req, res, next) {
     const { office, party, ageLimit } = req.body;
-    if (typeof office === 'string' || typeof party === 'string' || ageLimit === 'string') {
+    if (typeof office === 'string' || typeof party === 'string' || typeof ageLimit === 'string') {
       return res.status(400).send({
-        error: 'invalid input type',
+        status: 400,
+        error: {
+          message: 'invalid input type',
+        },
       });
     }
     return next();
@@ -41,7 +44,9 @@ const Candidate = {
     if (rows[0]) {
       return res.status(409).send({
         status: 409,
-        error: 'candidate already exists',
+        error: {
+          message: 'candidate already exists',
+        },
       });
     }
     return next();
@@ -53,7 +58,9 @@ const Candidate = {
     if (!rows[0]) {
       return res.status(404).send({
         status: 404,
-        error: 'user not found',
+        error: {
+          message: 'user not found',
+        },
       });
     }
     return next();
@@ -65,7 +72,9 @@ const Candidate = {
     if (!rows[0]) {
       return res.status(404).send({
         status: 404,
-        error: 'party not found',
+        error: {
+          message: 'party not found',
+        },
       });
     }
     return next();
@@ -76,7 +85,9 @@ const Candidate = {
     if (!rows[0]) {
       return res.status(404).send({
         status: 404,
-        error: 'office not found',
+        error: {
+          message: 'office not found',
+        },
       });
     }
     return next();

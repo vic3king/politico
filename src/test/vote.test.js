@@ -15,7 +15,7 @@ const userAdmin = {
 const office = {
   type: 'federal',
   name: 'admin',
-  ageLimit: '50',
+  ageLimit: 50,
 };
 
 const party = {
@@ -58,7 +58,7 @@ before((done) => {
 const regCan = {
   office: 2,
   party: 3,
-  ageLimit: '50',
+  ageLimit: 50,
 };
 before((done) => {
   chai.request(server)

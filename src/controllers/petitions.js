@@ -26,7 +26,9 @@ const ControllerPetition = {
     } catch (error) {
       return res.status(404).send({
         status: 400,
-        error: error.message,
+        error: {
+          message: error.message,
+        },
       });
     }
   },

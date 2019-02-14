@@ -7,7 +7,9 @@ const PartyController = {
     if (Validate.spaces(request.body)) {
       return response.status(400).send({
         status: 400,
-        error: 'Fields should contain actual characters and not only spaces',
+        error: {
+          message: 'Fields should contain actual characters and not only spaces',
+        },
       });
     }
     const address = request.hqAddress;
