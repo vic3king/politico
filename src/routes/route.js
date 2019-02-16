@@ -44,13 +44,15 @@ router.post('/api/v1/auth/signup', Helper.isValidInputSignup, Helper.validValues
 
 router.post('/api/v1/auth/login', Helper.isValidInputLogin, Helper.postValidateLogin, User.login);
 
-router.post('/api/v1/office/:id/register', admin, Candidate.postCandidate, Candidate.isValidInt, ValidateOffice.isNotValid, Candidate.isValidCandidate, Candidate.isValidIDt, Candidate.isOffice, Candidate.isValidParty, ControllerCandidate.createCandidate);
+router.post('/api/v1/office/:id/register', admin, Candidate.postCandidate, Candidate.isValidInt, ValidateOffice.isNotValid, Candidate.isValidCandidate, Candidate.isValidIDt, Candidate.isOffice, Candidate.isValidParty, Candidate.partyHasCandidate, ControllerCandidate.createCandidate);
 
 router.post('/api/v1/votes', user, Vote.postCandidate, Vote.isValidInt, Vote.hasVoted, Vote.isValidCandidate, Vote.isOffice, ControllerVote.vote);
 
 router.get('/api/v1/office/:id/result', user, ValidateOffice.isNotValid, Results.verifyOffice, ControllerResult.viewResult);
 
 router.post('/api/v1/petitions', user, Petition.validPost, Petition.isValidInt, Petition.postCandidate, Petition.isOffice, Petition.hasPetitioned, ControllerPetition.petition);
+
+router.get('/api/v1/candidates/:office', user, ControllerCandidate.getCandidatesByOffice);
 
 router.all('*', (req, res) => {
   res.status(404).send({

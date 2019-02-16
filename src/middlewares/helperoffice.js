@@ -61,15 +61,6 @@ const ValidateOffice = {
         },
       });
     }
-    // eslint-disable-next-line no-restricted-globals
-    // if (isNaN(req.body.ageLimit)) {
-    //   return res.status(400).json({
-    //     status: 400,
-    //     error: {
-    //       message: 'ageLimit Limit must be a numeber',
-    //     },
-    //   });
-    // }
 
     if (spaces(req.body)) {
       return res.status(400).send({

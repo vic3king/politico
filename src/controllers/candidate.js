@@ -31,6 +31,39 @@ const ControllerCandidate = {
     }
   },
 
+  async getCandidatesByOffice(req, res) {
+    const text = `SELECT candidates.id, candidates.office, users.firstname, users.lastname, office.name AS officename, party.name AS partyname
+    FROM users JOIN candidates
+    ON users.id = candidates.user_id
+    JOIN office ON candidates.office = office.id
+    JOIN party ON candidates.party = party.id
+    WHERE office = $1`;
+    const value = [req.params.office];
+
+    try {
+      const { rows } = await db.query(text, value);
+      if (!rows) {
+        return res.status(404).send({
+          status: 404,
+          error: {
+            message: 'No candidate was found',
+          },
+        });
+      }
+      return res.status(200).send({
+        status: 200,
+        message: 'Candidates retrieved',
+        data: rows,
+      });
+    } catch (error) {
+      return res.status(400).send({
+        status: 400,
+        error: {
+          message: 'enter a valid id',
+        },
+      });
+    }
+  },
 };
 
 
