@@ -291,3 +291,24 @@ describe('GET /offices', () => {
       });
   });
 });
+
+describe('GET /candidates/office', () => {
+  it('should throw an error when office id is not a number', (done) => {
+    chai.request(server)
+      .get('/api/v1/candidates/x')
+      .set('x-access-token', tokenUser)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+
+  it('should throw an error when no token is provided', (done) => {
+    chai.request(server)
+      .get('/api/v1/candidates/1')
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+});

@@ -93,6 +93,19 @@ const Candidate = {
     return next();
   },
 
+  async partyHasCandidate(req, res, next) {
+    const findOneQuery = 'SELECT * FROM candidates WHERE party=$1';
+    const { rows } = await db.query(findOneQuery, [req.body.party]);
+    if (rows[0]) {
+      return res.status(409).send({
+        status: 409,
+        error: {
+          message: 'this party already has a candidate',
+        },
+      });
+    }
+    return next();
+  },
 };
 
 export default Candidate;
