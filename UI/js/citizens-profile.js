@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-param-reassign */
 /* eslint-disable func-names */
 /* eslint-disable no-unused-expressions */
 const modalOffice = document.getElementById('myModal-office');
@@ -8,6 +11,7 @@ const petitionComment = document.getElementById('comments');
 const petitionEvidenceUrl = document.getElementById('evidence');
 const selectOffice = document.getElementById('select-office');
 const petitionErrors = document.getElementById('petition-errors');
+const feedback = document.getElementById('votes-feedback');
 
 btn.onclick = function () {
   modalOffice.style.display = 'block';
@@ -53,8 +57,96 @@ type.textContent = `Status: ${user.type}`;
 const displayDiv = office => `<div class="div1">
 <h6>${jsUcfirst(office.name)}(${jsUcfirst(office.type)})</h6>
 <p class="admin">0</p>
-<button id="lgc" onclick="dislayRedForm()" class="veiwrecord vote1">View</button>
+<button id="lgc" key="${office.id}" class="veiwrecord vote1">View</button>
 </div>`;
+let officeid;
+let candidateid;
+function getCandidates() {
+  const viewCandidatesButton = document.querySelectorAll('.veiwrecord');
+  viewCandidatesButton.forEach((button) => {
+    button.onclick = (e) => {
+      modal.style.display = 'block';
+      officeid = e.target.attributes.key.value;
+      fetch(`${currApiEndpoint}/candidates/${officeid}`, getOfficesConfig)
+        .then(resp => resp.json())
+        .then((resp) => {
+          const { error, data } = resp;
+          if (error) {
+            console.log(error);
+          }
+          // console.log(data);
+          let outputx = '';
+          data.forEach((candidate) => {
+            console.log(candidate.id);
+            candidateid = candidate.id;
+            outputx += `
+            <div>
+            <div class="flex accordion2">
+              <div class="profile__image__candidates"></div>
+              <p style="text-align: left">
+                Candidate: ${candidate.firstname} ${candidate.lastname}<br>
+                Party: ${candidate.partyname}<br>
+                Position: ${candidate.officename}
+              </p>
+              <button id="results" onclick="voteCandidate()">Vote</button>
+            </div>
+          </div>`;
+          });
+          const section = document.querySelector('.candidates');
+          section.innerHTML = outputx;
+        });
+    };
+  });
+}
+
+
+function voteCandidate() {
+  const office = Number(officeid);
+  const candidate = Number(candidateid);
+  console.log(typeof office, 'test');
+  console.log(typeof candidate, 'test2');
+  const formData = {
+    office,
+    candidate,
+  };
+
+  const fetchConfig = {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'x-access-token': politicoToken,
+    },
+    body: JSON.stringify(formData),
+  };
+  fetch(`${currApiEndpoint}/votes`, fetchConfig)
+    .then(resp => resp.json())
+    .then((resp) => {
+      console.log(feedback);
+      const { error, data } = resp;
+      if (error) {
+        console.log(error);
+      }
+      if (error.message) {
+        feedback.innerHTML = error.message;
+        feedback.style.display = 'block';
+        feedback.style.color = 'red';
+        feedback.style.border = '1px solid red';
+      }
+      if (data) {
+        feedback.innerHTML = resp.message;
+        feedback.style.display = 'block';
+        feedback.style.color = 'green';
+        feedback.style.border = '2px solid green';
+        console.log(data);
+      }
+      setTimeout(() => {
+        feedback.style.display = 'none';        
+      }, 5000);
+      // window.location = './citisens.html';
+    })
+    .catch(err => console.log(err));
+}
 
 fetch(`${currApiEndpoint}/offices`, getOfficesConfig)
   .then(resp => resp.json())
@@ -81,13 +173,9 @@ fetch(`${currApiEndpoint}/offices`, getOfficesConfig)
 
     const div = document.querySelector('#grid');
     div.innerHTML = output;
+
+    getCandidates();
   });
-
-
-// eslint-disable-next-line no-unused-vars
-function dislayRedForm() {
-  modal.style.display = 'block';
-}
 
 petitionForm.addEventListener('submit', (e) => {
   e.preventDefault();
