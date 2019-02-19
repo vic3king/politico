@@ -58,6 +58,14 @@ main.main-body {
   width: 287px;
   margin-left: 30px;
 }
+.profile__image__candidates {
+  background-image: url(../img/download.jpg);
+  background-size: cover;
+  background-position: 50% 50%;
+  height: 223px;
+  border-radius: 26px;
+  width: 215px;
+}
 h1 {
   font-size: 30px;
   text-align: center;
@@ -230,8 +238,9 @@ button.flex2 {
   margin-top: 142px;
 }
 section.candidates {
-  margin-bottom: 10px;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 0fr);
+  padding-top: 75px;
 }
 
 section.candidates div {
@@ -358,6 +367,14 @@ textarea{
   border-radius: 5px;
 }
 
+#votes-feedback {
+  display: none;
+  position: fixed;
+  margin-left: 50%;
+  margin-top: 11%;
+  background-color: white;
+  padding: 8px;
+}
 .accordion {
   background-color: #424242; 
   color: white;
@@ -655,9 +672,8 @@ input[type = "radio"] {
 }
 .modal-content-edit2 {
   background-color: #005f6b;
-  margin: 7% auto auto 568px;
-  padding-top: 91px;
-  width: 50%;
+  margin: 10% auto auto 30%;
+  width: 62%;
 }
 
 /* The Close Button */
