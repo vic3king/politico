@@ -24,7 +24,7 @@
     <nav class="main-nav">
       <ul class="main-nav__items">
         <li class="main-nav__item">
-          <a href="login.html">Logout</a>
+          <a href="login.html" id="logout">Logout</a>
         </li>
       </ul>
     </nav>
@@ -35,40 +35,19 @@
             <h4 class="page-title">Election Results</h4>
             <div class="container2">
               <div class="div1 vote">
-                <h6>Local Government Chairman</h6>
-                <p>You Voted <b>John Doe</b> for this position</p>
-                <p><b>Number of votes:</b> 200</p>
-                 </div>
-              <div class="div1 vote">
-                <h6>Senate House</h6>
-                <p>winner <b>Jane Doe</b> for this position</p>
-                <p><b>Number of votes:</b> 200</p>
-              </div>
-              <div class="div1 vote">
                 <h6>House of Reps</h6>
-                <p>You Voted <b>Akaniru victory</b> for this position</p>
-                <p><b>Number of votes:</b> 200</p>
+                <p class="admin">0</p>
+                <button id="house-of-reps" class="veiwrecord vote1">View Result</button>
               </div>
             </div> <br><br>
-            <div class="container2">
-              <div class="div1 vote">
-                <h6>Local Government Chairman</h6>
-                <p>You Voted <b>John Doe</b> for this position</p>
-                <p><b>Number of votes:</b> 200</p>
-                 </div>
-              <div class="div1 vote">
-                <h6>Senate House</h6>
-                <p>winner <b>Jane Doe</b> for this position</p>
-                <p><b>Number of votes:</b> 200</p>
-              </div>
-              <div class="div1 vote">
-                <h6>House of Reps</h6>
-                <p>You Voted <b>Akaniru victory</b> for this position</p>
-                <p><b>Number of votes:</b> 200</p>
-              </div>
+            <div id="votemodal" class="modal">
+              <p id="votes-feedback"></p>
+              <section class="candidates modal-results">
+                  
+              </section>
             </div>
-            </section>
   </main>
+  <script src="js/getoffices.js"></script>
 </body>
 
 </html>

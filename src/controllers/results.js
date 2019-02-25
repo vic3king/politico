@@ -2,7 +2,14 @@ import db from '../db/index';
 
 const ControllerResult = {
   async viewResult(req, res) {
-    const text = 'SELECT office, candidate, count(candidate) as results FROM vote where vote.office = $1 GROUP BY vote.candidate, vote.office';
+    const text = `SELECT vote.office, users.firstname, users.lastname, party.name as party, count(candidates) as results
+    FROM vote, candidates, users, party
+    WHERE vote.candidate = candidates.id
+    AND candidates.user_id = users.id
+    AND candidates.party = party.id
+    AND vote.office = $1
+    GROUP BY vote.office, vote.candidate, users.firstname, users.lastname, party.name`;
+
     const values = [
       req.params.id,
     ];
@@ -23,6 +30,5 @@ const ControllerResult = {
     }
   },
 };
-
 
 export default ControllerResult;
