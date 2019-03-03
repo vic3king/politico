@@ -74,10 +74,8 @@ function getCandidates() {
           if (error) {
             console.log(error);
           }
-          // console.log(data);
           let outputx = '';
           data.forEach((candidate) => {
-            console.log(candidate.id);
             candidateid = candidate.id;
             outputx += `
             <div>
@@ -103,8 +101,6 @@ function getCandidates() {
 function voteCandidate() {
   const office = Number(officeid);
   const candidate = Number(candidateid);
-  console.log(typeof office, 'test');
-  console.log(typeof candidate, 'test2');
   const formData = {
     office,
     candidate,
@@ -122,7 +118,6 @@ function voteCandidate() {
   fetch(`${currApiEndpoint}/votes`, fetchConfig)
     .then(resp => resp.json())
     .then((resp) => {
-      console.log(feedback);
       const { error, data } = resp;
       if (error) {
         console.log(error);
@@ -138,10 +133,9 @@ function voteCandidate() {
         feedback.style.display = 'block';
         feedback.style.color = 'green';
         feedback.style.border = '2px solid green';
-        console.log(data);
       }
       setTimeout(() => {
-        feedback.style.display = 'none';        
+        feedback.style.display = 'none';
       }, 5000);
       // window.location = './citisens.html';
     })
@@ -209,10 +203,6 @@ petitionForm.addEventListener('submit', (e) => {
           petitionErrors.innerHTML = error.message;
           petitionErrors.style.color = 'red';
         }
-      }
-
-      if (data) {
-        console.log(data);
       }
     })
     .catch(err => console.log(err));

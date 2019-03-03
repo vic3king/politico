@@ -105,10 +105,9 @@ h1 {
   grid-gap: 19px
 }
 .container2 {
-  display: flex;
-  justify-content: center;
-  height: 140px;
-  margin-bottom: 70px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 19px
 }
 h6 {
   font-size: 17px;
@@ -674,6 +673,13 @@ input[type = "radio"] {
   background-color: #005f6b;
   margin: 10% auto auto 30%;
   width: 62%;
+}
+
+.modal-results {
+  background-color: #005f6b;
+  margin: 10% auto auto 30%;
+  width: 62%;
+  margin: 3% auto auto 20%;
 }
 
 /* The Close Button */
