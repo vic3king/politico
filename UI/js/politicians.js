@@ -7,7 +7,11 @@ const petitionComment = document.getElementById('comments');
 const petitionEvidenceUrl = document.getElementById('evidence');
 const selectOffice = document.getElementById('select-office');
 const petitionErrors = document.getElementById('petition-errors');
-
+const declearInterestForm = document.getElementById('declare-interest-form');
+const selectInterestOffice = document.getElementById('declear-office');
+const selectInterestParty = document.getElementById('declear-party');
+const selectAge = document.getElementById('age');
+const interestFeedback = document.getElementById('interest-errors');
 // eslint-disable-next-line func-names
 btn.onclick = function () {
   modalOffice.style.display = 'block';
@@ -19,6 +23,7 @@ const invalidToken = () => {
 };
 
 const { politicoUser, politicoToken } = localStorage;
+
 if (!politicoToken) {
   invalidToken();
 }
@@ -132,6 +137,86 @@ petitionForm.addEventListener('submit', (e) => {
     .catch(err => console.log(err));
 });
 
+// declear interest to run for office;
+fetch(`${currApiEndpoint}/offices`, getOfficesConfig)
+  .then(resp => resp.json())
+  .then((resp) => {
+    const { error, data } = resp;
+    if (error) {
+      console.log(error);
+    }
+
+    data.forEach((officedata) => {
+      const selectEl = document.querySelector('#declear-office');
+      const option = document.createElement('option');
+
+      option.value = `${officedata.id}`;
+      option.innerHTML = `${officedata.name}`;
+      selectEl.appendChild(option);
+    });
+  });
+
+fetch(`${currApiEndpoint}/parties`, getOfficesConfig)
+  .then(resp => resp.json())
+  .then((resp) => {
+    const { error, data } = resp;
+    if (error) {
+      console.log(error);
+    }
+
+    data.forEach((partydata) => {
+      const selectEl = document.querySelector('#declear-party');
+      const option = document.createElement('option');
+
+      option.value = `${partydata.id}`;
+      option.innerHTML = `${partydata.name}`;
+      selectEl.appendChild(option);
+    });
+  });
+
+declearInterestForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const formData = {};
+
+  if (selectInterestOffice.value) {
+    formData.office = Number(selectInterestOffice.value);
+  }
+  if (selectInterestParty.value) {
+    formData.party = Number(selectInterestParty.value);
+  }
+  if (selectAge.value) {
+    formData.ageLimit = Number(selectAge.value);
+  }
+  const fetchConfig = {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'x-access-token': politicoToken,
+    },
+    body: JSON.stringify(formData),
+  };
+  fetch(`${currApiEndpoint}/office/${user.id}/register`, fetchConfig)
+    .then(resp => resp.json())
+    .then((resp) => {
+      const { error, data } = resp;
+      if (error) {
+        console.log(error);
+        if (error.message) {
+          interestFeedback.innerHTML = error.message;
+          interestFeedback.style.color = 'red';
+        }
+      }
+
+      if (data) {
+        console.log(data);
+        interestFeedback.innerHTML = resp.message;
+        interestFeedback.style.color = 'green';
+      }
+    })
+    .catch(err => console.log(err));
+});
 
 window.onclick = (event) => {
   if (event.target === modal) {
