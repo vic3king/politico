@@ -23,9 +23,9 @@
     </div>
     <nav class="main-nav">
       <ul class="main-nav__items">
-          <li class="main-nav__item">
-              <a href="index.html">Home</a>
-            </li>
+        <li class="main-nav__item">
+          <a href="index.html">Home</a>
+        </li>
         <li class="main-nav__item">
           <a id="logout">Logout</a>
         </li>
@@ -34,7 +34,7 @@
   </header>
   <main class="main-body">
     <section class="profile sidenav">
-        <div class="profile__image formgroup">
+      <div class="profile__image formgroup">
         <div class="profile__details">
           <p id="fullname"><b>Fullname:</b> akaniru victory</p>
           <p id="party"><b>Party:</b> hope</p>
@@ -43,71 +43,69 @@
           <p id="type"><b>Status:</b> politician</p>
         </div>
         <button id="results" class="petition">Raise Petition</button><br><br>
-        <a href="results.html"><button id="results" >Election Results</button></a>
+        <a href="results.html"><button id="results">Election Results</button></a>
     </section>
     <section class="displa-sec">
       <div>
         <h4 class="page-title">Open Positions</h4>
       </div>
-        <div class="container2" id="grid">
-          <div class="div1">
-            <h6>Local Government Chairman</h6>
-            <p class="admin">0</p>
-            <button class="veiwrecord">Declare interest</button>
-          </div>
-          <div class="div1">
-            <h6>Senate House</h6>
-            <p class="admin">0</p>
-            <button class="veiwrecord">Declare interest</button>
-          </div>
-          <div class="div1">
-            <h6>House of Reps</h6>
-            <p class="admin">0</p>
-            <button class="veiwrecord">Declare interest</button>
-          </div>
+      <div class="container2" id="grid">
+        <div class="div1">
+          <h6>Local Government Chairman</h6>
+          <p class="admin">0</p>
+          <button class="veiwrecord">Declare interest</button>
         </div>
-          <div id="form-modal" class="modal">
-            <form id="polit-candidate" class="modal-content">
-                <divclass="box2" style="color: black">
-                  <h3>Candidate declaration form</h3>
-                  <form>
-                      <label for="type">Party: <br></label>
-                      <select>
-                          <option value="APC">APC</option>
-                          <option value="PDP">PDP</option>
-                        </select><br><br>
-                        <label for="type">Office: <br></label>
-                        <select>
-                            <option value="president">President</option>
-                            <option value="vice president">Vice President</option>
-                          </select><br><br>
-                    <button class="button-declare">Declare</button>
+        <div class="div1">
+          <h6>Senate House</h6>
+          <p class="admin">0</p>
+          <button class="veiwrecord">Declare interest</button>
+        </div>
+        <div class="div1">
+          <h6>House of Reps</h6>
+          <p class="admin">0</p>
+          <button class="veiwrecord">Declare interest</button>
+        </div>
+      </div>
+      <div id="form-modal" class="modal">
+        <form id="declare-interest-form" class="modal-content">
+          <divclass="box2" style="color: black">
+            <h3>Candidate declaration form</h3>
+            <span id="interest-errors"></span><br><br>
+            <label for="declear-office">Office: <br></label>
+            <select id="declear-office" required>
+            </select><br><br>
+            <label for="declear-party">Party: <br></label>
+            <select id="declear-party" required>
+            </select><br><br>
+            <label for="age">Age: <br></label>
+            <input type="number" id="age" required><br><br>
+            <button class="button-declare">Declare</button>
+      </div>
+      </form>
+      </div>
+      <div id="myModal-office" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+          </div>
+          <div class="modal-body">
+            <div class="box" id="addoffice">
+              <form id="petitions-form" class="box red-flag1">
+                <div class="box2">
+                  <h3 class="page-title">Petition</h3>
+                  <span id="petition-errors"></span><br><br>
+                  <label for="select-office">Select an office to petition</label>
+                  <select id="select-office">
+                  </select><br><br>
+                  <label for="evidence">Show evidence if any</label>
+                  <input type="text" id="evidence" placeholder="enter link here" required><br><br>
+                  <label for="title">Comments: </label>
+                  <textarea rows="4" cols="50" placeholder="Leave your comments here" id="comments"></textarea><br><br>
+                  <button type="submit" id="results" class="vote1" style="margin-left: 39%;">Submit</button>
                 </div>
               </form>
-        </div>
-        <div id="myModal-office" class="modal">
-            <div class="modal-content">
-              <div class="modal-header">
-              </div>
-              <div class="modal-body">
-                <div class="box" id="addoffice">
-                  <form id="petitions-form" class="box red-flag1">
-                    <div class="box2">
-                      <h3 class="page-title">Petition</h3>
-                      <span id="petition-errors"></span><br><br>
-                          <label for="select-office">Select an office to petition</label>
-                        <select id="select-office">
-                        </select><br><br>
-                        <label for="evidence">Show evidence if any</label>
-                        <input type="text" id="evidence" placeholder="enter link here"  required><br><br>
-                        <label for="title">Comments: </label>
-                        <textarea rows="4" cols="50" placeholder="Leave your comments here" id="comments"></textarea><br><br>
-                        <button type="submit" id="results" class="vote1" style="margin-left: 39%;">Submit</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
             </div>
+          </div>
+        </div>
   </main>
   <script src="js/politicians.js"></script>
 </body>

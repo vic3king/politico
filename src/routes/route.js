@@ -44,7 +44,7 @@ router.post('/api/v1/auth/signup', Helper.isValidInputSignup, Helper.validValues
 
 router.post('/api/v1/auth/login', Helper.isValidInputLogin, Helper.postValidateLogin, User.login);
 
-router.post('/api/v1/office/:id/register', admin, Candidate.postCandidate, Candidate.isValidInt, ValidateOffice.isNotValid, Candidate.isValidCandidate, Candidate.isValidIDt, Candidate.isOffice, Candidate.isValidParty, Candidate.partyHasCandidate, ControllerCandidate.createCandidate);
+router.post('/api/v1/office/:id/register', user, Candidate.postCandidate, Candidate.isValidInt, ValidateOffice.isNotValid, Candidate.isValidCandidate, Candidate.isValidIDt, Candidate.isOffice, Candidate.isValidParty, Candidate.partyHasCandidate, ControllerCandidate.createCandidate);
 
 router.post('/api/v1/votes', user, Vote.postCandidate, Vote.isValidInt, Vote.hasVoted, Vote.isValidCandidate, Vote.isOffice, ControllerVote.vote);
 

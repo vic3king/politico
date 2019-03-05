@@ -19,7 +19,7 @@ const logout = () => {
 document.getElementById('logout').addEventListener('click', logout);
 const jsUcfirst = string => string.charAt(0).toUpperCase() + string.slice(1);
 const modal = document.querySelector('#votemodal');
-const currApiEndpoint = 'http://127.0.0.1:3000/api/v1';
+const currApiEndpoint = 'https://radiant-retreat-64120.herokuapp.com/api/v1';
 
 const fetchConfig = {
   method: 'GET',
@@ -81,7 +81,7 @@ function results() {
                  <p style="text-align: left">
                  <h6>Party: ${jsUcfirst(party)}</h6>
                  <h6>Candidate: ${jsUcfirst(firstname)} ${jsUcfirst(lastname)}</h6>
-                 <p>The candidate finished with <br><b>${results}</b> votes</p>
+                 <p>Total Number of Votes <br><b>${results}</b></p>
                   </div>
                   </div>`;
           });

@@ -119,9 +119,7 @@ function voteCandidate() {
     .then(resp => resp.json())
     .then((resp) => {
       const { error, data } = resp;
-      if (error) {
-        console.log(error);
-      }
+
       if (error.message) {
         feedback.innerHTML = error.message;
         feedback.style.display = 'block';
