@@ -87,3 +87,15 @@ describe('/Post create candidate', () => {
       });
   });
 });
+
+describe('GET /candidates', () => {
+  it('should get all candidates who declare to run for office', (done) => {
+    chai.request(server)
+      .get('/api/v1/candidates')
+      .set('x-access-token', adminToken)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+});

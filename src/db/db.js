@@ -109,6 +109,7 @@ const createTables = async () => {
         party INT REFERENCES party(id) ON DELETE CASCADE,
         ageLimit VARCHAR(50) NOT NULL,
         user_id INT REFERENCES users(id) ON DELETE CASCADE,
+        isApproved boolean NOT NULL DEFAULT false,
         registered_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
 

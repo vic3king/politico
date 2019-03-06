@@ -54,6 +54,8 @@ router.post('/api/v1/petitions', user, Petition.validPost, Petition.isValidInt, 
 
 router.get('/api/v1/candidates/:office', user, ControllerCandidate.getCandidatesByOffice);
 
+router.get('/api/v1/candidates', admin, ControllerCandidate.getAllCandidates);
+
 router.all('*', (req, res) => {
   res.status(404).send({
     status: 404,

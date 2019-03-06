@@ -64,6 +64,27 @@ const ControllerCandidate = {
       });
     }
   },
+
+  async getAllCandidates(req, res) {
+    const findAllQuery = 'SELECT candidates.id, candidates.user_id, candidates.office, candidates.party, users.firstname, users.lastname FROM candidates JOIN users ON candidates.user_id = users.id';
+
+    try {
+      const { rows } = await db.query(findAllQuery);
+      return res.status(200).send({
+        status: 200,
+        message: 'All Candidates retrieved',
+        data: rows,
+      });
+    } catch (error) {
+      return res.status(500).send({
+        status: 500,
+        error: {
+          message: error.message,
+        },
+      });
+    }
+  },
+
 };
 
 
