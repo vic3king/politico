@@ -119,13 +119,15 @@ function voteCandidate() {
     .then(resp => resp.json())
     .then((resp) => {
       const { error, data } = resp;
-
-      if (error.message) {
-        feedback.innerHTML = error.message;
-        feedback.style.display = 'block';
-        feedback.style.color = 'red';
-        feedback.style.border = '1px solid red';
+      if (error) {
+        if (error.message) {
+          feedback.innerHTML = error.message;
+          feedback.style.display = 'block';
+          feedback.style.color = 'red';
+          feedback.style.border = '1px solid red';
+        }
       }
+
       if (data) {
         feedback.innerHTML = resp.message;
         feedback.style.display = 'block';
@@ -135,7 +137,6 @@ function voteCandidate() {
       setTimeout(() => {
         feedback.style.display = 'none';
       }, 5000);
-      // window.location = './citisens.html';
     })
     .catch(err => console.log(err));
 }
