@@ -1,5 +1,13 @@
 import db from '../db/index';
 
+const spaces = (obj) => {
+  const strStatus = obj.status.trim();
+  if (strStatus.length < 1) {
+    return true;
+  }
+  return false;
+};
+
 const Candidate = {
   isValidInt(req, res, next) {
     const { office, party, ageLimit } = req.body;
@@ -102,6 +110,44 @@ const Candidate = {
         error: {
           message: 'this party already has a candidate',
         },
+      });
+    }
+    return next();
+  },
+
+  isValidInputtype(req, res, next) {
+    if (spaces(req.body)) {
+      return res.status(400).send({
+        status: 400,
+        error: {
+          message: 'Fields should contain actual characters and not only spaces',
+        },
+      });
+    }
+
+    const obj = req.body.status.trim();
+    if (obj === 'approved' || obj === 'rejected') {
+      return next();
+    }
+    return res.status(400).send({
+      status: 400,
+      error: {
+        message: 'invalid input type',
+      },
+    });
+  },
+
+  statusReq(req, res, next) {
+    const { status } = req.body;
+    const errorsMessages = [];
+    if (!status) {
+      const error = { status: 'status is required' };
+      errorsMessages.push(error);
+    }
+    if (errorsMessages.length !== 0) {
+      return res.status(400).send({
+        status: 400,
+        error: errorsMessages,
       });
     }
     return next();

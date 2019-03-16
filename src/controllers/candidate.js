@@ -4,14 +4,15 @@ import db from '../db/index';
 const ControllerCandidate = {
   async createCandidate(req, res) {
     const text = `INSERT INTO
-          candidates(office, party, user_id, agelimit)
-          VALUES($1, $2, $3, $4)
+          candidates(office, party, user_id, agelimit, status)
+          VALUES($1, $2, $3, $4, $5)
           returning *`;
     const values = [
       req.body.office,
       req.body.party,
       req.params.id,
       req.body.ageLimit,
+      'pending',
     ];
 
     try {
@@ -32,12 +33,12 @@ const ControllerCandidate = {
   },
 
   async getCandidatesByOffice(req, res) {
-    const text = `SELECT candidates.id, candidates.office, users.firstname, users.lastname, office.name AS officename, party.name AS partyname
+    const text = `SELECT candidates.id, candidates.office, users.firstname, users.lastname, office.name AS officename, party.name AS partyname, candidates.status
     FROM users JOIN candidates
     ON users.id = candidates.user_id
     JOIN office ON candidates.office = office.id
     JOIN party ON candidates.party = party.id
-    WHERE office = $1`;
+    WHERE office = $1 AND candidates.status = 'approved'`;
     const value = [req.params.office];
 
     try {
@@ -66,7 +67,7 @@ const ControllerCandidate = {
   },
 
   async getAllCandidates(req, res) {
-    const findAllQuery = 'SELECT candidates.id, candidates.user_id, candidates.office, candidates.party, users.firstname, users.lastname FROM candidates JOIN users ON candidates.user_id = users.id';
+    const findAllQuery = "SELECT candidates.id, candidates.user_id, candidates.office, candidates.party, users.firstname, users.lastname, candidates.status FROM candidates JOIN users ON candidates.user_id = users.id AND candidates.status = 'approved'";
 
     try {
       const { rows } = await db.query(findAllQuery);
@@ -85,6 +86,32 @@ const ControllerCandidate = {
     }
   },
 
+  async updateStatus(req, res) {
+    const updateOneQuery = `UPDATE candidates
+    SET status=$1
+    WHERE id=$2 returning *`;
+    try {
+      const { rows } = await db.query(updateOneQuery, [req.body.status.trim(), req.params.id]);
+      if (!rows[0]) {
+        return res.status(404).send({
+          status: 404,
+          message: 'candidate not found',
+        });
+      }
+      return res.status(200).send({
+        status: 200,
+        message: 'Candidate status updated',
+        data: rows[0],
+      });
+    } catch (err) {
+      return res.status(400).send({
+        status: 400,
+        error: {
+          message: err.message,
+        },
+      });
+    }
+  },
 };
 
 

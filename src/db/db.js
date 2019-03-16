@@ -33,6 +33,7 @@ const createType = async () => {
   CREATE TYPE usertype AS ENUM('citizen', 'politician', 'admin');
   CREATE TYPE partystat AS ENUM('new', 'updated');
   CREATE TYPE officestat AS ENUM('new', 'updated');
+  CREATE TYPE status AS ENUM('approved', 'pending', 'rejected');
  `;
 
   pool.query(type)
@@ -49,7 +50,8 @@ const dropType = async () => {
   DROP TYPE IF EXISTS officetype;
   DROP TYPE IF EXISTS usertype;
   DROP TYPE IF EXISTS partystat;
-  DROP TYPE IF EXISTS officestat;`;
+  DROP TYPE IF EXISTS officestat;
+  DROP TYPE IF EXISTS status;`;
   pool.query(type)
     .then((res) => {
       console.log(res);
@@ -109,7 +111,7 @@ const createTables = async () => {
         party INT REFERENCES party(id) ON DELETE CASCADE,
         ageLimit VARCHAR(50) NOT NULL,
         user_id INT REFERENCES users(id) ON DELETE CASCADE,
-        isApproved boolean NOT NULL DEFAULT false,
+        status status NOT NULL,
         registered_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
 
