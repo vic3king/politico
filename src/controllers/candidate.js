@@ -67,7 +67,7 @@ const ControllerCandidate = {
   },
 
   async getAllCandidates(req, res) {
-    const findAllQuery = "SELECT candidates.id, candidates.user_id, candidates.office, candidates.party, users.firstname, users.lastname, candidates.status FROM candidates JOIN users ON candidates.user_id = users.id AND candidates.status = 'approved'";
+    const findAllQuery = 'SELECT candidates.id, candidates.user_id, candidates.office, candidates.party, users.firstname, users.lastname, candidates.status FROM candidates JOIN users ON candidates.user_id = users.id';
 
     try {
       const { rows } = await db.query(findAllQuery);

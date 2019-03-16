@@ -104,6 +104,12 @@ h1 {
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 19px
 }
+#grid3 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 19px;
+  margin-left: 20px;
+}
 .container2 {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -148,6 +154,10 @@ h6 {
 .party {
   height: 321px;
   width: 100%;
+}
+.candidate {
+  height: 321px;
+  width: 67%;
 }
 .party__details {
   padding-left: 10px;
@@ -558,6 +568,32 @@ input[type = "radio"] {
   margin-left: -6px;
 }
 
+.approve-btn {
+  font-size: 20px;
+  float: left;
+  background-color: rgb(26, 60, 26); 
+  width: 45%;
+  outline: none;
+  border: 0px solid #f5f6fa;
+  color: #f5f6fa;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.4s;
+  margin-left: -6px;
+}
+.reject-btn{
+  font-size: 20px;
+  float: right;
+  background-color: rgb(184, 32, 32);
+  width: 45%;
+  outline: none;
+  border: 0px solid #f5f6fa;
+  color: #f5f6fa;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.4s;
+  margin-right: 4px;
+}
 .update-accord:hover{
   background-color: rgb(62, 245, 62);
   color: #f5f6fa;

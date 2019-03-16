@@ -56,7 +56,7 @@ router.get('/api/v1/candidates/:office', user, ControllerCandidate.getCandidates
 
 router.get('/api/v1/candidates', admin, ControllerCandidate.getAllCandidates);
 
-router.put('/api/v1/candidates/:id/status', admin, Candidate.statusReq, Candidate.isValidInputtype, ValidateOffice.isNotValid, ControllerCandidate.updateStatus);
+router.patch('/api/v1/candidates/:id/status', admin, Candidate.statusReq, Candidate.isValidInputtype, ValidateOffice.isNotValid, ControllerCandidate.updateStatus);
 
 router.all('*', (req, res) => {
   res.status(404).send({
