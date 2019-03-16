@@ -224,7 +224,6 @@ const Helper = {
 
   validValues(req, res, next) {
     const phnNum = req.body.phonenumber;
-    // const userName = req.body.username;
     if (phnNum && !isValid(phnNum)) {
       return res.status(400).send({
         status: 400,
