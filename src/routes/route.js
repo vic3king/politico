@@ -58,6 +58,9 @@ router.get('/api/v1/candidates', admin, ControllerCandidate.getAllCandidates);
 
 router.put('/api/v1/candidates/:id/status', admin, Candidate.statusReq, Candidate.isValidInputtype, ValidateOffice.isNotValid, ControllerCandidate.updateStatus);
 
+router.get('/api/v1/parties/:id/members', user, Validate.isNotValid, controllerParty.getPartyAndMembers);
+
+
 router.all('*', (req, res) => {
   res.status(404).send({
     status: 404,
