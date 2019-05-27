@@ -143,6 +143,32 @@ const PartyController = {
       });
     }
   },
+
+  async getPartyAndMembers(req, res) {
+    const text = `SELECT party.id, party.name, party.hqaddress, party.logourl, party.status, users.firstname AS firstname, users.lastname AS lastname, candidates.user_id AS user, candidates.party AS party
+    FROM candidates JOIN party
+    ON candidates.party = party.id
+    JOIN users ON candidates.user_id = users.id
+    WHERE party = $1`;
+    try {
+      const { rows } = await db.query(text, [req.params.id]);
+      if (!rows[0]) {
+        return res.status(404).send({
+          status: 404,
+          message: 'party not found',
+        });
+      }
+      return res.status(200).send({
+        status: 200,
+        data: rows,
+      });
+    } catch (error) {
+      return res.status(400).send({
+        status: 400,
+        error: 'enter a valid id',
+      });
+    }
+  },
 };
 
 export default PartyController;

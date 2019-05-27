@@ -26,15 +26,15 @@ const Candidate = {
     const { office, party, ageLimit } = req.body;
     const errorsMessages = [];
     if (!office) {
-      const error = { office: 'office id is required' };
+      const error = { error: 'office id is required' };
       errorsMessages.push(error);
     }
     if (!party) {
-      const error = { name: 'party id is required' };
+      const error = { error: 'party id is required' };
       errorsMessages.push(error);
     }
     if (!ageLimit) {
-      const error = { ageLimit: 'Kindly Provide your age' };
+      const error = { error: 'Kindly Provide your age' };
       errorsMessages.push(error);
     }
     if (errorsMessages.length !== 0) {
@@ -102,8 +102,8 @@ const Candidate = {
   },
 
   async partyHasCandidate(req, res, next) {
-    const findOneQuery = 'SELECT * FROM candidates WHERE party=$1';
-    const { rows } = await db.query(findOneQuery, [req.body.party]);
+    const findOneQuery = 'SELECT * FROM candidates WHERE office=$1 AND party=$2';
+    const { rows } = await db.query(findOneQuery, [req.body.office, req.body.party]);
     if (rows[0]) {
       return res.status(409).send({
         status: 409,
