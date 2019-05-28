@@ -68,7 +68,7 @@ const ControllerCandidate = {
   },
 
   async getAllCandidatesByStatus(req, res) {
-    const findAllQuery = 'SELECT candidates.id, candidates.user_id, candidates.office, candidates.party, users.firstname, users.lastname, party.name, candidates.status FROM candidates JOIN users ON candidates.user_id = users.id JOIN party ON candidates.party = party.id WHERE candidates.status = $1';
+    const findAllQuery = 'SELECT candidates.id, candidates.user_id, candidates.office, candidates.party, users.firstname, users.lastname, party.name AS partyname, office.name AS officename, candidates.status FROM candidates JOIN users ON candidates.user_id = users.id JOIN party ON candidates.party = party.id JOIN office ON candidates.office = office.id WHERE candidates.status = $1';
 
     try {
       if (!validCandidateQueryString(req.query)) {
