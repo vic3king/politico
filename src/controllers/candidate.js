@@ -1,5 +1,6 @@
 
 import db from '../db/index';
+import validCandidateQueryString from '../middlewares/queryValidator';
 
 const ControllerCandidate = {
   async createCandidate(req, res) {
@@ -66,11 +67,21 @@ const ControllerCandidate = {
     }
   },
 
-  async getAllCandidates(req, res) {
-    const findAllQuery = "SELECT candidates.id, candidates.user_id, candidates.office, candidates.party, users.firstname, users.lastname, candidates.status FROM candidates JOIN users ON candidates.user_id = users.id AND candidates.status = 'approved'";
+  async getAllCandidatesByStatus(req, res) {
+    const findAllQuery = 'SELECT candidates.id, candidates.user_id, candidates.office, candidates.party, users.firstname, users.lastname, party.name, candidates.status FROM candidates JOIN users ON candidates.user_id = users.id JOIN party ON candidates.party = party.id WHERE candidates.status = $1';
 
     try {
-      const { rows } = await db.query(findAllQuery);
+      if (!validCandidateQueryString(req.query)) {
+        return res.status(400).json({
+          errors: {
+            body: ['Invalid query string'],
+          },
+        });
+      }
+
+      const values = [req.query.status];
+
+      const { rows } = await db.query(findAllQuery, values);
       return res.status(200).send({
         status: 200,
         message: 'All Candidates retrieved',
