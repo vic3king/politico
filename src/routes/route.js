@@ -54,7 +54,7 @@ router.post('/api/v1/petitions', user, Petition.validPost, Petition.isValidInt, 
 
 router.get('/api/v1/candidates/:office', user, ControllerCandidate.getCandidatesByOffice);
 
-router.get('/api/v1/candidates', admin, ControllerCandidate.getAllCandidates);
+router.get('/api/v1/candidates', admin, ControllerCandidate.getAllCandidatesByStatus);
 
 router.put('/api/v1/candidates/:id/status', admin, Candidate.statusReq, Candidate.isValidInputtype, ValidateOffice.isNotValid, ControllerCandidate.updateStatus);
 
