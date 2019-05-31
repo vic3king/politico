@@ -90,19 +90,17 @@ const Validate = {
     })
       .asPromise()
       .then((res) => {
-        if (res.json.results) {
+        if (res.json.results.length > 0) {
           request.hqAddress = res.json.results[0].formatted_address;
-        }
-
-        if (res.json.results.length < 1) {
+          next();
+        } else {
           return response.status(404).send({
             status: 404,
             error: {
-              message: 'Address not found, enter a valid add',
+              message: 'Address not found, enter a valid address',
             },
           });
         }
-        return next();
       })
       .catch(err => response.status(500).send({
         status: 500,
