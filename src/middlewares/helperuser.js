@@ -48,7 +48,7 @@ const spaces = (obj) => {
 
 const isValidEmail = email => /\S+@\S+\.\S+/.test(email);
 
-const isValid = num => /\+\d{1,3}-\d{1,14}/.test(num);
+const isValid = phoneNumber => !(/^[\d+-]{3,15}$/.test(phoneNumber));
 
 const Helper = {
   /**
