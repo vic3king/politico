@@ -16,7 +16,7 @@ const user = {
   email: 'preshxx@gmail.com',
   password: '2020ada',
   type: 'citizen',
-  phonenumber: '+234-7032421061',
+  phonenumber: '07032421061',
   username: 'preshxxxxxx',
 };
 const user1 = {

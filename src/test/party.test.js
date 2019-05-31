@@ -225,7 +225,7 @@ describe('/Post create political party', () => {
       .send(invalidAddress)
       .set('x-access-token', adminToken)
       .end((err, res) => {
-        res.should.have.status(500);
+        res.should.have.status(404);
         done();
       });
   });

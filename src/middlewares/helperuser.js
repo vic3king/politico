@@ -224,11 +224,11 @@ const Helper = {
 
   validValues(req, res, next) {
     const phnNum = req.body.phonenumber;
-    if (phnNum && !isValid(phnNum)) {
+    if (phnNum && isValid(phnNum)) {
       return res.status(400).send({
         status: 400,
         error: {
-          phone: 'phone number should be of this format +234-7063212299',
+          phone: 'phone number must be between 3 - 15 numbers',
         },
       });
     }
