@@ -17,7 +17,7 @@ const spaces = (obj) => {
 const ValidateOffice = {
   isValidInputOffice(req, res, next) {
     const { type, name, ageLimit } = req.body;
-    if (typeof type === 'number' || typeof name === 'number' || typeof ageLimit === 'string') {
+    if (typeof type === 'number' || typeof name === 'number' || typeof ageLimit === 'string' || typeof description === 'string') {
       return res.status(400).send({
         status: 400,
         error: {
@@ -31,15 +31,19 @@ const ValidateOffice = {
   postOffice(request, response, next) {
     const errorsMessages = [];
     if (!request.body.type) {
-      const error = { type: 'office type is required eg (fedral,state...)' };
+      const error = { error: 'office type is required eg (fedral,state...)' };
       errorsMessages.push(error);
     }
     if (!request.body.name) {
-      const error = { name: 'office name is required eg(presiency)' };
+      const error = { error: 'office name is required eg(presiency)' };
       errorsMessages.push(error);
     }
     if (!request.body.ageLimit) {
-      const error = { ageLimit: 'Kindly Provide your ageLimit' };
+      const error = { error: 'Kindly Provide your ageLimit' };
+      errorsMessages.push(error);
+    }
+    if (!request.body.description) {
+      const error = { error: 'Kindly Provide a description for this office' };
       errorsMessages.push(error);
     }
     if (errorsMessages.length !== 0) {

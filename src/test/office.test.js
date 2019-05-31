@@ -59,12 +59,14 @@ describe('/Post create political office', () => {
     type: 'federal',
     name: 'vice',
     ageLimit: 50,
+    description: 'rytcfuyvgbhjknml,;.',
   };
 
   const office1 = {
     type: 'federal',
     name: 'speaker',
     ageLimit: 50,
+    description: 'rytcfuyvgbhjknml,;.',
   };
 
   const noOfficeType = {
@@ -109,6 +111,7 @@ describe('/Post create political office', () => {
     type: 'local government',
     name: 'councellor',
     ageLimit: 'xx',
+    description: 'hbjknlm,.',
   };
 
   it('it should Create a new office with correct status code', (done) => {

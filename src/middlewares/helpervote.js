@@ -18,11 +18,11 @@ const Vote = {
     const { office, candidate } = req.body;
     const errorsMessages = [];
     if (!office) {
-      const error = { office: 'office id is required' };
+      const error = { error: 'office id is required' };
       errorsMessages.push(error);
     }
     if (!candidate) {
-      const error = { candidate: 'candidate id is required' };
+      const error = { error: 'candidate id is required' };
       errorsMessages.push(error);
     }
 

@@ -112,31 +112,31 @@ const Helper = {
   postUser(request, response, next) {
     const errorsMessages = [];
     if (!request.body.firstname) {
-      const error = { firstname: 'firstname is required' };
+      const error = { error: 'firstname is required' };
       errorsMessages.push(error);
     }
     if (!request.body.lastname) {
-      const error = { lastname: 'lastname is required' };
+      const error = { error: 'lastname is required' };
       errorsMessages.push(error);
     }
     if (!request.body.othernames) {
-      const error = { othernames: 'othernames is required' };
+      const error = { error: 'othernames is required' };
       errorsMessages.push(error);
     }
     if (!request.body.password) {
-      const error = { password: 'password is required' };
+      const error = { error: 'password is required' };
       errorsMessages.push(error);
     }
     if (!request.body.email) {
-      const error = { email: 'email is required' };
+      const error = { error: 'email is required' };
       errorsMessages.push(error);
     }
     if (!request.body.type) {
-      const error = { type: 'user Type is required' };
+      const error = { error: 'user Type is required' };
       errorsMessages.push(error);
     }
     if (!request.body.phonenumber) {
-      const error = { phonenumber: 'user phonenumber is required' };
+      const error = { error: 'user phonenumber is required' };
       errorsMessages.push(error);
     }
     if (errorsMessages.length !== 0) {
@@ -173,11 +173,11 @@ const Helper = {
   postValidateLogin(req, res, next) {
     const errorsMessages = [];
     if (!req.body.password) {
-      const error = { password: 'password is required' };
+      const error = { error: 'password is required' };
       errorsMessages.push(error);
     }
     if (!req.body.email) {
-      const error = { email: 'email is required' };
+      const error = { error: 'email is required' };
       errorsMessages.push(error);
     }
     if (errorsMessages.length !== 0) {

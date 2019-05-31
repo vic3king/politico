@@ -115,15 +115,15 @@ const Validate = {
   postParty(request, response, next) {
     const errorsMessages = [];
     if (!request.body.name) {
-      const error = { name: 'Party name is required' };
+      const error = { error: 'Party name is required' };
       errorsMessages.push(error);
     }
     if (!request.body.hqAddress) {
-      const error = { Address: 'your Address is required' };
+      const error = { error: 'your Address is required' };
       errorsMessages.push(error);
     }
     if (!request.body.logoUrl) {
-      const error = { logoUrl: 'Kindly upload your logo Url' };
+      const error = { error: 'Kindly upload your logo Url' };
       errorsMessages.push(error);
     }
     if (errorsMessages.length !== 0) {

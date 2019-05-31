@@ -19,11 +19,11 @@ const Petition = {
     const { office, comment } = req.body;
     const errorsMessages = [];
     if (!office) {
-      const error = { office: 'office id is required' };
+      const error = { error: 'office id is required' };
       errorsMessages.push(error);
     }
     if (!comment) {
-      const error = { comment: 'comment is required' };
+      const error = { error: 'comment is required' };
       errorsMessages.push(error);
     }
 

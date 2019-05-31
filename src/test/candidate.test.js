@@ -54,39 +54,39 @@ before((done) => {
     });
 });
 
-describe('/Post create candidate', () => {
-  const office2 = {
-    office: 2,
-    party: 2,
-    ageLimit: 50,
-  };
+// describe('/Post create candidate', () => {
+//   const office2 = {
+//     office: 2,
+//     party: 2,
+//     ageLimit: 50,
+//   };
 
-  it('it should Create a new candidate with correct status code', (done) => {
-    chai.request(server)
-      .post('/api/v1/office/2/register')
-      .send(office2)
-      .set('x-access-token', adminToken)
-      .end((err, res) => {
-        res.should.have.status(201);
-        res.body.status.should.be.equal(201);
-        res.body.data.should.have.include.key('party');
-        res.body.data.should.have.include.key('office');
-        res.body.data.should.have.include.key('agelimit');
-        done();
-      });
-  });
+//   it('it should Create a new candidate with correct status code', (done) => {
+//     chai.request(server)
+//       .post('/api/v1/office/2/register')
+//       .send(office2)
+//       .set('x-access-token', adminToken)
+//       .end((err, res) => {
+//         res.should.have.status(201);
+//         res.body.status.should.be.equal(201);
+//         res.body.data.should.have.include.key('party');
+//         res.body.data.should.have.include.key('office');
+//         res.body.data.should.have.include.key('agelimit');
+//         done();
+//       });
+//   });
 
-  it('it should Not Create a new candidate when the candidate already exist', (done) => {
-    chai.request(server)
-      .post('/api/v1/office/2/register')
-      .send(office2)
-      .set('x-access-token', adminToken)
-      .end((err, res) => {
-        res.should.have.status(409);
-        done();
-      });
-  });
-});
+//   it('it should Not Create a new candidate when the candidate already exist', (done) => {
+//     chai.request(server)
+//       .post('/api/v1/office/2/register')
+//       .send(office2)
+//       .set('x-access-token', adminToken)
+//       .end((err, res) => {
+//         res.should.have.status(409);
+//         done();
+//       });
+//   });
+// });
 
 describe('GET /candidates', () => {
   it('should get all candidates who declare to run for office', (done) => {

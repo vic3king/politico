@@ -84,6 +84,7 @@ const createTables = async () => {
         type officetype NOT NULL,
         name VARCHAR(128) NOT NULL UNIQUE,
         ageLimit VARCHAR(50) NOT NULL,
+        description VARCHAR(50),
         status officestat NOT NULL,
         modefied_on TIMESTAMP,
         created_on TIMESTAMP
