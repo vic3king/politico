@@ -28,8 +28,8 @@ const ControllerOffice = {
         data: rows[0],
       });
     } catch (error) {
-      return response.status(400).send({
-        status: 400,
+      return response.status(409).send({
+        status: 409,
         error: {
           duplicate: 'this office already eists',
         },
